@@ -4,7 +4,7 @@
 <div class="container">
 
 <h2 class="my-3">Browse listings</h2>
-
+<!-- comment --> 
 <div id="searchSpecs">
 <!-- When this form is submitted, this PHP page is what processes it.
      Search/sort specs are passed to this page through parameters in the URL
