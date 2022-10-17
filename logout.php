@@ -9,7 +9,7 @@ session_destroy();
 
 #dmkdn
 // Redirect to index
-// ddmcke
+// 123
 header("Location: index.php");
 
 ?>
