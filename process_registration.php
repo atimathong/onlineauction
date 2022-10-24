@@ -30,7 +30,7 @@
                 <input type="text" name="firstname" required>
             </div>
             <div>
-                <label for="Lastname">Last Name : </label>
+                <label for="lastname">Last Name : </label>
                 <input type="text" name="lastname" required>
             </div>
             <div>
@@ -46,8 +46,24 @@
                 <input type="password" name="password_2" required>
             </div>
             <div>
-                <label for="address">Address : </label>
-                <input type="text" name="address">
+                <label for="addressline_1">Address Line 1 : </label>
+                <input type="text" name="addressline_1">
+            </div>
+            <div>
+                <label for="addressline_2">Address Line 2 : </label>
+                <input type="text" name="addressline_2">
+            </div>
+            <div>
+                <label for="postalcode">Postal Code : </label>
+                <input type="text" name="postal_code">
+            </div>
+            <div>
+                <label for="phonenumber">Phone Number : </label>
+                <input type="text" name="phone_number">
+            </div>
+            <div>
+                <label for="usertype">User Type : </label>
+                <input type="text" name="user_type">
             </div>
             <button type="submit" name="reg_user"> Submit </button>
 

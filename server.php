@@ -10,14 +10,19 @@ $errors = array();
 $db = mysqli_connect('localhost', 'root', 'root', 'users') or die('could not connect to database');
 //Register users
 if (isset($_POST['reg_user'])) {
-    $firstname = mysqli_real_escape_string($db, $_POST('firstname'));
-    $lastname = mysqli_real_escape_string($db, $_POST('lastname'));
-    $email = mysqli_real_escape_string($db, $_POST('email'));
-    $password_1 = mysqli_real_escape_string($db, $_POST('password_1'));
-    $password_2 = mysqli_real_escape_string($db, $_POST('password_2'));
-    $address = mysqli_real_escape_string($db, $_POST('address'));
-    //form validation
+    $firstname = mysqli_real_escape_string($db, $_POST['firstname']);
+    $lastname = mysqli_real_escape_string($db, $_POST['lastname']);
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
+    $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+    $addressline_1 = mysqli_real_escape_string($db, $_POST['addressline_1']);
+    $addressline_2 = mysqli_real_escape_string($db, $_POST['addressline_2']);
+    $postal_code = mysqli_real_escape_string($db, $_POST['postal_code']);
+    $phone_number = mysqli_real_escape_string($db, $_POST['phone_number']);
+    $user_type = mysqli_real_escape_string($db, $_POST['user_type']);
 
+    //form validation
+    //TODO: write each attr into required 
     if (empty($firstname)) {
         array_push($errors, "First name is required");
     };
