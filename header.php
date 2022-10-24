@@ -99,7 +99,7 @@
           </div>
           <button type="submit" class="btn btn-primary form-control">Sign in</button>
         </form>
-        <div class="text-center">or <a href="register.php">create an account</a></div>
+        <div class="text-center">or <a href="register.php">Create an account</a></div>
       </div>
 
     </div>
