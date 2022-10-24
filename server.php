@@ -1,13 +1,13 @@
 <?php
 
-session_start();
+//session_start();
 //Initialising variable
 $email = "";
 $password = "";
 //error message
 $errors = array();
 //connect to db
-$db = mysqli_connect('localhost', 'root', 'root', 'users') or die('could not connect to database');
+$db = mysqli_connect('localhost', 'root', 'root', 'db') or die('could not connect to database');
 //Register users
 if (isset($_POST['reg_user'])) {
     $firstname = mysqli_real_escape_string($db, $_POST['firstname']);
@@ -22,7 +22,6 @@ if (isset($_POST['reg_user'])) {
     $user_type = mysqli_real_escape_string($db, $_POST['user_type']);
 
     //form validation
-    //TODO: write each attr into required 
     if (empty($firstname)) {
         array_push($errors, "First name is required");
     };
@@ -35,6 +34,18 @@ if (isset($_POST['reg_user'])) {
     if ($password_1 != $password_2) {
         array_push($errors, "Passwords do not match");
     }
+    if (empty($addressline_1)) {
+        array_push($errors, "Address is required");
+    };
+    if (empty($postal_code)) {
+        array_push($errors, "Postal code is required");
+    };
+    if (empty($phone_number)) {
+        array_push($errors, "Phone number is required");
+    };
+    if (empty($user_type)) {
+        array_push($errors, "User type is required");
+    };
 
     //check db for existing user with same username
 
@@ -51,13 +62,15 @@ if (isset($_POST['reg_user'])) {
     //Register the user if no error
     if (count($errors) === 0) {
         $password = md5($password_1); //encrypt the password
-        $query = "INSERT INTO users (firstname, lastname, email, password, address) VALUES ('$firstname','$lastname','$email','$password','$address')";
+        $query = "INSERT INTO users (firstname, lastname, email, password, addressline_1, addressline_2, postal_code, phone_number, user_type) 
+        VALUES ('$firstname','$lastname','$email','$password','$addressline_1', '$addressline_2', '$postal_code', '$phone_number', '$user_type'
+        )";
         mysqli_query($db, $query);
 
         $_SESSION['email'] = $email;
         $_SESSION['success'] = "You're now logged in";
 
-        header('location: index_me.php');
+        header('location: index.php');
     }
 }
 //Login user
@@ -87,7 +100,7 @@ if (isset($_POST['login_user'])) {
             $_SESSION['email'] = $email;
             $_SESSION['success'] = "Logged in Successfully";
 
-            header('location: index_me.php');
+            header('location: index.php');
         } else {
             array_push($errors, "Please try again!");
         }
