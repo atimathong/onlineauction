@@ -1,0 +1,105 @@
+body{
+    background-color: #E9E9E7;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 75px;
+    font-weight: bold;
+    margin-left: 55px;
+    color:  #0c141c;
+}
+.logo-foot{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 75px;
+    font-weight: bold;
+    color:  #0c141c;
+    text-align: center;
+}
+
+.container-fluid{
+    background-color: #9BB7D4;
+    padding: 20px;
+}
+
+ul{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.search-bar{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.me-2{
+  border: 2px solid #0c141c;
+  border-radius: 0px;
+  width: 1000px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.search-but{
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #0c141c;
+    color: white;
+    border: 3px;
+}
+
+.filter{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 10px;
+    margin-right: 3px;
+    margin-left: -2px;
+}
+
+.detailed_filter {
+    background-color: tomato;
+    margin: 20px 10px;
+    padding: 20px;
+}
+
+.product_disp{
+    background-color: tomato;
+    margin: 20px 10px;
+    padding: 20px;
+    padding-right: 100px;
+}
+
+.page{
+    padding-top: 50px;
+}
+
+.float-end{
+    background-color: #0c141c;
+    border-color: #0c141c;
+}
+
+.foot{
+    background-color: #9BB7D4;
+    padding: 40px;
+}
+
+.align-text-top{
+    display: flex;
+    flex-direction: column;
+}
+
+.contact{
+    font-family: 'Raleway', sans-serif;
+}
+
+.support{
+    font-family: 'Raleway', sans-serif;
+}
+.cp{
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
