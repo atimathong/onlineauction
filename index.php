@@ -36,7 +36,7 @@ include 'top_header.php';
         </div>
       <?php } else { ?>
         <div class="col-9">
-          <img src="pictures/wel2.png" class="img-fluid" alt="welcome">
+          <img src="pictures/welcome.png" class="img-fluid" alt="welcome">
           <?php include 'product_display.php' ?>
         </div>
       <?php } ?>

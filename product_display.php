@@ -21,19 +21,31 @@ require 'database_connect/product_db.php';
 </head>
 
 <body>
-
     <!-- Brand Items - Products -->
     <?php
-    mysqli_select_db($db_conn,'pagination');
-    $result_per_page = 15;
+    mysqli_select_db($db_conn, 'pagination');
+    $results_per_page = 10;
     $product_query = "SELECT * FROM item";
-    $product_query_run  = mysqli_query($db_conn, $product_query);
-    $number_of_results = mysqli_num_rows($product_query_run);
+    $total_result  = mysqli_query($db_conn, $product_query);
+    $number_of_results = mysqli_num_rows($total_result);
+    // total pages available
+    $number_of_pages = ceil($number_of_results / $results_per_page);
+    // determine which page visitor is currently on
+    if (!isset($_GET['page'])) {
+        $page = 1;
+    } else {
+        $page = $_GET['page'];
+    }
+    // determine sql LIMIT starting number
+    $this_page_first_result = ((int)$page - 1) * $results_per_page;
+    // retrieve selected results from database and display them on page
+    $product_query_page = "SELECT * FROM item LIMIT " . $this_page_first_result . ',' . $results_per_page;
+    $result = mysqli_query($db_conn, $product_query_page);
     ?>
     <div class="page">
         <?php
         // if ($queryResults > 0)
-        while ($row = mysqli_fetch_assoc($product_query_run)) { ?>
+        while ($row = mysqli_fetch_assoc($result)) { ?>
             <div class="card mb-3" style="max-width: 1000px;">
                 <div class="row g-0">
                     <div class="col-md-4">
@@ -50,10 +62,26 @@ require 'database_connect/product_db.php';
                 </div>
             </div>
         <?php
-        } // end of loop 
-        ?>
+        } ?>
     </div>
-
+    <div class="text-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <?php
+                // display the links to the pages
+                if($page>1){
+                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page-1) . '">Previous</a></li>';
+                }
+                for ($i = 1; $i <= $number_of_pages; $i++) {
+                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . $i . '">' . $i . '</a></li>';
+                }
+                if($i>$page+1){
+                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page+1) . '">Next</a></li>';
+                }
+                ?>
+            </ul>
+        </nav>
+    </div>
 
     <!-- This is Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
