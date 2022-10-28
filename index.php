@@ -30,10 +30,6 @@ include 'top_header.php';
         <div class="col-9">
           <?php include 'search.php' ?>
         </div>
-      <?php } elseif(isset($_POST['filter-search'])) { ?>
-        <div class="col-9">
-          <?php include 'product_filtered.php' ?>
-        </div>
       <?php } else { ?>
         <div class="col-9">
           <img src="pictures/welcome.png" class="img-fluid" alt="welcome">
