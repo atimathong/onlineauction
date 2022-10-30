@@ -26,33 +26,56 @@
       complete. -->
       <form method="post" action="create_auction_result.php">
         <div class="form-group row">
-          <label for="auctionTitle" class="col-sm-2 col-form-label text-right">Title of auction</label>
+          <label for="item_name" class="col-sm-2 col-form-label text-right">Title of auction</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" id="auctionTitle" placeholder="e.g. Black mountain bike">
             <small id="titleHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> A short description of the item you're selling, which will display in listings.</small>
           </div>
         </div>
         <div class="form-group row">
-          <label for="auctionDetails" class="col-sm-2 col-form-label text-right">Details</label>
+          <label for="description" class="col-sm-2 col-form-label text-right">Details</label>
           <div class="col-sm-10">
             <textarea class="form-control" id="auctionDetails" rows="4"></textarea>
             <small id="detailsHelp" class="form-text text-muted">Full details of the listing to help bidders decide if it's what they're looking for.</small>
           </div>
         </div>
         <div class="form-group row">
-          <label for="auctionCategory" class="col-sm-2 col-form-label text-right">Category</label>
+          <label for="condition" class="col-sm-2 col-form-label text-right">Condition</label>
           <div class="col-sm-10">
             <select class="form-control" id="auctionCategory">
               <option selected>Choose...</option>
-              <option value="fill">Fill me in</option>
-              <option value="with">with options</option>
-              <option value="populated">populated from a database?</option>
+              <option value="brandnew">Brand New</option>
+              <option value="likenew">Like New</option>
+              <option value="lightused">Lightly Used</option>
+              <option value="wellused">Well Used</option>
+              <option value="heavilyused">Heavily Used</option>
+              </select>
+            <small id="conditionHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> State the condition for this item.</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="category_ID" class="col-sm-2 col-form-label text-right">Category</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="auctionCategory">
+              <option selected>Choose...</option>
+              <option value="1">Body and Hair</option>
+              <option value="2">Sports</option>
+              <option value="3">Phones</option>
+              <option value="4">Books</option>
+              <option value="5">Arts</option>
+              <option value="6">Toys</option>
+              <option value="7">Cameras</option>
+              <option value="8">Jewellery and Watch</option>
+              <option value="9">Music Instruments</option>
+              <option value="10">Cars</option>
+              <option value="11">Laptops</option>
+              <option value="12">Furniture</option>
             </select>
             <small id="categoryHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Select a category for this item.</small>
           </div>
         </div>
         <div class="form-group row">
-          <label for="auctionStartPrice" class="col-sm-2 col-form-label text-right">Starting price</label>
+          <label for="starting_price" class="col-sm-2 col-form-label text-right">Starting price</label>
           <div class="col-sm-10">
 	        <div class="input-group">
               <div class="input-group-prepend">
@@ -64,7 +87,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="auctionReservePrice" class="col-sm-2 col-form-label text-right">Reserve price</label>
+          <label for="reserve_price" class="col-sm-2 col-form-label text-right">Reserve price</label>
           <div class="col-sm-10">
             <div class="input-group">
               <div class="input-group-prepend">
@@ -76,10 +99,28 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="auctionEndDate" class="col-sm-2 col-form-label text-right">End date</label>
+          <label for="start_date" class="col-sm-2 col-form-label text-right">Start Date</label>
+          <div class="col-sm-10">
+            <input type="datetime-local" class="form-control" id="auctionEndDate">
+            <small id="startDateHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Day for the auction to start.</small>
+          </div>
+        </div>      
+        <div class="form-group row">
+          <label for="end_date" class="col-sm-2 col-form-label text-right">End Date</label>
           <div class="col-sm-10">
             <input type="datetime-local" class="form-control" id="auctionEndDate">
             <small id="endDateHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Day for the auction to end.</small>
+          </div>
+        </div>  
+        <div class="form-group row">
+          <label for="picture" class="col-sm-2 col-form-label text-right">Add Picture</label>
+          <div class="col-sm-10">
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                Select image to upload:
+              <input type="file" name="fileToUpload" id="fileToUpload">
+              <input type="submit" value="Upload Image" name="submit">
+              <small id="pictureHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Upload only .jpg or .jpeg files.</small>
+            </form>
           </div>
         </div>
         <button type="submit" class="btn btn-primary form-control">Create Auction</button>
