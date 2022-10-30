@@ -37,7 +37,7 @@
 <?php
   // Displays either login or logout on the right, depending on user's
   // current status (session).
-  if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+  if (isset($_SESSION['email']) && $_SESSION['email'] == true) {
     echo '<a class="nav-link" href="logout.php">Logout</a>';
   }
   else {
