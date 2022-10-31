@@ -35,7 +35,7 @@ if (isset($_POST['login_user'])) {
     $password = mysqli_real_escape_string($db_conn, $_POST['password']);
 
     if (empty($email)) {
-        array_push($errors, "Email is required");
+        array_push($errors, "Email is requirconn");
     }
     if (empty($password)) {
         array_push($errors, "Password is required");
@@ -53,7 +53,6 @@ if (isset($_POST['login_user'])) {
             session_start();
             $_SESSION['email'] = $email;
             $curEmail = $_SESSION['email'];
-
             $sql = "SELECT * FROM users WHERE email = '$curEmail';";
             $result = mysqli_query($db_conn, $sql);
             $resultCheck = mysqli_num_rows($result);
