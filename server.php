@@ -1,4 +1,5 @@
 <?php
+    include_once 'dbh.php'; //connect to db
 
 //session_start();
 //Initialising variable
@@ -6,8 +7,8 @@ $email = "";
 $password = "";
 //error message
 $errors = array();
-//connect to db
-$db = mysqli_connect('localhost', 'root', 'root', 'db') or die('could not connect to database');
+
+
 //Register users
 if (isset($_POST['reg_user'])) {
     $firstname = mysqli_real_escape_string($db, $_POST['firstname']);
