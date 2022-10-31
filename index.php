@@ -1,14 +1,14 @@
 <?php
   require "header.php";
+  include_once 'dbh.php';
 ?>
 
 <main>
   
 
   <?php
-  // TODO: select statement to query user details
-
   
+
     if (isset($_SESSION['email']) && $_SESSION['email'] == true) {
       echo('<div class="text-center">You are now logged in! You will be redirected shortly.</div>');
 

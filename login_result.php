@@ -35,8 +35,23 @@ if (isset($_POST['login_user'])) {
         if (mysqli_num_rows($results)==1) {
             session_start();
             $_SESSION['email'] = $email;
-            $_SESSION['user'] = $email;
+            
+  
+            $sql = "SELECT * FROM users WHERE email = '$curEmail';";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
+
+            if ($resultCheck > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $_SESSION['fname'] = $row['firstname'];
+                $_SESSION['userid'] = $row['user_id'];
+                $_SESSION['account_type'] = $row['user_type'];
+            }
+            }
+
             header('location: index.php');
+
+            
             exit();
         } else {
             echo '<p>error </>';
