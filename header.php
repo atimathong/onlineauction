@@ -5,7 +5,6 @@
   // database query.
   session_start();
   include_once 'dbh.php';
-  $_SESSION['account_type'] = 'seller';
 ?>
 
 
@@ -80,7 +79,7 @@
       <a class="nav-link" href="mybids.php">My Biddings</a>
     </li>
 	<li class="nav-item mx-1">
-      <a class="nav-link" href="recommendations.php">Recommendations</a>
+      <a class="nav-link btn border-light" href="recommendations.php">Recommendations</a>
     </li>');
   }
   if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'seller') {
@@ -98,11 +97,11 @@
         <a class="nav-link" href="mybids.php">My Biddings</a>
       </li>
     <li class="nav-item mx-1">
-        <a class="nav-link" href="recommendations.php">Recommendations</a>
-      </li>
-    <li class="nav-item mx-1">
         <a class="nav-link" href="mylistings.php">My Listings</a>
       </li>
+    <li class="nav-item mx-1">
+      <a class="nav-link" href="recommendations.php">Recommendations</a>
+    </li>
     <li class="nav-item ml-3">
         <a class="nav-link btn border-light" href="create_auction.php">+ Create Auction</a>
       </li>');
