@@ -5,14 +5,46 @@
 
 // For now, I will just set session variables and redirect.
 
-session_start();
-$_SESSION['logged_in'] = true;
-$_SESSION['username'] = "test";
-$_SESSION['account_type'] = "buyer";
+$email = "";
+$password = "";
+//error message
+$errors = array();
+//connect to db
+$db = mysqli_connect('localhost', 'root', 'root', 'db') or die('could not connect to database');
 
-echo('<div class="text-center">You are now logged in! You will be redirected shortly.</div>');
+//Login user
+if (isset($_POST['login_user'])) {
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
 
-// Redirect to index after 5 seconds
-header("refresh:5;url=index.php");
+    if (empty($email)) {
+        array_push($errors, "Email is required");
+    }
+    if (empty($password)) {
+        array_push($errors, "Password is required");
+    }
+
+    if (count($errors) === 0) {
+        $email = $email;
+        $password = md5($password);
+        $query = "SELECT * FROM users WHERE email ='$email' AND password='$password'";
+
+        $results = mysqli_query($db, $query);
+
+        //echo mysqli_num_rows($results);
+        if (mysqli_num_rows($results)==1) {
+            session_start();
+            $_SESSION['email'] = $email;
+            $_SESSION['user'] = $email;
+            header('location: index.php');
+            exit();
+        } else {
+            echo '<p>error </>';
+            array_push($errors, "Please try again!");
+            header('location: index.php');
+            exit();
+        }
+    }
+}
 
 ?>

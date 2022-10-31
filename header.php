@@ -4,7 +4,6 @@
   // ONLY after the user's login credentials have been verified via a 
   // database query.
   session_start();
-  $_SESSION['logged_in'] = false;
   $_SESSION['account_type'] = 'seller';
 ?>
 
@@ -32,8 +31,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mx-2">
   <a class="navbar-brand" href="#">Site Name <!--CHANGEME!--></a>
   <ul class="navbar-nav ml-auto">
-    <li class="nav-item">
-    
+
+    <li class="nav-item"></li>
+  
+
 <?php
   // Displays either login or logout on the right, depending on user's
   // current status (session).
@@ -91,13 +92,13 @@
         <form method="POST" action="login_result.php">
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="Email">
+            <input type="text" class="form-control" name="email" id="email" placeholder="Email">
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
           </div>
-          <button type="submit" class="btn btn-primary form-control">Sign in</button>
+          <button type="submit" name="login_user" class="btn btn-primary form-control">Sign in</button>
         </form>
         <div class="text-center">or <a href="register.php">Create an account</a></div>
       </div>
