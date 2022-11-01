@@ -1,5 +1,6 @@
 <?php
 include 'top_header.php';
+session_start(); 
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +24,7 @@ include 'top_header.php';
 
   <?php
     if (isset($_SESSION['email']) && $_SESSION['email'] == true) { ?>
-      echo('<div class="text-center">You are now logged in! You will be redirected shortly.</div>');
+      <?php echo('<div class="text-center">You are now logged in! You will be redirected shortly.</div>'); ?>
 
       <!-- /Redirect to index after 5 seconds -->
       <!-- header("refresh:5;url=browse.php");   -->
@@ -48,9 +49,10 @@ include 'top_header.php';
         </div>
       </div>
    <?php } else { ?>
-      echo('<div class="text-center">You are now logged out! You will be redirected shortly.</div>');
+      <?php echo('<div class="text-center">You are now logged out! You will be redirected shortly.</div>'); 
 
-      <!-- Redirect to index after 5 seconds -->
+      //Redirect to index after 5 seconds
+      // header("refresh:5;url=browse.php");?>
       <!-- this should be put in the browse function without some tabs-->
      
   <?php  } ?>

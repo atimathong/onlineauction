@@ -49,14 +49,14 @@ require 'database_connect/connect_db.php';
             <div class="card mb-3" style="max-width: 1000px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <a href="product_details.php?id=<?php echo $row['itemID']; ?>"> <img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product">
+                        <a href="product_details.php?id=<?php echo $row['item_ID']; ?>"> <img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product">
                         </a>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $row['itemName']; ?></h5>
-                            <p class="card-text">From $<?php echo $row['startingPrice']; ?></p>
-                            <p class="card-text">Bid Status: <?php echo $row['biddingStatus']; ?></p>
+                            <h5 class="card-title"><?php echo $row['item_name']; ?></h5>
+                            <p class="card-text">From $<?php echo $row['starting_price']; ?></p>
+                            <p class="card-text">Bid Status: <?php echo $row['bidding_status']; ?></p>
                         </div>
                     </div>
                 </div>
