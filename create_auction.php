@@ -1,4 +1,4 @@
-<?php include_once("header.php")?>
+<?php include_once("top_header.php")?>
 
 <?php
 /* (Uncomment this block to redirect people without selling privileges away from this page)
@@ -91,4 +91,4 @@
 </div>
 
 
-<?php include_once("footer.php")?>
+<?php include_once("bottom_footer.php")?>
