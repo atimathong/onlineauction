@@ -1,5 +1,5 @@
 <?php
-require 'database_connect/product_db.php';
+require 'database_connect/connect_db.php';
 ?>
 
     <?php

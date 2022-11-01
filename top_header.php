@@ -1,6 +1,6 @@
 
 <?php
-    include 'database_connect/product_db.php';
+    include 'database_connect/connect_db.php';
 ?>
 
 <!DOCTYPE html>
