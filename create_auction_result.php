@@ -1,4 +1,4 @@
-<?php include_once("header.php")?>
+<?php include_once("top_header.php")?>
 
 <div class="container my-5">
 
@@ -93,4 +93,4 @@ echo('<div class="text-center">Auction successfully created! <a href="FIXME">Vie
 </div>
 
 
-<?php include_once("footer.php")?>
+<?php include_once("bottom_footer.php")?>
