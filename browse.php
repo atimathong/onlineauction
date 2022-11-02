@@ -1,4 +1,6 @@
-<?php include_once("header.php")?>
+<!-- this file is not used for now. -->
+
+<?php include_once("top_header.php")?>
 <?php require("utilities.php")?>
 
 <div class="container">
