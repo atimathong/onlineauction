@@ -1,5 +1,9 @@
 <?php 
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+
 $id = $_SESSION['userid']; 
 include_once 'database_connect/connect_db.php';
 include_once("top_header.php");
