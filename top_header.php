@@ -1,6 +1,9 @@
 <?php
 include 'database_connect/connect_db.php';
-session_start();
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +91,7 @@ session_start();
   <!-- Logo and Search Bar -->
   <nav class="navbar bg-light logoband">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="index.php">
         <div class="row">
           <div class="col">
             <h1 class="logo">.eBid</h1>

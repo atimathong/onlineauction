@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include_once("top_header.php");
 include_once 'database_connect/connect_db.php';
 $id = $_SESSION['userid'];
@@ -95,13 +94,13 @@ if (isset($_POST['new_auction'])) {
             echo 'done.';
           }
         */
-        echo('<div class="text-center">Auction successfully created! <a href="FIXME">View your new listing.</a></div>');
+        
 
         //header('refresh:5;url=index.php');
          }        
 
 // If all is successful, let user know.
-echo('<div class="text-center">Auction successfully created! <a href="FIXME">View your new listing.</a></div>');
+echo('<div class="text-center">Auction successfully created! <a href="index.php">View your new listing.</a></div>');
 
 
 ?>

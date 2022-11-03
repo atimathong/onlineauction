@@ -11,7 +11,7 @@ if(isset($_POST["img_submit"])) {
     $fileName = $_FILES['file']['name'];
     $fileTmpName = $_FILES['file']['tmp_name'];
     $allowed = array('jpg', 'jpeg', 'png');
-    $folder = 'uploads/';
+    $folder = 'pictures/';
     move_uploaded_file($fileTmpName, $folder.$fileName);
     $query = "INSERT INTO item (user_ID, item_name, picture) 
         VALUES ('$id', 'new', '$fileName')";
@@ -29,7 +29,7 @@ if(isset($_POST["img_submit"])) {
     if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($sqlResult)) {
         $_SESSION['itemid'] = $row['item_ID'];
-        //echo $_SESSION['itemid'];
+        echo $_SESSION['itemid'];
     }
     }
     
