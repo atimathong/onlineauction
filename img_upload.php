@@ -29,6 +29,7 @@ if(isset($_POST["img_submit"])) {
     if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($sqlResult)) {
         $_SESSION['itemid'] = $row['item_ID'];
+        $_SESSION['img']= $row['picture'];
         echo $_SESSION['itemid'];
     }
     }
