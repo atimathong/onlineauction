@@ -28,6 +28,9 @@
       <a class="nav-link active" aria-current="page" href="#">Become a Seller?</a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="create_auction.php">Add Product</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="#">Bidding List</a>
     </li>
     <li class="nav-item">
