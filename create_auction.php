@@ -1,4 +1,9 @@
-<?php include_once("top_header.php")?>
+<?php 
+include_once 'database_connect/connect_db.php';
+include_once("top_header.php");
+
+?>
+
 
 <?php
 /* (Uncomment this block to redirect people without selling privileges away from this page)
@@ -28,22 +33,22 @@
         <div class="form-group row">
           <label for="item_name" class="col-sm-2 col-form-label text-right">Title of auction</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="auctionTitle" placeholder="e.g. Black mountain bike">
+            <input type="text" class="form-control" id="auctionTitle" name="item_name" placeholder="e.g. Black mountain bike">
             <small id="titleHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> A short description of the item you're selling, which will display in listings.</small>
           </div>
         </div>
         <div class="form-group row">
           <label for="description" class="col-sm-2 col-form-label text-right">Details</label>
           <div class="col-sm-10">
-            <textarea class="form-control" id="auctionDetails" rows="4"></textarea>
+            <textarea class="form-control" id="auctionDetails" name="description" rows="4"></textarea>
             <small id="detailsHelp" class="form-text text-muted">Full details of the listing to help bidders decide if it's what they're looking for.</small>
           </div>
         </div>
         <div class="form-group row">
           <label for="condition" class="col-sm-2 col-form-label text-right">Condition</label>
           <div class="col-sm-10">
-            <select class="form-control" id="auctionCategory">
-              <option selected>Choose...</option>
+            <select class="form-control" id="auctionCategory" name="condition">
+              <option selected>Choose...</option> 
               <option value="brandnew">Brand New</option>
               <option value="likenew">Like New</option>
               <option value="lightused">Lightly Used</option>
@@ -56,7 +61,7 @@
         <div class="form-group row">
           <label for="category_ID" class="col-sm-2 col-form-label text-right">Category</label>
           <div class="col-sm-10">
-            <select class="form-control" id="auctionCategory">
+            <select class="form-control" id="auctionCategory" name="category_ID">
               <option selected>Choose...</option>
               <option value="1">Body and Hair</option>
               <option value="2">Sports</option>
@@ -79,9 +84,9 @@
           <div class="col-sm-10">
 	        <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">£</span>
+                <span class="input-group-text" >£</span>
               </div>
-              <input type="number" class="form-control" id="auctionStartPrice">
+              <input type="number" name="starting_price" class="form-control" id="auctionStartPrice">
             </div>
             <small id="startBidHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Initial bid amount.</small>
           </div>
@@ -91,9 +96,9 @@
           <div class="col-sm-10">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">£</span>
+                <span class="input-group-text" name="reserve_price">£</span>
               </div>
-              <input type="number" class="form-control" id="auctionReservePrice">
+              <input type="number" class="form-control" name="reserve_price" id="auctionReservePrice">
             </div>
             <small id="reservePriceHelp" class="form-text text-muted">Optional. Auctions that end below this price will not go through. This value is not displayed in the auction listing.</small>
           </div>
@@ -101,29 +106,45 @@
         <div class="form-group row">
           <label for="start_date" class="col-sm-2 col-form-label text-right">Start Date</label>
           <div class="col-sm-10">
-            <input type="datetime-local" class="form-control" id="auctionEndDate">
+            <input type="date" class="form-control" id="auctionEndDate" name="start_date">
             <small id="startDateHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Day for the auction to start.</small>
           </div>
         </div>      
         <div class="form-group row">
+          <label for="start_time" class="col-sm-2 col-form-label text-right">Start Time</label>
+          <div class="col-sm-10">
+            <input type="time" class="form-control" id="auctionEndDate" name="start_time">
+            <small id="startTimeHelp" class="form-text text-muted"><span class="text-danger">* Required.</span></small>
+          </div>
+        </div> 
+        <div class="form-group row">
           <label for="end_date" class="col-sm-2 col-form-label text-right">End Date</label>
           <div class="col-sm-10">
-            <input type="datetime-local" class="form-control" id="auctionEndDate">
+            <input type="date" class="form-control" id="auctionEndDate" name="end_date">
             <small id="endDateHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Day for the auction to end.</small>
           </div>
         </div>  
         <div class="form-group row">
+          <label for="end_time" class="col-sm-2 col-form-label text-right">End Time</label>
+          <div class="col-sm-10">
+            <input type="time" class="form-control" id="auctionEndDate" name="end_time">
+            <small id="endTimeHelp" class="form-text text-muted"><span class="text-danger">* Required.</span></small>
+          </div>
+        </div> 
+        <div class="form-group row">
           <label for="picture" class="col-sm-2 col-form-label text-right">Add Picture</label>
           <div class="col-sm-10">
-            <form action="upload.php" method="post" enctype="multipart/form-data">
+            
+            <!-- <form action="upload.php" method="post" enctype="multipart/form-data">
                 Select image to upload:
-              <input type="file" name="fileToUpload" id="fileToUpload">
-              <input type="submit" value="Upload Image" name="submit">
+              <input type="file"  id="fileToUpload">
+              <input type="submit" name="photosubmit" value="Upload Image" >
               <small id="pictureHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Upload only .jpg or .jpeg files.</small>
-            </form>
+            </form> -->
+            
           </div>
         </div>
-        <button type="submit" class="btn btn-primary form-control">Create Auction</button>
+        <button type="submit" name="new_auction" class="btn btn-primary form-control">Create Auction</button>
       </form>
     </div>
   </div>
