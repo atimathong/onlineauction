@@ -1,4 +1,6 @@
 <?php 
+session_start();
+$id = $_SESSION['userid']; 
 include_once 'database_connect/connect_db.php';
 include_once("top_header.php");
 
@@ -29,7 +31,24 @@ include_once("top_header.php");
       before they try to send it, but that kind of functionality should be
       extremely low-priority / only done after all database functions are
       complete. -->
-      <form method="post" action="create_auction_result.php">
+      
+      <br>
+      <div class="form-group row">
+      <label for="picture" class="col-sm-2 col-form-label text-right">Add Picture</label>
+      <div class="col-sm-10">
+        
+        <form action="img_upload.php" method="POST" enctype="multipart/form-data">
+            Select image to upload:
+          <input type="file" name="file"><br> <br>
+          <button type="submit" name="img_submit">UPLOAD</button>
+          <small id="pictureHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Upload only .jpg or .jpeg files.</small>
+        </form>
+      </div>
+      </div>
+      
+      <br>
+
+      <form method="POST" action="create_auction_result.php">
         <div class="form-group row">
           <label for="item_name" class="col-sm-2 col-form-label text-right">Title of auction</label>
           <div class="col-sm-10">
@@ -131,19 +150,7 @@ include_once("top_header.php");
             <small id="endTimeHelp" class="form-text text-muted"><span class="text-danger">* Required.</span></small>
           </div>
         </div> 
-        <div class="form-group row">
-          <label for="picture" class="col-sm-2 col-form-label text-right">Add Picture</label>
-          <div class="col-sm-10">
-            
-            <!-- <form action="upload.php" method="post" enctype="multipart/form-data">
-                Select image to upload:
-              <input type="file"  id="fileToUpload">
-              <input type="submit" name="photosubmit" value="Upload Image" >
-              <small id="pictureHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Upload only .jpg or .jpeg files.</small>
-            </form> -->
-            
-          </div>
-        </div>
+      
         <button type="submit" name="new_auction" class="btn btn-primary form-control">Create Auction</button>
       </form>
     </div>
