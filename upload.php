@@ -2,15 +2,20 @@
 session_start();
 include_once 'database_connect/connect_db.php';
 $id = $_SESSION['userid']; 
-
-
+/* 
 $target_dir = "uploads/";
+$fileToUpload = $_FILES['file'];
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
+ */
+
 // Check if image file is a actual image or fake image
-if(isset($_POST["photosubmit"])) {
+if(isset($_POST["img_submit"])) {
+  
+
+  $file = $_FILES['file'];
   $fileName = $_FILES['file']['name'];
   $fileTmpName = $_FILES['file']['tmp_name'];
   $fileSize = $_FILES['file']['size'];
@@ -20,16 +25,18 @@ if(isset($_POST["photosubmit"])) {
 
   $fileExt = explode(',', $fileName);
   $fileActualExt = strtolower(end($fileExt));
+  move_uploaded_file($fileTmpName, $fileName);
 
   if (in_array($fileActualExt, $allowed)){
     if ($fileError === 0) {
         if ($fileSize < 1000000){
           $fileNameNew = "product".$id.$picid.".".$fileActualExt;
-          $fileDestination = 'uploads/'.$fileNameNew;
+          echo $fileNameNew;
+          $fileDestination = './uploads/'.$fileNameNew;
           move_uploaded_file($fileTmpName, $fileDestination);
-          $sql = "UPDATE item SET picture='$fileNameNew' WHERE userid='$id';";
-          $result = mysqli_query($db_conn, $sql);
-
+          //$sql = "UPDATE item SET picture='$fileNameNew' WHERE userid='$id';";
+          //$result = mysqli_query($db_conn, $sql);
+          
           header("Location: index.php?uploadsuccess");
         } else {
           echo "Your file is too large.";
@@ -53,6 +60,7 @@ if(isset($_POST["photosubmit"])) {
   }
 }
 
+/* 
 // Check if file already exists
 if (file_exists($target_file)) {
   echo "Sorry, file already exists.";
@@ -82,5 +90,5 @@ if ($uploadOk == 0) {
   } else {
     echo "Sorry, there was an error uploading your file.";
   }
-}
+} */
 ?>
