@@ -20,6 +20,21 @@ include_once("top_header.php");
   }
 */
 ?>
+<head>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- Font Logo : Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <!-- This is Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+
+</head>
 
 <div class="container">
 
@@ -42,10 +57,16 @@ include_once("top_header.php");
       <div class="col-sm-10">
         
         <form action="img_upload.php" method="POST" enctype="multipart/form-data">
-            Select image to upload:
+            Select image to upload:<br>
           <input type="file" name="file"><br> <br>
           <button type="submit" name="img_submit">UPLOAD</button>
           <small id="pictureHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Upload only .jpg or .jpeg files.</small>
+          <?php
+          if (isset($_SESSION['img'])) {
+            echo '<a target="_blank"><img src="pictures/'.$_SESSION['img'].'" height = 80 width = 80 class="img-fluid img-thumbnail " alt="product"></a>';
+          }
+
+          ?>
         </form>
       </div>
       </div>
