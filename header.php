@@ -1,3 +1,5 @@
+<!-- This file is not used for now. -->
+
 <?php
   // FIXME: At the moment, I've allowed these values to be set manually.
   // But eventually, with a database, these should be set automatically
@@ -53,11 +55,11 @@
           <a class="dropdown-item" href="#">Your Bidding List</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Profile</a>
-        </div
+  </div>
     </li>
     <li class="nav-item mx-1">
     <a class="nav-link" href="logout.php">Logout</a>
-    </li>';
+    </li>
     
  <?php } else { ?>
     echo '<button type="button" class="btn nav-link" data-toggle="modal" data-target="#loginModal">Login</button>';
