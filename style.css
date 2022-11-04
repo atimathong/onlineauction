@@ -188,6 +188,9 @@ body{
 	border-color: #e74c3c;
 }
 
+.form-con.error small {
+	visibility: visible;
+}
 
 .form-con small {
 	color: #e74c3c;
@@ -197,9 +200,7 @@ body{
 	visibility: hidden;
 }
 
-.form-con.error small {
-	visibility: visible;
-}
+
 
 .form button {
 	background-color: #8e44ad;
@@ -212,4 +213,8 @@ body{
 	padding: 10px;
 	margin-top: 20px;
 	width: 100%;
+}
+
+.form-con-btn.form-uploaded {
+    visibility: hidden;
 }

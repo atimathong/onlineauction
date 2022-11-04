@@ -1,8 +1,15 @@
+
+
 <?php
 session_start();
 include_once 'database_connect/connect_db.php';
 $id = $_SESSION['userid']; 
+$_SESSION['img'] = "";
+?>
 
+<head><script defer src="./create_auction.js"></script></head>
+
+<?php
 
 if(isset($_POST["img_submit"])) {
 
@@ -17,7 +24,6 @@ if(isset($_POST["img_submit"])) {
         VALUES ('$id', 'new', '$fileName')";
     $result = mysqli_query($db_conn, $query);
     
-
     
     
     
@@ -25,16 +31,19 @@ if(isset($_POST["img_submit"])) {
     $sql = "SELECT * FROM item WHERE user_ID = '$id' and picture = '$fileName';";
     $sqlResult = mysqli_query($db_conn, $sql);
     $resultCheck = mysqli_num_rows($sqlResult);
+    
 
     if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($sqlResult)) {
         $_SESSION['itemid'] = $row['item_ID'];
         $_SESSION['img']= $row['picture'];
+        echo $_SESSION['img'];
         echo $_SESSION['itemid'];
     }
     }
     
     
-    header("Location: create_auction.php?uploadsuccess");
+    
+    header("Location: create_auction.php");
 }
 ?>
