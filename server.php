@@ -1,5 +1,5 @@
 <?php
-    include_once 'dbh.php'; //connect to db
+    include_once 'database_connect/connect_db.php'; //connect to db
 
 //session_start();
 //Initialising variable
@@ -11,16 +11,16 @@ $errors = array();
 
 //Register users
 if (isset($_POST['reg_user'])) {
-    $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
-    $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password_1 = mysqli_real_escape_string($conn, $_POST['password_1']);
-    $password_2 = mysqli_real_escape_string($conn, $_POST['password_2']);
-    $addressline_1 = mysqli_real_escape_string($conn, $_POST['addressline_1']);
-    $addressline_2 = mysqli_real_escape_string($conn, $_POST['addressline_2']);
-    $postal_code = mysqli_real_escape_string($conn, $_POST['postal_code']);
-    $phone_number = mysqli_real_escape_string($conn, $_POST['phone_number']);
-    $user_type = mysqli_real_escape_string($conn, $_POST['user_type']);
+    $firstname = mysqli_real_escape_string($db_conn, $_POST['firstname']);
+    $lastname = mysqli_real_escape_string($db_conn, $_POST['lastname']);
+    $email = mysqli_real_escape_string($db_conn, $_POST['email']);
+    $password_1 = mysqli_real_escape_string($db_conn, $_POST['password_1']);
+    $password_2 = mysqli_real_escape_string($db_conn, $_POST['password_2']);
+    $addressline_1 = mysqli_real_escape_string($db_conn, $_POST['addressline_1']);
+    $addressline_2 = mysqli_real_escape_string($db_conn, $_POST['addressline_2']);
+    $postal_code = mysqli_real_escape_string($db_conn, $_POST['postal_code']);
+    $phone_number = mysqli_real_escape_string($db_conn, $_POST['phone_number']);
+    $user_type = mysqli_real_escape_string($db_conn, $_POST['user_type']);
 
     //form validation
     if (empty($firstname)) {
@@ -51,7 +51,7 @@ if (isset($_POST['reg_user'])) {
     //check db for existing user with same username
 
     $user_check_query = "SELECT * FROM users WHERE email= '$email' LIMIT 1";
-    $result = mysqli_query($conn, $user_check_query);
+    $result = mysqli_query($db_conn, $user_check_query);
     $user = mysqli_fetch_assoc($result);
 
     if ($user) {
@@ -66,13 +66,13 @@ if (isset($_POST['reg_user'])) {
         $query = "INSERT INTO users (firstname, lastname, email, password, addressline_1, addressline_2, postal_code, phone_number, user_type) 
         VALUES ('$firstname','$lastname','$email','$password','$addressline_1', '$addressline_2', '$postal_code', '$phone_number', '$user_type'
         )";
-        mysqli_query($conn, $query);
+        mysqli_query($db_conn, $query);
         session_start();
         $_SESSION['email'] = $email;
         $curEmail = $_SESSION['email'];
   
             $sql = "SELECT * FROM users WHERE email = '$curEmail';";
-            $result = mysqli_query($conn, $sql);
+            $result = mysqli_query($db_conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
             if ($resultCheck > 0) {

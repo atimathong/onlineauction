@@ -1,4 +1,4 @@
-<?php include_once("header.php")?>
+<?php include_once("top_header.php")?>
 <?php require("utilities.php")?>
 
 <?php
@@ -95,7 +95,7 @@
 
 
 
-<?php include_once("footer.php")?>
+<?php include_once("bottom_footer.php")?>
 
 
 <script> 
