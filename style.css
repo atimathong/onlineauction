@@ -223,9 +223,6 @@ tr,th,td {
 	border-color: #e74c3c;
 }
 
-.form-con.error small {
-	visibility: visible;
-}
 
 .form-con small {
 	color: #e74c3c;
@@ -235,7 +232,9 @@ tr,th,td {
 	visibility: hidden;
 }
 
-
+.form-con.error small {
+	visibility: visible;
+}
 
 .form button {
 	background-color: #8e44ad;

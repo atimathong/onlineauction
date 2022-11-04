@@ -37,7 +37,6 @@ function checkInputs() {
 	
 	if(auctionDetailsValue === '') {
 		setErrorFor(auctionDetails, 'Details cannot be blank');
-
 	} else {
 		setSuccessFor(auctionDetails);
 	}
@@ -58,7 +57,6 @@ function checkInputs() {
 
 	if(auctionStartDateValue === '') {
 		setErrorFor(auctionStartDate, 'Field cannot be blank');
-
 	} else {
 		setSuccessFor(auctionStartDate);
 	}
@@ -71,28 +69,24 @@ function checkInputs() {
 
 	if(auctionEndDateValue === '') {
 		setErrorFor(auctionEndDate, 'Field cannot be blank');
-
 	} else {
 		setSuccessFor(auctionEndDate);
 	}
 
 	if(auctionEndTimeValue === '') {
 		setErrorFor(auctionEndTime, 'Field cannot be blank');
-
 	} else {
 		setSuccessFor(auctionEndTime);
 	}
 
 	if(auctionStartPriceValue === '') {
 		setErrorFor(auctionStartPrice, 'Field cannot be blank');
-
 	} else {
 		setSuccessFor(auctionStartPrice);
 	}
 
 	if(auctionReservePriceValue === '') {
 		setErrorFor(auctionReservePrice, 'Field cannot be blank');
-
 	} else {
 		setSuccessFor(auctionReservePrice);
 	}
