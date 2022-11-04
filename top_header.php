@@ -69,7 +69,7 @@ if(!isset($_SESSION))
             <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
             <li><a class="dropdown-item" href="#">My Bidding History</a></li>
             <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
-            <li><a class="dropdown-item" href="create_auction.php">+ Add Product</a></li>
+            <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>

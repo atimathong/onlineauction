@@ -53,7 +53,7 @@ include_once("top_header.php");
           
         <br>
 
-        <form method="POST" action="create_auction_result.php" id="auction-form">
+        <form method="POST" action="create_auction_result.php" onsubmit="return checkAll()" id="auction-form">
             <div class="form-group form-con row">
             <label for="item_name" class="col-sm-2 col-form-label text-right">Title<span class="text-danger">  *</span></label>
             <div class="col-sm-10">
@@ -154,7 +154,7 @@ include_once("top_header.php");
             </div>
             </div> 
         
-            <button type="submit" name="new_auction" class="btn btn-primary form-control">Create Auction</button>
+            <button type="submit" name="new_auction"  class="btn btn-primary form-control">Create Auction</button>
         </form>
     </div>
   </div>

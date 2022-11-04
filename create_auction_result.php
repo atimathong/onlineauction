@@ -56,24 +56,24 @@ if (count($errors) === 0) {
     category_ID='$category_ID'
     WHERE item_ID='$itemid';";
     
-    echo "<pre>Debug: $query</pre>\m";
+    //echo "<pre>Debug: $query</pre>\m";
     $result = mysqli_query($db_conn, $query);
     
-    echo $result;
+    //echo $result;
     //FOR DEBUGGING
-    if ( false===$result ) {
+    /* if ( false===$result ) {
         printf("error: %s\n", mysqli_error($db_conn));
         }
         else {
         echo 'done.';
         }
-
+ */
     
     //header('refresh:5;url=index.php');
         }        
 
 // If all is successful, let user know.
-echo('<div class="text-center">Auction successfully created! <a href="index.php">View your new listing.</a></div>');
+//echo('<div class="text-center">Auction successfully created! <a href="index.php">View your new listing.</a></div>');
 ?>
 
 </div>
