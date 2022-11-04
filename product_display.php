@@ -25,9 +25,35 @@ require 'database_connect/connect_db.php';
     <?php
     mysqli_select_db($db_conn, 'pagination');
     $results_per_page = 10;
-    $product_query = "SELECT * FROM item";
+    $is_search = false;
+    if (isset($_POST['submit-search'])) {
+        $search = mysqli_real_escape_string($db_conn, $_POST['search']);
+        $is_search = true;
+        $_SESSION['keyword'] = $search;
+        if ($search == "") {
+            $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
+        } else {
+            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$search%'"; 
+            //check if search word is contained in the title
+        }
+    } else {
+        if(isset($_SESSION['keyword'])&& isset($_SESSION['keyword'])!==""){
+            $kw = $_SESSION['keyword'];
+            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$kw%'"; 
+        }else{
+        $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
+        }
+    }
+    // connect general product query with filter query
+    $product_query .=  get_filter();
+    echo $product_query;
+    // MySQL query from database connection
     $total_result  = mysqli_query($db_conn, $product_query);
     $number_of_results = mysqli_num_rows($total_result);
+    // show number of result for issearch = true
+    if ($is_search === true) {
+        echo "<h6>There are " . $number_of_results . " results for " . $search . ".</h6>";
+    }
     // total pages available
     $number_of_pages = ceil($number_of_results / $results_per_page);
     // determine which page visitor is currently on
@@ -39,7 +65,7 @@ require 'database_connect/connect_db.php';
     // determine sql LIMIT starting number
     $this_page_first_result = ((int)$page - 1) * $results_per_page;
     // retrieve selected results from database and display them on page
-    $product_query_page = "SELECT * FROM item LIMIT " . $this_page_first_result . ',' . $results_per_page;
+    $product_query_page = $product_query ." LIMIT " . $this_page_first_result . ',' . $results_per_page;
     $result = mysqli_query($db_conn, $product_query_page);
     ?>
     <div class="page">
@@ -69,14 +95,14 @@ require 'database_connect/connect_db.php';
             <ul class="pagination">
                 <?php
                 // display the links to the pages
-                if($page>1){
-                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page-1) . '">Previous</a></li>';
+                if ($page > 1) {
+                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page - 1) . '">Previous</a></li>';
                 }
                 for ($i = 1; $i <= $number_of_pages; $i++) {
                     echo '<li class="page-item"><a class="page-link" href="index.php?page=' . $i . '">' . $i . '</a></li>';
                 }
-                if($i>$page+1){
-                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page+1) . '">Next</a></li>';
+                if ($i > $page + 1) {
+                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page + 1) . '">Next</a></li>';
                 }
                 ?>
             </ul>

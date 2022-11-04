@@ -1,7 +1,4 @@
-<?php
-require 'database_connect/connect_db.php';
-?>
-
+<!-- filter display -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,11 +19,11 @@ require 'database_connect/connect_db.php';
 
 <body>
 
-    <form action="" method="GET">
+    <form action="index.php" method="GET">
         <div class="card shadow mt-3">
             <div class="card-header">
                 <h5>Filter
-                    <button type="submit" class="btn btn-primary btn-sm float-end" name="filter-search">Search</button>
+                    <button type="submit" class="btn btn-primary btn-sm float-end" name="filter-apply">Apply</button>
                 </h5>
             </div>
             <div class="card-body">
@@ -34,69 +31,113 @@ require 'database_connect/connect_db.php';
                 <h6>Category</h6>
                 <hr>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Body and Hair" id="flexRadioDefault1">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Body and Hair" id="flexRadioDefault1">
                     <label class="form-check-label" for="flexRadioDefault1">
                         Body and Hair
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Sports" id="flexRadioDefault2">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Sports" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Sports
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Phones" id="flexRadioDefault2">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Phones" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Phones
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Books" id="flexRadioDefault2">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Books" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Books
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Arts" id="flexRadioDefault2">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Arts" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Arts
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Toys" id="flexRadioDefault2">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Toys" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Toys
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Cameras" id="flexRadioDefault2">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Cameras" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Cameras
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Jewellery and Watch" id="flexRadioDefault2">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Jewellery and Watch" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Jewellery and Watch
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Cars" id="flexRadioDefault2">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Cars" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Cars
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Laptops" id="flexRadioDefault2">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Laptops" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Laptops
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Furniture" id="flexRadioDefault2">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Furniture" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Furniture
+                    </label>
+                </div>
+                <!-- Status -->
+                <hr>
+                <h6>Bid Status</h6>
+                <hr>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="status[]" value="on-going" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        On-going
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="status[]" value="upcoming" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Upcoming
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="status[]" value="finished" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Finished
+                    </label>
+                </div>
+                <!-- Price range -->
+                <hr>
+                <h6>Price Range</h6>
+                <hr>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="price-range[]" value="low" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Under 500 £
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="price-range[]" value="med" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        500 £ to 2000 £
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="price-range[]" value="high" id="flexRadioDefault3">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                        Over 2000 £
                     </label>
                 </div>
                 <!-- Sort -->
@@ -115,50 +156,6 @@ require 'database_connect/connect_db.php';
                         Lowest Price
                     </label>
                 </div>
-                <!-- Status -->
-                <hr>
-                <h6>Bid Status</h6>
-                <hr>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="status" value="on-going" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        On-going
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="status" value="upcoming" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Upcoming
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="status" value="finished" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Finished
-                    </label>
-                </div>
-                <!-- Price range -->
-                <hr>
-                <h6>Price Range</h6>
-                <hr>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="price-range" value="low" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Under 100 £
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="price-range" value="med" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        100 £ to 500 £
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="price-range" value="high" id="flexRadioDefault3">
-                    <label class="form-check-label" for="flexRadioDefault3">
-                        Over 500 £
-                    </label>
-                </div>
 
             </div>
         </div>
@@ -171,3 +168,42 @@ require 'database_connect/connect_db.php';
 </body>
 
 </html>
+
+<!-- Filter mechanism -->
+<?php
+// check if there is any filter condition and output extra query to connect with main query
+// $filter_query = "";
+// if (isset($_GET['filter-apply'])) {
+//     if (isset($_GET['category'])) {
+//         $ctgchecked = [];
+//         $ctgchecked = $_GET['category'];
+//         foreach($ctgchecked as $ctg){
+//             echo $ctg;
+//             $filter_query .= " AND category = '$ctg'";
+//         }
+//     }
+//     if (isset($_GET['sort-price'])) {
+//         if ($_GET['sort-price'] == "highestprice") {
+//             $filter_query .= " ORDER BY starting_price DESC";
+//         } elseif ($_GET['sort-price'] == "lowestprice") {
+//             $filter_query .= " ORDER BY starting_price ASC";
+//         }
+//     }
+//     if (isset($_GET['status'])) {
+//         $opt = "'" . implode("','", $_GET['status']) . "'";
+//         $filter_query .= " AND bidding_status IN ($opt)";
+//     }
+//     if (isset($_GET['price-range'])) {
+//         $opt = "'" . implode("','", $_GET['price-range']) . "'";
+//         if (in_array("low", $_GET['price-range'])) {
+//             $filter_query .= " AND starting_price<100";
+//         }
+//         if (in_array("med", $_GET['price-range'])) {
+//             $filter_query .= " AND starting_price BETWEEN 100 AND 500";
+//         }
+//         if (in_array("high", $_GET['price-range'])) {
+//             $filter_query .= " AND starting_price>=500";
+//         }
+//     }
+// }
+?>
