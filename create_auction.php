@@ -1,3 +1,10 @@
+<!--THIS FILE IS READY TO DELETE
+HAS CHANGED INTO TWO PAGES:
+create_auction_1.php
+and 
+create_auction_2.php
+-->
+
 <?php 
 if(!isset($_SESSION)) 
 { 
@@ -167,6 +174,7 @@ include_once("top_header.php");
             <small>Error message</small>
           </div>
         </div>  
+        
         <div class="form-group form-con row">
           <label for="end_time" class="col-sm-2 col-form-label text-right">End Time<span class="text-danger">  *</span></label>
           <div class="col-sm-10">

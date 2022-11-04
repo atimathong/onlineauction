@@ -37,13 +37,15 @@ if(isset($_POST["img_submit"])) {
     while ($row = mysqli_fetch_assoc($sqlResult)) {
         $_SESSION['itemid'] = $row['item_ID'];
         $_SESSION['img']= $row['picture'];
-        echo $_SESSION['img'];
-        echo $_SESSION['itemid'];
+        //echo $_SESSION['img'];
+        //echo $_SESSION['itemid'];
     }
     }
+
+    echo "<script>if(!alert('Successfully Uploaded!')){window.location.href='create_auction_2.php';}</script>";
     
     
     
-    header("Location: create_auction.php");
+    //header("Location: create_auction.php");
 }
 ?>

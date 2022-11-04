@@ -9,16 +9,10 @@ const auctionStartDate = document.getElementById('auctionStartDate');
 const auctionStartTime = document.getElementById('auctionStartTime');
 const auctionEndDate = document.getElementById('auctionEndDate');
 const auctionEndTime = document.getElementById('auctionEndTime');
-const isValid=False;
 
-form.addEventListener('submit', e => {
-	e.preventDefault();
-	checkInputs();
-	alert(isValid);
-	if (isValid==False){
-		e.preventDefault();
-	}
-});
+form.addEventListener('input', checkInputs);
+
+//form.addEventListener('submit', checkAll);
 
 function checkInputs() {
 	// trim to remove the whitespaces
@@ -31,94 +25,113 @@ function checkInputs() {
 	const auctionEndDateValue = auctionEndDate.value.trim();
 	const auctionEndTimeValue =auctionEndTime.value.trim();
 	const auctionStartPriceValue = auctionStartPrice.value.trim();
-	const auctionReservePriceValue =auctionReservePrice.value;
-	const isValid=False;
-
+	const auctionReservePriceValue =auctionReservePrice.value.trim();
 	
 	
-
 	if(auctionTitleValue === '') {
 		setErrorFor(auctionTitle, 'Title cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionTitle);
-		isValid=True;
 	}
 	
 	if(auctionDetailsValue === '') {
 		setErrorFor(auctionDetails, 'Details cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionDetails);
-		isValid=True;
 	}
 	
 	if(auctionCategoryValue === 'none') {
 		setErrorFor(auctionCategory, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionCategory);
-		isValid=True;
 	}
 
 	if(auctionConditionValue ==="none") {
 		setErrorFor(auctionCondition, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionCondition);
-		isValid=True;
 	}
 
 	if(auctionStartDateValue === '') {
 		setErrorFor(auctionStartDate, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionStartDate);
-		isValid=True;
 	}
 
 	if(auctionStartTimeValue === '') {
 		setErrorFor(auctionStartTime, 'Field cannot be blank');
-		isValid=False;
 	} else {
 		setSuccessFor(auctionStartTime);
-		isValid=True;
 	}
 
 	if(auctionEndDateValue === '') {
 		setErrorFor(auctionEndDate, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionEndDate);
-		isValid=True;
 	}
 
 	if(auctionEndTimeValue === '') {
 		setErrorFor(auctionEndTime, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionEndTime);
-		isValid=True;
 	}
 
 	if(auctionStartPriceValue === '') {
 		setErrorFor(auctionStartPrice, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionStartPrice);
-		isValid=True;
 	}
 
 	if(auctionReservePriceValue === '') {
 		setErrorFor(auctionReservePrice, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionReservePrice);
-		isValid=True;
+	}
+
+
 	}
 
 	
-	
+
+function checkAll() {
+	const auctionTitleValue = auctionTitle.value.trim();
+	const auctionDetailsValue = auctionDetails.value.trim();
+	const auctionCategoryValue = auctionCategory.value;
+	const auctionConditionValue =auctionCondition.value;
+	const auctionStartDateValue =auctionStartDate.value.trim();
+	const auctionStartTimeValue =auctionStartTime.value.trim();
+	const auctionEndDateValue = auctionEndDate.value.trim();
+	const auctionEndTimeValue =auctionEndTime.value.trim();
+	const auctionStartPriceValue = auctionStartPrice.value.trim();
+	const auctionReservePriceValue =auctionReservePrice.value.trim();
+
+	if(
+		auctionTitleValue === '' ||
+		auctionDetailsValue === ''||
+		auctionCategoryValue === 'none' ||
+		auctionConditionValue === 'none' ||
+		auctionStartDateValue === '' ||
+		auctionStartTimeValue === '' ||
+		auctionEndDateValue === '' ||
+		auctionEndTimeValue === '' ||
+		auctionStartPriceValue=== '' ||
+		auctionReservePriceValue=== '' 
+		) {
+			alert('Please input required fields.');
+			return false;
+			
+		} else {
+			return true;
+		}
 }
 
 function setErrorFor(input, message) {
@@ -147,7 +160,7 @@ function fileValidation() {
 		/(\.jpg|\.jpeg|\.png)$/i;
 	
 	if (!allowedExtensions.exec(filePath)) {
-	  alert('Invalid File Type');
+	  alert('Invalid File Type.\nUpload only .jpg/.jpeg/.png files.');
 	  fileInput.value = '';
 	  return false;
 	}
