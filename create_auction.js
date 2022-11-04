@@ -33,62 +33,77 @@ function checkInputs() {
 
 	} else {
 		setSuccessFor(auctionTitle);
+		isValid=True;
 	}
 	
 	if(auctionDetailsValue === '') {
 		setErrorFor(auctionDetails, 'Details cannot be blank');
+		isValid=False;
 	} else {
 		setSuccessFor(auctionDetails);
+		isValid=True;
 	}
 	
 	if(auctionCategoryValue === 'none') {
 		setErrorFor(auctionCategory, 'Field cannot be blank');
-
 	} else {
 		setSuccessFor(auctionCategory);
+		isValid=True;
 	}
 
 	if(auctionConditionValue ==="none") {
 		setErrorFor(auctionCondition, 'Field cannot be blank');
-
 	} else {
 		setSuccessFor(auctionCondition);
+		isValid=True;
 	}
 
 	if(auctionStartDateValue === '') {
 		setErrorFor(auctionStartDate, 'Field cannot be blank');
+		isValid=False;
 	} else {
 		setSuccessFor(auctionStartDate);
+		isValid=True;
 	}
 
 	if(auctionStartTimeValue === '') {
 		setErrorFor(auctionStartTime, 'Field cannot be blank');
+		isValid=False;
 	} else {
 		setSuccessFor(auctionStartTime);
+		isValid=True;
 	}
 
 	if(auctionEndDateValue === '') {
 		setErrorFor(auctionEndDate, 'Field cannot be blank');
+		isValid=False;
 	} else {
 		setSuccessFor(auctionEndDate);
+		isValid=True;
 	}
 
 	if(auctionEndTimeValue === '') {
 		setErrorFor(auctionEndTime, 'Field cannot be blank');
+		isValid=False;
 	} else {
 		setSuccessFor(auctionEndTime);
+		isValid=True;
 	}
 
 	if(auctionStartPriceValue === '') {
 		setErrorFor(auctionStartPrice, 'Field cannot be blank');
+		isValid=False;
 	} else {
 		setSuccessFor(auctionStartPrice);
+		isValid=True;
 	}
 
 	if(auctionReservePriceValue === '') {
 		setErrorFor(auctionReservePrice, 'Field cannot be blank');
+		isValid=False;
 	} else {
 		setSuccessFor(auctionReservePrice);
+		isValid=True;
 	}
 
 
