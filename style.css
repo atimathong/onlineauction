@@ -28,6 +28,7 @@ body{
 
 .img-fluid{
     padding-top: 5px;
+    vertical-align: middle;
 }
 
 .but{
@@ -130,7 +131,6 @@ body{
 .log-text{
     text-align: center;
 }
-
 
 
 
