@@ -25,9 +25,43 @@ require 'database_connect/connect_db.php';
     <?php
     mysqli_select_db($db_conn, 'pagination');
     $results_per_page = 10;
-    $product_query = "SELECT * FROM item";
+    $is_search = false;
+    if (isset($_POST['submit-search'])) {
+        $search = mysqli_real_escape_string($db_conn, $_POST['search']);
+        $is_search = true;
+        $_SESSION['keyword'] = $search;
+        if ($search == "") {
+            $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
+        } else {
+            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$search%'"; 
+            //check if search word is contained in the title
+        }
+    } else {
+        // no search 
+        $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
+        // reset button detected 
+        if(isset($_POST['clear-search'])){
+            $_SESSION['keyword'] = "";
+            $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
+        }else if(isset($_SESSION['keyword'])&& isset($_SESSION['keyword'])!==""){
+            // keyword is pre-set by search button used keyword in conjunction with filter
+            $kw = $_SESSION['keyword'];
+            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$kw%'"; 
+        }
+    }
+    // connect general product query with filter query
+    $product_query .=  get_filter();
+    // echo $product_query;
+    // MySQL query from database connection
     $total_result  = mysqli_query($db_conn, $product_query);
     $number_of_results = mysqli_num_rows($total_result);
+    // show number of result for issearch = true
+    if ($is_search === true && $number_of_results>0 ) {
+        echo "<h6>There are " . $number_of_results . " results for " . $search . ".</h6>";
+    }
+    if($number_of_results ===0){
+        echo "<h6>Your search doesn't match any of our items.</h6>";
+    }
     // total pages available
     $number_of_pages = ceil($number_of_results / $results_per_page);
     // determine which page visitor is currently on
@@ -39,24 +73,26 @@ require 'database_connect/connect_db.php';
     // determine sql LIMIT starting number
     $this_page_first_result = ((int)$page - 1) * $results_per_page;
     // retrieve selected results from database and display them on page
-    $product_query_page = "SELECT * FROM item LIMIT " . $this_page_first_result . ',' . $results_per_page;
+    $product_query_page = $product_query ." LIMIT " . $this_page_first_result . ',' . $results_per_page;
     $result = mysqli_query($db_conn, $product_query_page);
     ?>
-    <div class="page">
+    <div class="display-prod">
         <?php
         // if ($queryResults > 0)
         while ($row = mysqli_fetch_assoc($result)) { ?>
             <div class="card mb-3" style="max-width: 1000px;">
                 <div class="row g-0">
-                    <div class="col-md-4">
-                        <a href="product_details.php?id=<?php echo $row['item_ID']; ?>"> <img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product">
+                    <div class="col-md-5">
+                        <a href="product_details.php?id=<?php echo $row['item_ID']; ?>"> <img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product" 
+                        style="width:380px;height:280px;">
                         </a>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $row['item_name']; ?></h5>
+                            <h4 class="card-title"><?php echo $row['item_name']; ?></h4>
+                            <hr>
                             <p class="card-text">From $<?php echo $row['starting_price']; ?></p>
-                            <p class="card-text">Bid Status: <?php echo $row['bidding_status']; ?></p>
+                            <p class="card-text status">Bid Status: <?php echo $row['bidding_status']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -69,14 +105,14 @@ require 'database_connect/connect_db.php';
             <ul class="pagination">
                 <?php
                 // display the links to the pages
-                if($page>1){
-                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page-1) . '">Previous</a></li>';
+                if ($page > 1) {
+                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page - 1) . '">Previous</a></li>';
                 }
                 for ($i = 1; $i <= $number_of_pages; $i++) {
                     echo '<li class="page-item"><a class="page-link" href="index.php?page=' . $i . '">' . $i . '</a></li>';
                 }
-                if($i>$page+1){
-                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page+1) . '">Next</a></li>';
+                if ($i > $page + 1) {
+                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page + 1) . '">Next</a></li>';
                 }
                 ?>
             </ul>

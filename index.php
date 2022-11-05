@@ -1,5 +1,6 @@
 <?php
 include 'top_header.php';
+require 'product_filtered.php'
 ?>
 
 <!DOCTYPE html>
@@ -24,18 +25,14 @@ include 'top_header.php';
   <div class="container">
     <div class="row">
       <div class="col-3">
-        <?php include 'filter.php' ?>
+        <?php include 'filter_display.php' ?>
       </div>
-      <?php if (isset($_POST['submit-search'])) { ?>
-        <div class="col-9">
-          <?php include 'search.php' ?>
-        </div>
-      <?php } else { ?>
-        <div class="col-9">
+      <div class="col-9">
+        <?php if (!isset($_POST['submit-search']) && !isset($_GET['filter-apply'])) { ?>
           <img src="pictures/welcome.png" class="img-fluid" alt="welcome">
-          <?php include 'product_display.php' ?>
-        </div>
-      <?php } ?>
+        <?php } ?>
+        <?php include 'product_display.php' ?>
+      </div>
     </div>
   </div>
 
