@@ -12,7 +12,6 @@ const auctionEndTime = document.getElementById('auctionEndTime');
 
 form.addEventListener('input', checkInputs);
 
-//form.addEventListener('submit', checkAll);
 
 function checkInputs() {
 	// trim to remove the whitespaces

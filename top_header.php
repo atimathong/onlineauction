@@ -93,7 +93,7 @@ if (!isset($_SESSION)) {
   <?php } else { ?>
     <ul class="nav justify-content-end but">
       <li class="nav-item mx-1">
-        <a class="btn btn-dark" href="login.php" role="button">Login</a>
+        <a class="btn btn-dark" href="login_page.php" role="button">Login</a>
       </li>
     </ul>
   <?php } ?>
