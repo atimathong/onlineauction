@@ -26,6 +26,7 @@ require 'database_connect/connect_db.php';
     mysqli_select_db($db_conn, 'pagination');
     $results_per_page = 10;
     $is_search = false;
+    $_SESSION['keyword'] = "";
     if (isset($_POST['submit-search'])) {
         $search = mysqli_real_escape_string($db_conn, $_POST['search']);
         $is_search = true;
@@ -64,12 +65,8 @@ require 'database_connect/connect_db.php';
     }
     // total pages available
     $number_of_pages = ceil($number_of_results / $results_per_page);
-    // determine which page visitor is currently on
-    if (!isset($_GET['page'])) {
-        $page = 1;
-    } else {
-        $page = $_GET['page'];
-    }
+    // determine which page visitor is currently on: if no page set, use the 1st page
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     // determine sql LIMIT starting number
     $this_page_first_result = ((int)$page - 1) * $results_per_page;
     // retrieve selected results from database and display them on page
