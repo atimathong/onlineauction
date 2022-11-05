@@ -1,6 +1,9 @@
 <?php
 include 'database_connect/connect_db.php';
-session_start();
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +54,7 @@ session_start();
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
-            <li><a class="dropdown-item" href="create_auction.php">+ Add Product</a></li>
+            <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -66,7 +69,7 @@ session_start();
             <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
             <li><a class="dropdown-item" href="#">My Bidding History</a></li>
             <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
-            <li><a class="dropdown-item" href="create_auction.php">+ Add Product</a></li>
+            <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -88,7 +91,7 @@ session_start();
   <!-- Logo and Search Bar -->
   <nav class="navbar bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="index.php">
         <div class="row">
           <div class="col">
             <h1 class="logo">.eBid</h1>
