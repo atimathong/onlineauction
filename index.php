@@ -28,7 +28,7 @@ require 'product_filtered.php'
         <?php include 'filter_display.php' ?>
       </div>
       <div class="col-9">
-        <?php if (!isset($_POST['submit-search'])) { ?>
+        <?php if (!isset($_POST['submit-search']) && !isset($_GET['filter-apply'])) { ?>
           <img src="pictures/welcome.png" class="img-fluid" alt="welcome">
         <?php } ?>
         <?php include 'product_display.php' ?>

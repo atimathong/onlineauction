@@ -37,22 +37,30 @@ require 'database_connect/connect_db.php';
             //check if search word is contained in the title
         }
     } else {
-        if(isset($_SESSION['keyword'])&& isset($_SESSION['keyword'])!==""){
+        // no search 
+        $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
+        // reset button detected 
+        if(isset($_POST['clear-search'])){
+            $_SESSION['keyword'] = "";
+            $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
+        }else if(isset($_SESSION['keyword'])&& isset($_SESSION['keyword'])!==""){
+            // keyword is pre-set by search button used keyword in conjunction with filter
             $kw = $_SESSION['keyword'];
             $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$kw%'"; 
-        }else{
-        $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
         }
     }
     // connect general product query with filter query
     $product_query .=  get_filter();
-    echo $product_query;
+    // echo $product_query;
     // MySQL query from database connection
     $total_result  = mysqli_query($db_conn, $product_query);
     $number_of_results = mysqli_num_rows($total_result);
     // show number of result for issearch = true
-    if ($is_search === true) {
+    if ($is_search === true && $number_of_results>0 ) {
         echo "<h6>There are " . $number_of_results . " results for " . $search . ".</h6>";
+    }
+    if($number_of_results ===0){
+        echo "<h6>Your search doesn't match any of our items.</h6>";
     }
     // total pages available
     $number_of_pages = ceil($number_of_results / $results_per_page);
@@ -68,21 +76,23 @@ require 'database_connect/connect_db.php';
     $product_query_page = $product_query ." LIMIT " . $this_page_first_result . ',' . $results_per_page;
     $result = mysqli_query($db_conn, $product_query_page);
     ?>
-    <div class="page">
+    <div class="display-prod">
         <?php
         // if ($queryResults > 0)
         while ($row = mysqli_fetch_assoc($result)) { ?>
             <div class="card mb-3" style="max-width: 1000px;">
                 <div class="row g-0">
-                    <div class="col-md-4">
-                        <a href="product_details.php?id=<?php echo $row['item_ID']; ?>"> <img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product">
+                    <div class="col-md-5">
+                        <a href="product_details.php?id=<?php echo $row['item_ID']; ?>"> <img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product" 
+                        style="width:380px;height:280px;">
                         </a>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $row['item_name']; ?></h5>
+                            <h4 class="card-title"><?php echo $row['item_name']; ?></h4>
+                            <hr>
                             <p class="card-text">From $<?php echo $row['starting_price']; ?></p>
-                            <p class="card-text">Bid Status: <?php echo $row['bidding_status']; ?></p>
+                            <p class="card-text status">Bid Status: <?php echo $row['bidding_status']; ?></p>
                         </div>
                     </div>
                 </div>

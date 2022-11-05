@@ -26,7 +26,7 @@ session_start();
 
   <?php if (isset($_SESSION['email']) && $_SESSION['email'] == true) { ?>
     <!-- nav bar -->
-    <ul class="nav nav-tabs justify-content-end">
+    <ul class="nav nav-tabs justify-content-end but">
       <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'buyer') { ?>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Become a Seller?</a>
@@ -74,7 +74,7 @@ session_start();
           </ul>
         </li>
       <?php } ?>
-      <li class="nav-item but">
+      <li class="nav-item">
         <a class="btn btn-dark" href="logout.php" role="button">Logout</a>
       </li>
     </ul>
@@ -86,7 +86,7 @@ session_start();
     </ul>
   <?php } ?>
   <!-- Logo and Search Bar -->
-  <nav class="navbar bg-light">
+  <nav class="navbar bg-light logoband">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <div class="row">
@@ -97,6 +97,11 @@ session_start();
             <form class="d-flex" action="index.php" method="POST">
               <input class="form-control me-2" type="text" name="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success search-but" type="submit" name="submit-search">Search</button>
+            </form>
+          </div>
+          <div class="col search-bar">
+            <form class="d-flex" action="index.php" method="POST">
+              <button class="btn btn-outline-success clear-but" type="submit" name="clear-search">Reset</button>
             </form>
           </div>
         </div>
