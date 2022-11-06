@@ -1,5 +1,6 @@
 <?php
 include_once 'top_header.php';
+require 'countdown.php';
 ?>
 
 <?php
@@ -37,6 +38,7 @@ $_SESSION["item_detail"] = $item_row;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
     <script src="https://kit.fontawesome.com/6cc5131127.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
 </head>
 
@@ -63,31 +65,43 @@ $_SESSION["item_detail"] = $item_row;
                                             <span class="act-price">Start from &pound;<?= $item_row['starting_price'] ?></span>
                                         </div>
                                     </div>
-                                    <p class="about"><b>Condition: </b><?= $item_row['cond'] ?></p>
-                                    <p class="about"><b>Bid status: </b><?= $item_row['bidding_status'] ?></p>
+                                    <hr>
+                                    <p><b>Condition:</b> <?= $item_row['cond'] ?></p>
+                                    <p><b>Bid status:</b> <?= $item_row['bidding_status'] ?></p>
                                     <?php if ($item_row['bidding_status'] === "on-going") { ?>
                                         <!-- add timer display -->
-                                        <p class="about">
-                                        <h6>Time left:</h6>
-                                        </p>
+                                    <div class="row">
+                                        <div class="col-md-auto">
+                                            <b>Time left:</b>
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <?= timeleft() ?>
+                                        </div>
+                                    </div>
                                     <?php }; ?>
                                     <hr>
                                     <p class="about"><?= $item_row['pro_desc'] ?></p>
                                     <hr>
-                                    <div class="sizes mt-5">
+
+                                    <div class="sizes mt-4">
                                         <h6 class="text-uppercase">Start bidding</h6>
-                                        <input type="number" name="bid_price" value="bid_price" min="<?=$item_row['starting_price']?>" placeholder="&pound; Bid price" required>
-                                        <input type="hidden" name="product_id" value="<?= $item_row['item_ID'] ?>">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <input class="pricebox" type="number" name="bid_price" value="bid_price" min="<?= (int)$item_row['starting_price'] ?>" placeholder="&pound; Bid price" required>
+                                                <input type="hidden" name="product_id" value="<?= $item_row['item_ID'] ?>">
+                                            </div>
+                                            <div class="col-4 bid-sub">
+                                                <button class="btn btn-outline-success search-but mr-2 px-4" type="submit" name="submit-bid">Submit Bid</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="cart mt-4 align-items-center">
-                                        <button class="btn btn-danger text-uppercase mr-2 px-4" type="submit" name="submit-bid">Submit Bid</button>
+                                    <div class="cart mt-4 align-items-center watchlist">
+                                        <button class="btn btn-outline-dark mr-2 px-4" type="submit" name="watchllist"><i class="fa fa-heart text-muted"></i> Watch this item</button>
                                     </div>
-                                    <div class="cart mt-4 align-items-center">
-                                        <button class="btn btn-danger text-uppercase mr-2 px-4" type="submit" name="watchllist"><i class="fa fa-heart text-muted"></i> Watch this item</button>
-                                    </div>
+
                                     <hr>
-                                    <p class="about"><b>Return: </b>No returns accepted</p>
-                                    <p class="about"><b>Delivery: </b> Royal Mail Service / DHL</p>
+                                    <p><b>Return: </b>No returns accepted</p>
+                                    <p><b>Delivery: </b> Royal Mail Service / DHL</p>
                                 </div>
                             </div>
                         </div>

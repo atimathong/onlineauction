@@ -17,6 +17,7 @@ require 'database_connect/connect_db.php';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6cc5131127.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -34,20 +35,20 @@ require 'database_connect/connect_db.php';
         if ($search == "") {
             $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
         } else {
-            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$search%'"; 
+            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$search%'";
             //check if search word is contained in the title
         }
     } else {
         // no search 
         $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
         // reset button detected 
-        if(isset($_POST['clear-search'])){
+        if (isset($_POST['clear-search'])) {
             $_SESSION['keyword'] = "";
             $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
-        }else if(isset($_SESSION['keyword'])&& isset($_SESSION['keyword'])!==""){
+        } else if (isset($_SESSION['keyword']) && isset($_SESSION['keyword']) !== "") {
             // keyword is pre-set by search button used keyword in conjunction with filter
             $kw = $_SESSION['keyword'];
-            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$kw%'"; 
+            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$kw%'";
         }
     }
     // connect general product query with filter query
@@ -57,10 +58,10 @@ require 'database_connect/connect_db.php';
     $total_result  = mysqli_query($db_conn, $product_query);
     $number_of_results = mysqli_num_rows($total_result);
     // show number of result for issearch = true
-    if ($is_search === true && $number_of_results>0 ) {
+    if ($is_search === true && $number_of_results > 0) {
         echo "<h6>There are " . $number_of_results . " results for " . $search . ".</h6>";
     }
-    if($number_of_results ===0){
+    if ($number_of_results === 0) {
         echo "<h6>Your search doesn't match any of our items.</h6>";
     }
     // total pages available
@@ -70,26 +71,32 @@ require 'database_connect/connect_db.php';
     // determine sql LIMIT starting number
     $this_page_first_result = ((int)$page - 1) * $results_per_page;
     // retrieve selected results from database and display them on page
-    $product_query_page = $product_query ." LIMIT " . $this_page_first_result . ',' . $results_per_page;
+    $product_query_page = $product_query . " LIMIT " . $this_page_first_result . ',' . $results_per_page;
     $result = mysqli_query($db_conn, $product_query_page);
     ?>
     <div class="display-prod">
         <?php
         // if ($queryResults > 0)
         while ($row = mysqli_fetch_assoc($result)) { ?>
-            <div class="card mb-3" style="max-width: 1000px;">
+            <div class="card mb-3" style="max-width: 1000px;height: 280px;">
                 <div class="row g-0">
                     <div class="col-md-5">
-                        <a href="product_details.php?id=<?php echo $row['item_ID']; ?>"> <img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product" 
-                        style="width:380px;height:280px;">
+                        <a href="product_details.php?id=<?php echo $row['item_ID']; ?>"> <img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product" style="width:380px;height:280px;">
                         </a>
                     </div>
                     <div class="col-md-7">
-                        <div class="card-body">
-                            <h4 class="card-title"><?php echo $row['item_name']; ?></h4>
+                        <div class="card-body" style="max-height: 280px;">
+                            <h4 class="card-title text-uppercase"><?php echo $row['item_name']; ?></h4>
                             <hr>
-                            <p class="card-text">From $<?php echo $row['starting_price']; ?></p>
-                            <p class="card-text status">Bid Status: <?php echo $row['bidding_status']; ?></p>
+                            <p class="card-text"><b>Price Start From</b> &pound;<?php echo $row['starting_price']; ?></p>
+                            <p class="card-text desc"><?php echo $row['pro_desc']; ?></p>
+                           <div class="row" style="position:absolute;bottom:5px;right:5px;left:420px">
+                                    <div class="sts col-sm-4"><b>Bid Status: </b><?php echo $row['bidding_status']; ?></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-5" style="display:flex;justify-content: flex-end;">
+                                        <button class="btn btn-outline-primary" type="submit" name="watchllist"><i class="fa fa-heart text-muted"></i> Add to watchlist</button>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                 </div>

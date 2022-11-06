@@ -128,3 +128,31 @@ body{
     text-align: center;
 }
 
+.pricebox{
+    border: 1px solid #0c141c;
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+}
+
+.bid-sub{
+    margin-top: 5px;
+}
+
+.watchlist{
+    margin-left: 210px;
+}
+.desc{
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    height: 100px;
+    overflow: hidden;
+}
+.sts{
+    display:flex;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+

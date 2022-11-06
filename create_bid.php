@@ -21,7 +21,9 @@ if (isset($_POST['submit-bid'])) {
         VALUES ('$user_id', '$item_id','$status','$bid_date','$bid_time','$bid_price')";
         // add bidding to database
         if (mysqli_query($db_conn, $bid_insert)) {
-            echo "Bid created successfully";
+            // redirect user to mybids page
+            echo "<script type='text/javascript'>window.onload = function () { alert('Bid created successfully'); window.location.href='mybids.php';}</script>";
+            // echo "Bid created successfully";
         } else {
             echo "Error: " . $bid_insert . "<br>" . mysqli_error($db_conn);
         }
