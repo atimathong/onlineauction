@@ -159,12 +159,10 @@ body{
     align-items: center;
 }
 
-
-
-
-
-
-
+tr,th,td {
+    text-align: center;
+    vertical-align: middle;
+ }
 .form-con{
     margin-bottom: 10px;
 	padding-bottom: 20px;
@@ -247,3 +245,9 @@ body{
 .form-con-btn.form-uploaded {
     visibility: hidden;
 }
+.modal-backdrop .modal-dialog{
+    opacity:0; transition:opacity .2s;
+  }
+.modal-backdrop.in{
+    opacity:.7;
+  }

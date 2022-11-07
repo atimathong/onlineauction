@@ -16,12 +16,9 @@ if (isset($_GET['id'])) {
         // Simple error to display if the id for the product doesn't exists (array is empty)
         echo 'Product does not exist!';
     }
+    $item_row = mysqli_fetch_assoc($detail_result);
+    $_SESSION["item_detail"] = $item_row;
 }
-?>
-
-<?php
-$item_row = mysqli_fetch_assoc($detail_result);
-$_SESSION["item_detail"] = $item_row;
 ?>
 
 <!-- product detail page -->
@@ -43,7 +40,7 @@ $_SESSION["item_detail"] = $item_row;
 </head>
 
 <body>
-    <form action="create_bid.php" method="POST">
+    <form action=<?php if(isset($_POST['edit-bid'])){ echo "edit_bid.php";}else{ echo "create_bid.php";} ?> method="POST">
         <div class="container mt-5 mb-5">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10">
@@ -68,16 +65,17 @@ $_SESSION["item_detail"] = $item_row;
                                     <hr>
                                     <p><b>Condition:</b> <?= $item_row['cond'] ?></p>
                                     <p><b>Bid status:</b> <?= $item_row['bidding_status'] ?></p>
-                                    <?php if ($item_row['bidding_status'] === "on-going") { ?>
+                                    <?php if ($item_row['bidding_status'] === "on-going") {
+                                        $timer = new CountDown(); ?>
                                         <!-- add timer display -->
-                                    <div class="row">
-                                        <div class="col-md-auto">
-                                            <b>Time left:</b>
+                                        <div class="row">
+                                            <div class="col-md-auto">
+                                                <b>Time left:</b>
+                                            </div>
+                                            <div class="col-md-auto">
+                                                <?= $timer->timeleft($item_row) ?>
+                                            </div>
                                         </div>
-                                        <div class="col-md-auto">
-                                            <?= timeleft() ?>
-                                        </div>
-                                    </div>
                                     <?php }; ?>
                                     <hr>
                                     <p class="about"><?= $item_row['pro_desc'] ?></p>
@@ -87,15 +85,22 @@ $_SESSION["item_detail"] = $item_row;
                                         <h6 class="text-uppercase">Start bidding</h6>
                                         <div class="row">
                                             <div class="col-5">
-                                                <input class="pricebox" type="number" name="bid_price" value="bid_price" min="<?= (int)$item_row['starting_price'] ?>" placeholder="&pound; Bid price" required>
-                                                <input type="hidden" name="product_id" value="<?= $item_row['item_ID'] ?>">
+                                                <input class="pricebox" type="number" name=<?php if(isset($_POST['edit-bid'])){ echo "new_bid_price";}else{ echo "bid_price";} ?> value="bid_price" min="<?= (int)$item_row['starting_price'] ?>" placeholder="&pound; Bid price" required>
                                             </div>
-                                            <div class="col-4 bid-sub">
-                                                <button class="btn btn-outline-success search-but mr-2 px-4" type="submit" name="submit-bid">Submit Bid</button>
-                                            </div>
+                                            <?php if ($item_row["bidding_status"] === "on-going") { ?>
+                                                <div class="col-4 bid-sub">
+                                                    <?php if (isset($_POST['edit-bid'])) { ?>
+                                                        <button class="btn btn-outline-success search-but mr-2 px-4" type="submit" name="update-bid">Update Bid</button>
+                                                    <?php } else { ?>
+                                                        <button class="btn btn-outline-success search-but mr-2 px-4" type="submit" name="submit-bid">Submit Bid</button>
+                                                    <?php } ?>
+                                                </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
-                                    <div class="cart mt-4 align-items-center watchlist">
+                                    <div class="cart mt-4 align-items-center  <?php if ($item_row["bidding_status"] === "on-going") {
+                                                                                    echo "watchlist";
+                                                                                } ?>">
                                         <button class="btn btn-outline-dark mr-2 px-4" type="submit" name="watchllist"><i class="fa fa-heart text-muted"></i> Watch this item</button>
                                     </div>
 
