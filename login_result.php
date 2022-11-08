@@ -79,12 +79,12 @@ if (isset($_POST['login_user'])) {
             // This part should be in the same page as register or login
             echo '<h3>Error</h3>';
             array_push($errors, "Your username or password is invalid. Please try again!");
-            include 'error_me.php';
+            include 'error_msg.php';
             // header('location: index.php');
             exit();
         }
     } else {
-        include 'error_me.php';
+        include 'error_msg.php';
     }
 }
 ?>
