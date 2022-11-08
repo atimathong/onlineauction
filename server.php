@@ -29,6 +29,12 @@ if (isset($_POST['reg_user'])) {
     if (empty($lastname)) {
         array_push($errors, "Last name is required");
     };
+    if(empty($email)){
+        array_push($errors, "Email is required");
+    };
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        array_push($errors, "Invalid email format");
+    };
     if (empty($password_1)) {
         array_push($errors, "Password is required");
     };
