@@ -1,5 +1,7 @@
  <?php
 
+ // function name is watchlist 
+
 if (!isset($_POST['functionname']) || !isset($_POST['arguments'])) {
   return;
 }
