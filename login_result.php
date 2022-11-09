@@ -61,7 +61,7 @@ if (isset($_POST['login_user'])) {
             if ($resultCheck > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $_SESSION['fname'] = $row['firstname'];
-                    $_SESSION['userid'] = $row['user_id'];
+                    $_SESSION['userid'] = $row['user_ID'];
                     $_SESSION['account_type'] = $row['user_type'];
                 }
             }

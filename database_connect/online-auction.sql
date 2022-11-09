@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 04, 2022 at 09:29 AM
+-- Generation Time: Nov 06, 2022 at 04:04 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -112,12 +112,12 @@ INSERT INTO `item` (`item_ID`, `user_ID`, `item_name`, `pro_desc`, `cond`, `star
 (1015, 5, 'Cute Heart Set Necklace 925 Silver Jewellery Dephini', 'The conditiion is new with tags, unused, unworn and undamaged item in the original packaging. This necklace is made by Heart with metal purity of 925 and beaded style decorated with navy blue Akoya Crystal.', 'Brand new', 180, 200, '2022-05-15', '12:00:00', '2022-10-15', '15:00:00', '8', 'on-going', 'necklace.jpg'),
 (1016, 3, 'Stainless Steel Plain or Gold IP Polished Wedding Band Ring', '\r\nThe conditiion is new with tags, unused, unworn and undamaged item in the original packaging.\r\nIt is orginated from Russia and has only gold colour, made of  stainless steel.', 'Like new', 150, 180, '2022-07-18', '12:00:00', '2022-11-18', '18:00:00', '8', 'on-going', 'bandring.jpg'),
 (1017, 5, 'Voutilainen Decimal Minute Repeater GMT Unique Manual Gold Mens Watch Special', 'Pre-Owned Voutilainen Decimal Minute Repeater GMT Piece Unique (Special1) manual wind watch, features a 42mm 18k white gold case surrounding a silver engine-turn dial on a navy blue leather strap with an 18k white gold tang buckle. Functions include hours, minutes, small seconds, minute repeater and GMT. This watch comes with the original box and warranty. We back this watch with a 2-Year Watchbox warranty!', 'Brand new', 10000, 15000, '2022-08-25', '11:00:00', '2022-11-30', '19:00:00', '8', 'on-going', 'watch1.jpg'),
-(1018, 2, '2021 BMW M3 Competition Saloon', 'This has been used for 1 year with 8310 miles. The registration date is 2021/06/08. The fuel type is Petrol.', 'Lightly used', 29000, 33000, '2022-07-18', '12:00:00', '2022-11-30', '18:00:00', '10', 'on-going', ''),
-(1019, 1, '2021 Porsche Taycan Performance Plus Turbo Saloon Electric Automatic', 'This car has been used for 3 years with 19664 miles. The registration date is 2019/06/08. The fuel type is Electric.', 'Lightly used', 40000, 50000, '2022-08-25', '12:00:00', '2022-12-28', '21:00:00', '10', 'on-going', ''),
-(1020, 1, '2018 Mercedes-Benz S Class S500L AMG Line Execiutive/Premium Plus 4dr 9G-Tronic Auto', 'This has been used for 4 years with 29000 miles. The registration date is 2018/11/22. The fuel type is Petrol. This is a used car, but it is in very good condition', 'Well Used', 30000, 35000, '2022-08-25', '11:00:00', '2022-11-30', '19:00:00', '10', 'on-going', ''),
-(1021, 1, 'Apple MacBook Pro 16(512GB SSD, M1 Pro,16GB) Laptop - Space Grey - MK183B/A (October, 2021)', 'The condition is 9.9 New and the color is Space Grey. The operating system is IOS 15. Memory storage capacity: 512 GB The screen size is 16.2 in. and the RAM size is 16 GB.', 'Brand new', 900, 1000, '2022-10-06', '10:00:00', '2022-12-30', '15:00:00', '11', 'on-going', ''),
-(1022, 1, 'NEW Samsung Galaxy Book2 Pro 13.3 OLED i5 1240P 8G 256GB \r\nThin Ultrabook Laptop', 'This Laptop is quite new, and it is packed in the original box. The memory storage capacity is 256 GB and the RAM size is 8 GB. For more information about the product please search on the Samsung website.', 'Brand new', 800, 930, '2022-10-08', '14:00:00', '2022-12-15', '16:00:00', '11', 'on-going', ''),
-(1023, 1, 'Lenovo ThinkPad X13, 13.3 Full \r\nHD Laptop Core i5-10210U 8GB 256GB SSD Win10 Pro', 'This Laptop is quite new and it is packed in the original box, and the operating system is Windows. The memory storage capacity is 256 GB and the RAM size is 8 GB. For more information about the product please search on the Samsung website.', 'Brand new', 892, 940, '2022-09-30', '09:00:00', '2022-12-03', '21:00:00', '11', 'on-going', ' '),
+(1018, 2, '2021 BMW M3 Competition Saloon', 'This has been used for 1 year with 8310 miles. The registration date is 2021/06/08. The fuel type is Petrol.', 'Lightly used', 29000, 33000, '2022-07-18', '12:00:00', '2022-11-30', '18:00:00', '10', 'on-going', 'BMW.jpg'),
+(1019, 1, '2021 Porsche Taycan Performance Plus Turbo Saloon Electric Automatic', 'This car has been used for 3 years with 19664 miles. The registration date is 2019/06/08. The fuel type is Electric.', 'Lightly used', 40000, 50000, '2022-08-25', '12:00:00', '2022-12-28', '21:00:00', '10', 'on-going', 'Porsche.jpg'),
+(1020, 1, '2018 Mercedes-Benz S Class S500L AMG Line Execiutive/Premium Plus 4dr 9G-Tronic Auto', 'This has been used for 4 years with 29000 miles. The registration date is 2018/11/22. The fuel type is Petrol. This is a used car, but it is in very good condition', 'Well Used', 30000, 35000, '2022-08-25', '11:00:00', '2022-11-30', '19:00:00', '10', 'on-going', 'Mercedes.jpg'),
+(1021, 1, 'Apple MacBook Pro 16(512GB SSD, M1 Pro,16GB) Laptop - Space Grey - MK183B/A (October, 2021)', 'The condition is 9.9 New and the color is Space Grey. The operating system is IOS 15. Memory storage capacity: 512 GB The screen size is 16.2 in. and the RAM size is 16 GB.', 'Brand new', 900, 1000, '2022-10-06', '10:00:00', '2022-12-30', '15:00:00', '11', 'on-going', 'Mac.jpg'),
+(1022, 1, 'NEW Samsung Galaxy Book2 Pro 13.3 OLED i5 1240P 8G 256GB \r\nThin Ultrabook Laptop', 'This Laptop is quite new, and it is packed in the original box. The memory storage capacity is 256 GB and the RAM size is 8 GB. For more information about the product please search on the Samsung website.', 'Brand new', 800, 930, '2022-10-08', '14:00:00', '2022-12-15', '16:00:00', '11', 'on-going', 'Samsung_Galaxy.jpg'),
+(1023, 1, 'Lenovo ThinkPad X13, 13.3 Full \r\nHD Laptop Core i5-10210U 8GB 256GB SSD Win10 Pro', 'This Laptop is quite new and it is packed in the original box, and the operating system is Windows. The memory storage capacity is 256 GB and the RAM size is 8 GB. For more information about the product please search on the Samsung website.', 'Brand new', 892, 940, '2022-09-30', '09:00:00', '2022-12-03', '21:00:00', '11', 'on-going', 'Lenovo.jpg '),
 (1024, 1, 'Mens Army Military Stainless Steel Wrist Watch Quartz Date Analog Sports Watches', '        \r\nA brand-new, unused, unworn and undamaged item in the original packaging, made from stainless steel and         \r\nequipped with quartz (battery) movement.', 'Lightly used', 5000, 5800, '2022-10-12', '12:00:00', '2022-12-31', '20:00:00', '8', 'upcoming', 'watch2.jpg'),
 (1025, 1, 'Canon Canonet 35mm Film Rangefinder Camera Original Model', 'An item that has been previously used. The item may have some signs of cosmetic wear, but is fully operational and functions as intended. It is of rangefinder type with 35 mm lens kit, originally made by Canon and has only silver colour.', 'Well Used', 1800, 2000, '2022-09-15', '10:00:00', '2022-12-25', '15:00:00', '7', 'on-going', 'canon.jpg'),
 (1026, 1, 'Olympus Trip MD3 DX Point And Shoot 35mm Compact Film Camera', 'Belonging to one of Olympus Trip Series, the model is Olympus Trip XB40 AF which is of type compact with the features built-in flash and electric drive.', 'Lightly used', 2500, 2700, '2022-10-20', '14:00:00', '2022-12-15', '16:00:00', '7', 'on-going', 'olympus.jpg'),
@@ -133,11 +133,11 @@ INSERT INTO `item` (`item_ID`, `user_ID`, `item_name`, `pro_desc`, `cond`, `star
 (1037, 5, 'Baby Toy - circles,Good toy for kids younger than 3 years old', 'Recommend to have adults\' company while playing. Please don\'t swallow the toy. The toy is safe for one-year-old to play with.', 'Like new', 6, 11, '2022-04-14', '00:00:00', '2023-04-06', '00:00:00', '6', 'on-going', 'babytoy.jpeg'),
 (1038, 2, 'Yellow Truck', 'This used to be mine, but now I don\'t play it anymore. Surprisingly it still looks pretty new, so I thought I can put it on bidding ', 'Lightly used', 1, 12, '2022-07-22', '00:00:00', '2022-12-12', '00:00:00', '6', 'on-going', 'yellowtruck.jpeg'),
 (1039, 5, 'Modern design poster', 'Bought at a flea market, I also got it framed, so it\'s nearly as new. Feel free to bid on my amazing and interesting poster. ', 'Lightly used', 1, 3, '2022-03-11', '00:00:00', '2023-01-06', '00:00:00', '5', 'on-going', 'poster.jpeg'),
-(1040, 4, 'Self-design Thankyou card', 'This is my own design of card, find out more on leftfootcorner.com!! The design is inspired by one of my best friend\'s cat, and its name is Fatty.', 'Brand new', 4, 10, '2022-07-01', '00:00:00', '2022-12-12', '00:00:00', '5', 'on-going', 'card.jpeg'),
+(1040, 4, 'Self-design Thankyou card', 'This is my own design of card, find out more on leftfootcorner.com!! The design is inspired by one of my best friend\'s cat, and its name is Fatty.', 'Brand new', 4, 10, '2022-07-01', '00:00:00', '2022-12-12', '00:00:00', '5', 'on-going', 'card.jpg'),
 (1041, 2, 'Statue - Marble Greek Style', 'The marble statue makes your house feels like a grand museum. Time to brag your wealth with some naked Greek statues. Although the statue identity remains mystery, we can definitely appreciate the beautiful art piece.', 'Heavily Used', 22, 30, '2022-08-20', '00:00:00', '2023-01-01', '00:00:00', '5', 'on-going', 'statue.jpeg'),
 (1042, 2, 'Art Brush - Almost New', 'I bought this brush a couple of years ago, but I never had the chance to paint actually. It\'s still in very good condition. ', 'Brand new', 1, 3, '2022-05-14', '00:00:00', '2023-05-05', '00:00:00', '5', 'on-going', 'brush.jpeg'),
 (1043, 5, 'Oil Painting', 'This painting is bought at a flea market, but with good quality and great potential. The artist is a friend of mine.', 'Lightly used', 13, 20, '2022-05-14', '01:00:00', '2023-01-02', '00:00:00', '5', 'on-going', 'oilpainting.jpeg'),
-(1044, 3, 'Pride and Prejudice,Jane Austen\'s all time favorite', 'A must-read if you love romance and witty lines.', 'Heavily Used', 2, 4, '2022-06-06', '00:00:00', '2023-01-19', '00:00:00', '4', 'on-going', 'prideandprejudice.jpeg'),
+(1044, 3, 'Pride and Prejudice,Jane Austen\'s all time favorite', 'A must-read if you love romance and witty lines.', 'Heavily Used', 2, 4, '2022-06-06', '00:00:00', '2023-01-19', '00:00:00', '4', 'on-going', 'prideandprejudice.jpg'),
 (1045, 3, 'The DaVinci Code', 'The book is only read once, but the ridge is pretty broken. Goodread, recommend to younger readers or any-age readers! ', 'Well Used', 3, 5, '2022-05-14', '00:00:00', '2023-01-01', '00:00:00', '4', 'on-going', 'davincicode.jpeg'),
 (1046, 5, '101 Essays that Will Change the Way You Think', 'Almost new. Only bought this for class, yet I only read it twice. No markings in pages.', 'Brand new', 4, 6, '2022-05-14', '00:00:00', '2022-12-12', '00:00:00', '4', 'on-going', '101essays.jpeg'),
 (1047, 5, 'Thinking Fast and Slow', 'I bought this book two years ago, it was a good read, bestseller, but I really don\'t have more spaces on the bookshelf.', 'Lightly used', 1, 5, '2022-04-09', '00:00:00', '2023-01-01', '00:00:00', '4', 'on-going', 'thinkingfastandslow.jpeg'),
@@ -153,7 +153,7 @@ INSERT INTO `item` (`item_ID`, `user_ID`, `item_name`, `pro_desc`, `cond`, `star
 --
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -169,7 +169,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `addressline_1`, `addressline_2`, `postal_code`, `phone_number`, `user_type`) VALUES
+INSERT INTO `users` (`user_ID`, `firstname`, `lastname`, `email`, `password`, `addressline_1`, `addressline_2`, `postal_code`, `phone_number`, `user_type`) VALUES
 (1, 'Beau', 'Thongs', 'beau@yahoo.com', 'AA12362', '890', 'Grand Felda', 'HA9 0EF', '07340655237', 'buyer'),
 (2, 'Tima', 'Boon', 'timaboon2002@yahoo.co.th', '992a6d18b2a148cf20d9014c3524aa11', '554', 'Wembley', 'HA7 4ER', '0897654321', 'buyer'),
 (3, 'Gigi', 'Armani', 'beautieatima92@gmail.com', '8a2bd3e7515b99c88006a6956bc284e9', '674', 'Empire Way', '34210', '0943256673', 'buyer'),
@@ -237,7 +237,7 @@ ALTER TABLE `item`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_ID`);
 
 --
 -- Indexes for table `view_history`
@@ -275,7 +275,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `view_history`
@@ -297,28 +297,28 @@ ALTER TABLE `watchlist`
 -- Constraints for table `bidding`
 --
 ALTER TABLE `bidding`
-  ADD CONSTRAINT `bidding_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `bidding_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`),
   ADD CONSTRAINT `bidding_ibfk_2` FOREIGN KEY (`item_ID`) REFERENCES `item` (`item_ID`);
 
 --
 -- Constraints for table `item`
 --
 ALTER TABLE `item`
-  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`),
   ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`category_ID`) REFERENCES `category` (`category_ID`);
 
 --
 -- Constraints for table `view_history`
 --
 ALTER TABLE `view_history`
-  ADD CONSTRAINT `view_history_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `view_history_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`),
   ADD CONSTRAINT `view_history_ibfk_2` FOREIGN KEY (`item_ID`) REFERENCES `item` (`item_ID`);
 
 --
 -- Constraints for table `watchlist`
 --
 ALTER TABLE `watchlist`
-  ADD CONSTRAINT `watchlist_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `watchlist_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`),
   ADD CONSTRAINT `watchlist_ibfk_2` FOREIGN KEY (`item_ID`) REFERENCES `item` (`item_ID`);
 COMMIT;
 
