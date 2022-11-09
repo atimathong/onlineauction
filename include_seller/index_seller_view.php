@@ -30,15 +30,21 @@ include_once './inc_seller_view.php';
                 </tr>
             </thead>
             <tbody>
-                <th> Product Name</th>
-                <th> Product Category</th>
-                <th> <?php echo $name; ?></th>
-                <th> Picture</th>
-                <th> Start Price</th>
-                <th> Bid start date</th>
-                <th> Bid end date</th>
-                <th> Status</th>
-                <th> View rates</th>
+                <?php
+                $email = $_SESSION['email'];
+                $sql = "SELECT * FROM item JOIN users ON item.user_ID = users.user_id WHERE users.user_type IN ('seller' , 'Both') AND users.email = '$email' ";  # select data from sql table
+                $result = mysqli_query($conn, $sql); # send a query to the database
+                $resultCheck = mysqli_num_rows($result); # check if you can get the data from the database
+                #fetch the data into an array
+                if ($resultCheck > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr> <td>" . $row["item_name"] . "</td><td>" . $row["category"] . "</td><td>" . $row["item_ID"] . "</td><td>" . $row["picture"] . "</td><td>" . $row["starting_price"] . "</td><td>" . $row["sta_date"] . "</td><td>" . $row["end_date"] . "</td><td>" . $row["bidding_status"] . " <td></tr>";
+                    }
+                } else {
+                    echo "No result";
+                }
+
+                ?>
             </tbody>
         </table>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
@@ -47,23 +53,3 @@ include_once './inc_seller_view.php';
 </div>
 
 </html>
-
-
-<?php
-
-$email = $_SESSION['email'];
-$sql = "SELECT * FROM item JOIN users ON item.user_ID = users.user_id WHERE users.user_type IN ('seller' , 'Both') AND users.email = '$email' ";  # select data from sql table
-$result = mysqli_query($conn, $sql); # send a query to the database
-$resultCheck = mysqli_num_rows($result); # check if you can get the data from the database
-#fetch the data into an array
-echo $resultCheck;
-if ($resultCheck > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo $row['user_ID'] . "<br>";
-        echo $row['item_ID'] . "<br>";
-        echo $row['item_name'] . '<br>';
-        echo $row['bidding_status'] . '<br>';
-    }
-}
-
-?>
