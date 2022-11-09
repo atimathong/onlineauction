@@ -85,7 +85,7 @@ include 'utilities/timecalc.php';
     <div class="display-prod">
         <?php
         // if ($queryResults > 0)
-        while ($row = mysqli_fetch_assoc($result)) { ?>
+        while ($row = mysqli_fetch_assoc($result)) {?>
             <div class="card mb-3" style="max-width: 1000px;height: 280px;">
                 <div class="row g-0">
                     <div class="col-md-5">
@@ -98,12 +98,15 @@ include 'utilities/timecalc.php';
                             <hr>
                             <p class="card-text"><b>Price Start From</b> &pound;<?php echo $row['starting_price']; ?></p>
                             <p class="card-text desc"><?php echo $row['pro_desc']; ?></p>
-                            <div class="row" style="position:absolute;bottom:5px;right:5px;left:420px">
-                                <div class="sts col-sm-4"></div>
-                                <div class="col-sm-3"></div>
-                                <div class="col-sm-5" style="display:flex;justify-content: flex-end;">
-                                    <button class="btn btn-outline-primary" type="submit" name="watchllist"><i class="fa fa-heart text-muted"></i> Add to watchlist</button>
-                                </div>
+                           <div class="row" style="position:absolute;bottom:5px;right:5px;left:420px">
+                                    <div class="sts col-sm-4"></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-5" style="display:flex;justify-content: flex-end;">
+                                    <form action = "watchlist.php" method = 'post'> 
+                                        <input type = "hidden" name = "item_ID" value = "<?=$row['item_ID']?>">
+                                        <button class="btn btn-outline-primary" type="submit" name="watchlist"><i class="fa fa-heart text-muted"></i> Add to watchlist </button>
+                                    </form>
+                                    </div>
                             </div>
                         </div>
                     </div>
