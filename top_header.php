@@ -1,9 +1,8 @@
 <?php
 include 'database_connect/connect_db.php';
-if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } 
+if (!isset($_SESSION)) {
+  session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,24 +90,18 @@ if(!isset($_SESSION))
   <!-- Logo and Search Bar -->
   <nav class="navbar bg-light logoband">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.php">
+      <div class="navbar-brand">
         <div class="row">
           <div class="col">
             <h1 class="logo">.eBid</h1>
           </div>
-          <div class="col search-bar">
-            <form class="d-flex" action="index.php" method="POST">
-              <input class="form-control me-2" type="text" name="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success search-but" type="submit" name="submit-search">Search</button>
-            </form>
-          </div>
-          <div class="col search-bar">
-            <form class="d-flex" action="index.php" method="POST">
-              <button class="btn btn-outline-success clear-but" type="submit" name="clear-search">Reset</button>
-            </form>
-          </div>
+          <form action="index.php" method="POST" class="input-group mb-3 sb col">
+            <input type="text" class="form-control" id="keyword" type="text" name="search" placeholder="Search" aria-describedby="basic-addon2">
+            <button formmethod="POST" formaction="index.php" class="btn btn-dark" type="submit" name="submit-search">Search</button> 
+            <button formmethod="POST" formaction="index.php" class="btn btn-outline-dark" type="submit" name="clear-search">Reset</button>
+          </form>
         </div>
-      </a>
+  </div>
     </div>
   </nav>
   <!-- This is Bootstrap JS -->

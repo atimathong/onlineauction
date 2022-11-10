@@ -35,7 +35,7 @@ body{
     margin-right: 10px;
 }
 
-.search-bar{
+/* .search-bar{
     margin-top: 30px;
     margin-left: 10px;
 }
@@ -46,9 +46,17 @@ body{
   width: 900px;
   outline: none;
   color: #9DBFAF;
+} */
+
+.sb {
+    position: relative;
+    align-items: center;
+    right: 650px;
+    width : 2000px;
+    top:5px;
 }
 
-.search-but{
+/* .search-but{
     padding-left: 50px;
     padding-right: 50px;
     padding-top: -20px;
@@ -67,7 +75,7 @@ body{
     color: black;
     border: 3px;
     margin-left: -15px;
-}
+} */
 
 .filter{
     font-family: 'Montserrat', sans-serif;
