@@ -32,9 +32,10 @@ include_once './inc_seller_view.php';
             <tbody>
                 <?php
                 $email = $_SESSION['email'];
-                $sql = "SELECT * FROM item JOIN users ON item.user_ID = users.user_id WHERE users.user_type IN ('seller' , 'Both') AND users.email = '$email' ";  # select data from sql table
+                $sql = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID JOIN users ON item.user_ID = users.user_id WHERE users.user_type IN ('seller' , 'both') AND users.email = '$email'";  # select data from sql table
                 $result = mysqli_query($conn, $sql); # send a query to the database
                 $resultCheck = mysqli_num_rows($result); # check if you can get the data from the database
+                echo $resultCheck;
                 #fetch the data into an array
                 if ($resultCheck > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -43,6 +44,7 @@ include_once './inc_seller_view.php';
                 } else {
                     echo "No result";
                 }
+                $conn->close()
 
                 ?>
             </tbody>
