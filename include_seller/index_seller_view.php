@@ -10,15 +10,39 @@ include_once './inc_seller_view.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Seller products list</title>
+    
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="color:red;">Hello!  <?php echo $_SESSION['email']; ?></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Previous Page</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">History</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 
     <div class="container-fuild">
+    
         <table class="table">
             <thead class="table-dark">
+              <tr><h1 style="text-align:center">Seller viewing lists</h1></tr>
                 <tr>
                     <th> Product Name</th>
                     <th> Product Category</th>
@@ -37,7 +61,7 @@ include_once './inc_seller_view.php';
                 $sql = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID JOIN users ON item.user_ID = users.user_id WHERE users.user_type IN ('seller' , 'both') AND users.email = '$email'";  # select data from sql table
                 $result = mysqli_query($conn, $sql); # send a query to the database
                 $resultCheck = mysqli_num_rows($result); # check if you can get the data from the database
-                echo $resultCheck;
+                // echo $resultCheck;
                 #fetch the data into an array
                 if ($resultCheck > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {

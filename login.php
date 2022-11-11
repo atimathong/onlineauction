@@ -63,15 +63,18 @@ include_once("top_header.php");
             <div class="container ">
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" name="email" id="email" placeholder="Email">
-              </div>
+                <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
+              </div> 
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
               </div>
-              <button type="submit" name="login_user" class="btn btn-primary form-control">Sign in</button>
 
             </div>
+            <div>
+              <button type="submit" name="login_user" class="btn btn-primary form-control">Sign in</button>
+              </div>
+
           </form>
 
           <div class="text-center">or <a href="register.php">Create an account</a></div>
