@@ -14,6 +14,8 @@ include_once './inc_seller_view.php';
 </head>
 
 <body>
+
+
     <div class="container-fuild">
         <table class="table">
             <thead class="table-dark">
