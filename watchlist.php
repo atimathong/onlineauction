@@ -50,10 +50,11 @@ else {
 $fname =  $_SESSION['fname'];
 
 
+?>
 
+<h1>Welcome <?php echo $fname?> <br> This is your watchlist. </h1>
 
-echo "<h1> Welcome $fname. This is your watchlist. </h1>";
-
+<?php
 $query1 = "SELECT u.firstname, u.lastname, i.item_ID, 
 i.item_name, i.pro_desc, picture FROM item i 
 INNER JOIN users u ON i.user_ID = u.user_ID 
