@@ -51,10 +51,14 @@ $fname =  $_SESSION['fname'];
 
 
 
-echo "<h1> Welcome $fname. This is your watchlist </h1>";
 
-$query1 = "SELECT item_ID, item_name, pro_desc, picture FROM item WHERE item_ID IN (SELECT item_ID 
-FROM watchlist WHERE user_ID = '$user_id')";
+echo "<h1> Welcome $fname. This is your watchlist. </h1>";
+
+$query1 = "SELECT u.firstname, u.lastname, i.item_ID, 
+i.item_name, i.pro_desc, picture FROM item i 
+INNER JOIN users u ON i.user_ID = u.user_ID 
+WHERE i.item_ID IN (SELECT item_ID FROM watchlist WHERE user_ID = '$user_id') ORDER
+BY i.item_name";
 $result1= mysqli_query($db_conn, $query1);
 
 ?>
@@ -62,6 +66,7 @@ $result1= mysqli_query($db_conn, $query1);
 <tr>
     <th>Item Name </th>
     <th>Item Description </th>
+    <th> Seller Name </th>
     <th> Item Picture </th>
     <th> Product Page </th>
     <th> Delete Item </th>
@@ -72,6 +77,9 @@ while ($row = mysqli_fetch_assoc($result1)) {
      <tr>
      <td> <?php echo $row['item_name'] ?> </td>
      <td> <?php echo $row['pro_desc'] ?> </td>
+     <td> <?php 
+     echo $row['firstname'].' '.$row['lastname']
+     ?> </td>
      <td> <img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product" style="width:380px;height:280px;"> </td>
      <td>  <a href="product_details.php?id=<?php echo $row['item_ID']; ?>"> Link </a> </td>
      <td> <form action = 'delete.php' method = 'post' target="_self">
