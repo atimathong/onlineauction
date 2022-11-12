@@ -21,6 +21,21 @@ if (isset($_GET['id'])) {
         $item_row = mysqli_fetch_assoc($detail_result);
         $_SESSION["item_detail"] = $item_row;
     }
+    $user_id = mysqli_real_escape_string($db_conn, $_SESSION['userid']);
+    $recommendation_exist_query = "SELECT COUNT(*) as count FROM view_history WHERE item_ID = '$item_id' 
+    AND user_ID = '$user_id'";
+    $recommendation_exist_result = mysqli_query($db_conn, $recommendation_exist_query);
+    $row = mysqli_fetch_assoc($recommendation_exist_result);
+    if ($row['count'] == 0){
+        $add_query = "INSERT INTO view_history (user_ID, item_ID, view_times)
+        VALUES ('$user_id', '$item_id', 1)";
+        mysqli_query($db_conn, $add_query);
+    }
+    else{
+        $update_query = "UPDATE view_history SET view_times = view_times + 1 WHERE
+        user_ID = '$user_id' AND item_ID = '$item_id'";
+        mysqli_query($db_conn, $update_query);
+    }
 }
 ?>
 
