@@ -21,6 +21,7 @@ if (isset($_GET['id'])) {
         $item_row = mysqli_fetch_assoc($detail_result);
         $_SESSION["item_detail"] = $item_row;
     }
+    // Keep track of how many times the particular user views the particular product page
     $user_id = mysqli_real_escape_string($db_conn, $_SESSION['userid']);
     $recommendation_exist_query = "SELECT COUNT(*) as count FROM view_history WHERE item_ID = '$item_id' 
     AND user_ID = '$user_id'";
