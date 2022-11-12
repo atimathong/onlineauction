@@ -22,7 +22,7 @@ table, th, td {
   $user_id = mysqli_real_escape_string($db_conn, $_SESSION['userid']);
   
   // TODO: Perform a query to pull up auctions they might be interested in.
-  $query = "SELECT item_ID, item_name, pro_desc, picture FROM item WHERE category_ID IN (SELECT category_ID FROM item WHERE item_ID IN (SELECT item_ID FROM view_history WHERE (item_ID IN (SELECT item_ID FROM item WHERE view_times = (SELECT MAX(view_times) FROM view_history)) AND user_ID = '$user_id')))";
+  $query = "SELECT item_ID, item_name, pro_desc, picture FROM item WHERE category_ID IN (SELECT category_ID FROM item WHERE item_ID IN (SELECT item_ID FROM view_history WHERE (item_ID IN (SELECT item_ID FROM view_history WHERE view_times = (SELECT MAX(view_times) FROM view_history WHERE user_ID = '$user_id')))))";
   $query_result = mysqli_query($db_conn, $query);
   ?>
   <table style = "width:100%">
