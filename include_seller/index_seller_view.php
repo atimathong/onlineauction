@@ -17,20 +17,24 @@ include_once './inc_seller_view.php';
 <body>
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" style="color:red;">Hello!  <?php echo $_SESSION['email']; ?></a>
+    <a class="navbar-brand" href="#" style="color:red;">Hello!  
+	<?php $userNameSQL = "SELECT firstname, lastname from users where email=" . "'" . $_SESSION['email'] . "'"; 
+	      $result = mysqli_query($conn, $userNameSQL);
+	      $row = mysqli_fetch_assoc($result);
+	      echo $row["firstname"] . " " . $row["lastname"]; ?></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+          <a class="nav-link active" aria-current="page" href="/onlineauction/index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Previous Page</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">History</a>
+          <a class="nav-link" href="#">logout</a>
         </li>
       </ul>
     </div>
@@ -65,7 +69,7 @@ include_once './inc_seller_view.php';
                 #fetch the data into an array
                 if ($resultCheck > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr> <td>" . $row["item_name"] . "</td><td>" . $row["category"] . "</td><td>" . $row["item_ID"] . "</td><td>" . $row["picture"] . "</td><td>" . $row["starting_price"] . "</td><td>" . $row["sta_date"] . "</td><td>" . $row["end_date"] . "</td><td>" . $row["bidding_status"] . " <td></tr>";
+                        echo "<tr> <td>" . $row["item_name"] . "</td><td>" . $row["category"] . "</td><td>" . $row["item_ID"] . "</td><td>" . "<img src='../pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . $row["starting_price"] . "</td><td>" . $row["sta_date"] . "</td><td>" . $row["end_date"] . "</td><td>" . $row["bidding_status"] . " <td></tr>";
                     }
                 } else {
                     echo "No result";
