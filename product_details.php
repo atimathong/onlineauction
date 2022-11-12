@@ -1,7 +1,8 @@
 <?php
 include_once 'top_header.php';
-require 'utilities/countdown.php';
-require 'max_bid_price.php'
+require 'utilities/timecalc.php';
+require 'max_bid_price.php';
+require 'bid_status.php';
 ?>
 
 <?php
@@ -72,16 +73,18 @@ if (isset($_GET['id'])) {
                                     </div>
                                     <hr>
                                     <p><b>Condition:</b> <?= $item_row['cond'] ?></p>
-                                    <p><b>Bid status:</b> <?= $item_row['bidding_status'] ?></p>
-                                    <?php if ($item_row['bidding_status'] === "on-going") {
-                                        $timer = new CountDown(); ?>
+                                    <?php $bid_status = bidStatus($item_row); ?>
+                                    <p><b>Bid status:</b> <?= $bid_status ?></p>
+                             
+                                    <?php if ($bid_status === "Ongoing") {
+                                     ?>
                                         <!-- add timer display -->
                                         <div class="row">
                                             <div class="col-md-auto">
                                                 <b>Time left:</b>
                                             </div>
                                             <div class="col-md-auto">
-                                                <?= $timer->timeleft($item_row) ?>
+                                                <?= timeleft($item_row) ?>
                                             </div>
                                         </div>
                                     <?php }; ?>
@@ -91,7 +94,7 @@ if (isset($_GET['id'])) {
 
                                     <div class="sizes mt-4">
                                         <h6 class="text-uppercase">Start bidding</h6>
-                                        <?php if ($item_row['bidding_status'] === "on-going") { ?>
+                                        <?php if ($bid_status === "Ongoing") { ?>
                                             <div class="row">
                                                 <div class="col-md-auto">
                                                     Current Bid(&pound;):
@@ -109,7 +112,7 @@ if (isset($_GET['id'])) {
                                                                                                 echo "bid_price";
                                                                                             } ?> value="bid_price" min="<?= (int)$item_row['starting_price'] ?>" placeholder="&pound; Bid price" required>
                                             </div>
-                                            <?php if ($item_row["bidding_status"] === "on-going") { ?>
+                                            <?php if ($bid_status === "Ongoing") { ?>
                                                 <div class="col-4 bid-sub">
                                                     <?php if (isset($_POST['edit-bid'])) { ?>
                                                         <button class="btn btn-outline-success search-but mr-2 px-4" type="submit" name="update-bid">Update Bid</button>
@@ -120,7 +123,7 @@ if (isset($_GET['id'])) {
                                             <?php } ?>
                                         </div>
                                     </div>
-                                    <div class="cart mt-4 align-items-center  <?php if ($item_row["bidding_status"] === "on-going") {
+                                    <div class="cart mt-4 align-items-center  <?php if ($bid_status !== "Finished") {
                                                                                     echo "watchlist";
                                                                                 } ?>">
                                         <button class="btn btn-outline-dark mr-2 px-4" type="submit" name="watchllist"><i class="fa fa-heart text-muted"></i> Watch this item</button>

@@ -1,8 +1,9 @@
 <?php
 include_once("top_header.php");
 require("utilities.php");
-require 'cancel_bid.php'
-// require("countdown.php");
+require 'cancel_bid.php';
+include "utilities/timecalc.php";
+// require("timecalc.php");
 ?>
 
 <div class="container">
@@ -17,7 +18,7 @@ require 'cancel_bid.php'
   // TODO: Check user's credentials (cookie/session).
   $user_id = $_SESSION['userid'];
   // TODO: Perform a query to pull up the auctions they've bidded on.
-  $bid_query = "SELECT * FROM bidding JOIN item ON bidding.item_ID = item.item_ID WHERE bidding.user_ID = '$user_id' AND bidding.bidding_status = 'on-going'";
+  $bid_query = "SELECT * FROM bidding JOIN item ON bidding.item_ID = item.item_ID WHERE bidding.buyer_ID = '$user_id'";
   $bidding_list = mysqli_query($db_conn, $bid_query);
   // TODO: Loop through results and print them out as list items.
   ?>
