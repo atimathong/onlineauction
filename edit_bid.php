@@ -10,7 +10,7 @@ if (isset($_POST['update-bid'])) {
     $update_price = mysqli_real_escape_string($db_conn, $_POST['new_bid_price']);
     $bid_item = $_SESSION["item_detail"];
     $item_id = $bid_item['item_ID'];
-    $bid_update_query = "UPDATE bidding SET bid_price = '$update_price' WHERE user_ID= '$user_id' AND item_ID='$item_id'";
+    $bid_update_query = "UPDATE bidding SET bid_price = '$update_price' WHERE buyer_ID= '$user_id' AND item_ID='$item_id'";
       // edit bidding to database
     if (mysqli_query($db_conn, $bid_update_query)) {
         // redirect user to mybids page

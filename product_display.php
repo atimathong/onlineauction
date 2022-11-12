@@ -1,5 +1,6 @@
 <?php
 require 'database_connect/connect_db.php';
+include 'utilities/timecalc.php';
 ?>
 
 <!DOCTYPE html>
@@ -91,7 +92,7 @@ require 'database_connect/connect_db.php';
                             <p class="card-text"><b>Price Start From</b> &pound;<?php echo $row['starting_price']; ?></p>
                             <p class="card-text desc"><?php echo $row['pro_desc']; ?></p>
                            <div class="row" style="position:absolute;bottom:5px;right:5px;left:420px">
-                                    <div class="sts col-sm-4"><b>Bid Status: </b><?php echo $row['bidding_status']; ?></div>
+                                    <div class="sts col-sm-4"></div>
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-5" style="display:flex;justify-content: flex-end;">
                                         <button class="btn btn-outline-primary" type="submit" name="watchllist"><i class="fa fa-heart text-muted"></i> Add to watchlist</button>

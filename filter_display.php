@@ -85,6 +85,12 @@
                     </label>
                 </div>
                 <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="category[]" value="Music Instrument" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Musical Instrument
+                    </label>
+                </div>
+                <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="category[]" value="Laptops" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Laptops
@@ -101,19 +107,19 @@
                 <h6>Bid Status</h6>
                 <hr>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="status[]" value="on-going" id="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" name="status[]" value="Ongoing" id="flexRadioDefault1">
                     <label class="form-check-label" for="flexRadioDefault1">
-                        On-going
+                        Ongoing
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="status[]" value="upcoming" id="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="status[]" value="Upcoming" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Upcoming
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="status[]" value="finished" id="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="status[]" value="Finished" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Finished
                     </label>

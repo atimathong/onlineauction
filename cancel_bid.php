@@ -57,7 +57,7 @@ include 'database_connect/connect_db.php';
 if(isset($_POST['cancel-bid'])){
     $user_id = $_SESSION['userid'];
     $id = mysqli_real_escape_string($db_conn, $_GET['id']);
-    $cancel_query = "DELETE FROM bidding WHERE user_ID='$user_id' AND item_ID='$id'";
+    $cancel_query = "DELETE FROM bidding WHERE buyer_ID='$user_id' AND item_ID='$id'";
     if (mysqli_query($db_conn, $cancel_query)) {
         // redirect user to mybids page
         echo "<script type='text/javascript'>window.onload = function () { alert('Bid cancelled successfully'); window.location.href='mybids.php';}</script>";
