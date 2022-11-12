@@ -48,7 +48,7 @@ include_once './inc_seller_view.php';
             <thead class="table-dark">
               <tr><h1 style="text-align:center">Seller viewing lists</h1></tr>
                 <tr>
-                    <th> Product Name</th>
+                    <th style="width:15%"> Product Name</th>
                     <th> Product Category</th>
                     <th> Product ID</th>
                     <th> Picture</th>

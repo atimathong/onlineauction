@@ -1,5 +1,5 @@
 body {
-    background-color: lightblue;
+    background-color: #9BB7D4;
 }
 
 
@@ -54,6 +54,8 @@ input[type=password] {
 }
 
 label {
+    font-size: 15px;
+    font-weight: bold;
     display: inline-block;
     margin-bottom: 0.5rem;
     float: left;
@@ -81,9 +83,10 @@ button:hover {
 }
 
 button:active {
-    background-color: #4c9eaf1;
+    background-color: #c9eaf1;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+    
 }
 
 .container {
@@ -91,7 +94,7 @@ button:active {
     height: 300%;
     border-radius: 20px;
     text-align: center;
-    background-color: rgb(169, 166, 162);
+    background-color: #E9E9E7;
 }
 
 .text-center {
