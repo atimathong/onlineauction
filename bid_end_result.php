@@ -24,11 +24,8 @@ if ($result_count > 0) {
         $end_time = $row['end_time'];
         $end_datetime = strtotime("$end_date" . " " . "$end_time");
 
-        // echo $row['item_name'];
 
-        // echo ($today_datetime  -  $end_datetime);
-
-        if (-5 < $today_datetime  -  $end_datetime && $today_datetime  -  $end_datetime < 5) {
+        if (-1 < $today_datetime  -  $end_datetime && $today_datetime  -  $end_datetime < 1) {
 
             $item_id = $row['item_ID'];
 
@@ -46,6 +43,7 @@ if ($result_count > 0) {
 
                     while ($users = mysqli_fetch_assoc($user_result)) {
                         // bidding fails
+                        // echo "failed  email";
                         sendEmail($users['email'], $users['firstname'] . " " . $users['lastname'], $item_nm, "end_bid", $users['bid_price'], "main_user", true);
                     }
                 } else {
@@ -53,9 +51,11 @@ if ($result_count > 0) {
                     while ($users = mysqli_fetch_assoc($user_result)) {
                         if ($users['bid_price'] === $winning_price) {
                             //winner
+                            // echo "winner email";
                             sendEmail($users['email'], $users['firstname'] . " " . $users['lastname'], $item_nm, "end_bid", $users['bid_price'], "main_user", false);
                         } else {
                             //losers
+                            // echo "loser email";
                             sendEmail($users['email'], $users['firstname'] . " " . $users['lastname'], $item_nm, "end_bid", $users['bid_price'], "others", false);
                         }
                     }
@@ -64,8 +64,3 @@ if ($result_count > 0) {
         }
     }
 }
-
-?>
-
-
-

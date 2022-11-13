@@ -14,8 +14,8 @@
 
         $now = time();
 
-        $diffToEnd = round(abs($end_datetime - $now),2);
-        $diffFromStart = round(abs($now - $start_datetime),2);
+        $diffToEnd = $end_datetime - $now;
+        $diffFromStart = $now - $start_datetime;
 
         $status = "";
 
