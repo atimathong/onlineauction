@@ -1,3 +1,11 @@
+<?php
+session_start();
+include 'server.php' ?>
+
+<!-- HTML CSS not done -->
+<!doctype html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -6,115 +14,117 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <!-- Custom CSS file --><link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
+  <!-- Custom CSS file -->
+  <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
   <link rel="stylesheet" id="roboto-subset.css-css" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5" type="text/css" media="all">
   
-  <link rel="stylesheet" href="register.css" />
-  <title>Log in</title>
+  <link rel="stylesheet" href="style.css" />
+  <title>Register</title>
   <script defer src="./login.js"></script>
 </head>
 
-
 <section class="vh-100 gradient-custom">
   <div class="container py-5 h-100">
-    <div class="row justify-content-center align-items-center h-100">
-      <div class="col-12 col-lg-9 col-xl-7">
-        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-          <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-            <form>
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://images.unsplash.com/photo-1574634534894-89d7576c8259?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
 
-              <div class="row">
-                <div class="col-md-6 mb-4">
-
-                  <div class="form-outline">
-                    <input type="text" id="firstName" class="form-control form-control-lg" />
-                    <label class="form-label" for="firstName">First Name</label>
+                <form method="POST" action="server.php" id="form" onsubmit="return checkAll()">
+                  
+                  <?php include 'error_me.php' ?>
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <!--icon <i class="fa fa-bold fa-2x me-3" style="color: #ff6219;"></i> -->
+                    <h1 class="h1 fw-bold mb-0">  .eBid Register</h1>
                   </div>
 
-                </div>
-                <div class="col-md-6 mb-4">
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create your account</h5>
 
-                  <div class="form-outline">
-                    <input type="text" id="lastName" class="form-control form-control-lg" />
-                    <label class="form-label" for="lastName">Last Name</label>
+                  <div class="form-con form-outline mb-4">
+                    <label class="form-label" for="accountType">User Type</label>
+                        <select class="form-control" id="accountType" name="accountType">
+                        <option value="none" selected>Choose the condition...</option> 
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                        <option value="both">Both</option>
+                        </select>
+                        <small>Error message</small>
                   </div>
 
-                </div>
+                  <div class="form-con form-outline mb-4">
+                    <input name="" type="text" id="firstname" class="form-control form-control-lg border border-light" />
+                    <label class="form-label" for="firstname">First Name</label>
+                    <small>Error message</small>
+                  </div>
+
+                  <div class="form-con form-outline mb-4">
+                    <input name="" type="text" id="lastname" class="form-control form-control-lg border border-light" />
+                    <label class="form-label" for="lastname">Last Name</label>
+                    <small>Error message</small>
+                  </div>
+
+                  <div class="form-con form-outline mb-4">
+                    <input name="" type="email" id="email" class="form-control form-control-lg border border-light" />
+                    <label class="form-label" for="email">Email</label>
+                    <small>Error message</small>
+                  </div>
+
+                  <div class="form-con form-outline mb-4">
+                    <input name="" type="password" id="password" class="form-control form-control-lg border border-light" />
+                    <label class="form-label" for="password">Password</label>
+                    <small>Error message</small>
+                  </div>
+
+                  <div class="form-con form-outline mb-4">
+                    <input type="password" id="password_2" name="password_2" class="form-control form-control-lg border border-light" />
+                    <label class="form-label" for="password_2">Password Check</label>
+                    <small>Error message</small>
+                  </div>
+
+                  <div class="form-con form-outline mb-4">
+                    <input name="addressline_1" type="text" id="addressline_1" class="form-control form-control-lg border border-light" />
+                    <label class="form-label" for="addressline_1">Address Line 1</label>
+                    <small>Error message</small>
+                  </div>
+
+                  <div class="form-con form-outline mb-4">
+                    <input name="addressline_2" type="text" id="addressline_2" class="form-control form-control-lg border border-light" />
+                    <label class="form-label" for="addressline_2">Address Line 2</label>
+                    <small>Error message</small>
+                  </div>
+                  
+                  <div class="form-con form-outline mb-4">
+                    <input name="postal_code" type="text" id="postal_code" class="form-control form-control-lg border border-light" />
+                    <label class="form-label" for="postal_code">Postal Code</label>
+                    <small>Error message</small>
+                  </div>
+
+                  <div class="form-con form-outline mb-4">
+                    <input name="phone_number" type="text" class="form-control form-control-lg border border-light" name="phone_number">
+                    <label for="phonenumber" class="form-label">Phone Number</label>
+                    <small>Error message</small>
+                  </div>
+
+
+                  <div class="pt-1 mb-4">
+                    <button type="submit" class="btn btn-dark btn-lg btn-block" name="login_user" type="button">Register</button>
+                  </div>
+
+                  <a class="small text-muted" href="#!">Forgot password?</a>
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">Already have an account? <a href="login_page.php"
+                      style="color: #393f81;">Login here</a></p>
+                  <a href="#!" class="small text-muted">Terms of use.</a>
+                  <a href="#!" class="small text-muted">Privacy policy</a>
+                </form>
+
               </div>
-
-              <div class="row">
-                <div class="col-md-6 mb-4 d-flex align-items-center">
-
-                  <div class="form-outline datepicker w-100">
-                    <input type="text" class="form-control form-control-lg" id="birthdayDate" />
-                    <label for="birthdayDate" class="form-label">Birthday</label>
-                  </div>
-
-                </div>
-                <div class="col-md-6 mb-4">
-
-                  <h6 class="mb-2 pb-1">Gender: </h6>
-
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                      value="option1" checked />
-                    <label class="form-check-label" for="femaleGender">Female</label>
-                  </div>
-
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                      value="option2" />
-                    <label class="form-check-label" for="maleGender">Male</label>
-                  </div>
-
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-                      value="option3" />
-                    <label class="form-check-label" for="otherGender">Other</label>
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6 mb-4 pb-2">
-
-                  <div class="form-outline">
-                    <input type="email" id="emailAddress" class="form-control form-control-lg" />
-                    <label class="form-label" for="emailAddress">Email</label>
-                  </div>
-
-                </div>
-                <div class="col-md-6 mb-4 pb-2">
-
-                  <div class="form-outline">
-                    <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
-                    <label class="form-label" for="phoneNumber">Phone Number</label>
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-12">
-
-                  <select class="select form-control-lg">
-                    <option value="1" disabled>Choose option</option>
-                    <option value="2">Subject 1</option>
-                    <option value="3">Subject 2</option>
-                    <option value="4">Subject 3</option>
-                  </select>
-                  <label class="form-label select-label">Choose option</label>
-
-                </div>
-              </div>
-
-              <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
-              </div>
-
-            </form>
+            </div>
           </div>
         </div>
       </div>
