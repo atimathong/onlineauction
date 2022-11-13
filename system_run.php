@@ -5,8 +5,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(setInterval(function() {
-            $("#div1").load("bidding_result.php");
-        }, 5000));
+            $("#div1").load("bid_end_result.php");
+        }, 2000));
     </script>
 </head>
 

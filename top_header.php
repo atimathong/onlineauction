@@ -1,7 +1,7 @@
 <?php
 include 'database_connect/connect_db.php';
 // keep the result check function running
-// include 'system_run.php';
+include 'system_run.php';
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -23,6 +23,8 @@ if (!isset($_SESSION)) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6cc5131127.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -30,64 +32,73 @@ if (!isset($_SESSION)) {
 
   <?php if (isset($_SESSION['email']) && $_SESSION['email'] == true) { ?>
     <!-- nav bar -->
-    <ul class="nav nav-tabs justify-content-end but">
-      <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'buyer') { ?>
+    <nav class="row">
+      <div class="col">
+        <a class="nav-link active" aria-current="page" href="index.php"><span class="material-symbols-outlined" style="margin-left:25px;margin-top:15px">
+            house
+          </span></a>
+      </div>
+      <div class="col">
+      <ul class="nav nav-tabs justify-content-end but" style="color:blue;">
+        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'buyer') { ?>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Become a Seller?</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello, <?php echo $_SESSION['fname']; ?>!</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">My Watchlist</a></li>
+              <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
+              <li><a class="dropdown-item" href="#">My Bidding History</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+            </ul>
+          </li>
+        <?php } else if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'seller') { ?>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Become a Buyer?</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
+              <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+            </ul>
+          </li>
+        <?php } else { ?>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">My Watchlist</a></li>
+              <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
+              <li><a class="dropdown-item" href="#">My Bidding History</a></li>
+              <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
+              <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+            </ul>
+          </li>
+        <?php } ?>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Become a Seller?</a>
+          <a class="btn btn-dark" href="logout.php" role="button">Logout</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">My Watchlist</a></li>
-            <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
-            <li><a class="dropdown-item" href="#">My Bidding History</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-          </ul>
+      </ul>
+      </div>
+    <?php } else { ?>
+      <ul class="nav justify-content-end but">
+        <li class="nav-item mx-1">
+          <a class="btn btn-dark" href="login.php" role="button">Login</a>
         </li>
-      <?php } else if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'seller') { ?>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Become a Buyer?</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
-            <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-          </ul>
-        </li>
-      <?php } else { ?>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">My Watchlist</a></li>
-            <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
-            <li><a class="dropdown-item" href="#">My Bidding History</a></li>
-            <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
-            <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-          </ul>
-        </li>
-      <?php } ?>
-      <li class="nav-item">
-        <a class="btn btn-dark" href="logout.php" role="button">Logout</a>
-      </li>
-    </ul>
-  <?php } else { ?>
-    <ul class="nav justify-content-end but">
-      <li class="nav-item mx-1">
-        <a class="btn btn-dark" href="login.php" role="button">Login</a>
-      </li>
-    </ul>
+      </ul>
+    </nav>
   <?php } ?>
   <!-- Logo and Search Bar -->
   <nav class="navbar bg-light logoband">
@@ -99,11 +110,11 @@ if (!isset($_SESSION)) {
           </div>
           <form action="index.php" method="POST" class="input-group mb-3 sb col">
             <input type="text" class="form-control" id="keyword" type="text" name="search" placeholder="Search" aria-describedby="basic-addon2">
-            <button formmethod="POST" formaction="index.php" class="btn btn-dark" type="submit" name="submit-search">Search</button> 
+            <button formmethod="POST" formaction="index.php" class="btn btn-dark" type="submit" name="submit-search">Search</button>
             <button formmethod="POST" formaction="index.php" class="btn btn-outline-dark" type="submit" name="clear-search">Reset</button>
           </form>
         </div>
-  </div>
+      </div>
     </div>
   </nav>
   <!-- This is Bootstrap JS -->

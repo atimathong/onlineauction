@@ -58,17 +58,17 @@ use PHPMailer\PHPMailer\Exception;
         if ($purpose === "start_bid") {
             // main user will be the person who has just created the bid.
             $message .= $receiver == "main_user" ? '<p style="color:black;font-size:18px;">You have successfully started your bid for ' . $item_name . ' at a price of &pound;' . $bid_price . '.</p>' :
-                '<p style="color:black;font-size:18px;">New bid has been created for ' . $item_name . ' by another auctioner.</p>';
+                '<p style="color:black;font-size:18px;">New bid has been created for ' . $item_name . ' by another auctioner. Please feel free to update your bid price to grab a change to become the winner!</p>';
         } else {
             //end bid: main user is the winner.
             if ($bid_fail === false) {
                 // bid success
                 $message .= $receiver == "main_user" ? '<p style="color:black;font-size:18px;">Congratulation, you are the winner of the auction for ' . $item_name . ' at a highest price of &pound;' . $bid_price . '. The seller will contact you shortly.</p>' :
-                    '<p style="color:black;font-size:18px;">We are regret to inform you that your bid for ' . $item_name . ' at a price of &pound;' . $bid_price . ' is unsuccessful. 
-                However, we have many on-going bids which you can potentially become the winner. So stay tuned for your next auction!</p>';
+                    '<p style="color:black;font-size:18px;">We regret to inform you that your bid for ' . $item_name . ' at a price of &pound;' . $bid_price . ' is unsuccessful. 
+                However, we have many ongoing and upcoming bids which you can potentially become the winner. So stay tuned for your next auction!</p>';
             } else {
                 // bid_fail due to the price < reserve price
-                $message .= '<p style="color:black;font-size:18px;">We would like to inform you that the auction result cannot be obtained for ' . $item_name . " because the final bid price doesn't reach the seller's reserved price.</p>";
+                $message .= '<p style="color:black;font-size:18px;">We regret to inform you that the auction for ' . $item_name . " has been declined by the seller because the highest bid price doesn't reach the seller's reserved price.</p>";
             }
         }
         $message .= '<br>';
@@ -84,7 +84,7 @@ use PHPMailer\PHPMailer\Exception;
         $mail->addAddress($email);
         //finally send email
         if ($mail->send()) {
-            echo "--Email Sent--!";
+            echo "--Email Sent--";
         } else {
             echo "Error..!";
         }

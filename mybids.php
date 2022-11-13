@@ -1,14 +1,14 @@
 <?php
 include_once("top_header.php");
 require("utilities.php");
-require 'cancel_bid.php';
+include 'cancel_bid.php';
 include "utilities/timecalc.php";
+include "max_bid_price.php";
 // require("timecalc.php");
 ?>
 
 <div class="container">
 
-  <h2 class="my-3">My Bidding List</h2>
 
   <?php
   // This page is for showing a user the auctions they've bid on.
@@ -24,6 +24,7 @@ include "utilities/timecalc.php";
   ?>
   <div class="container">
     <div class="row">
+    <h2 class="my-3 col">My Bidding List</h2>
       <div class="col-md-12">
         <div class="table-wrap">
           <table class="table">
@@ -32,7 +33,8 @@ include "utilities/timecalc.php";
                 <th scope="col">#</th>
                 <th scope="col" style="width:25%">Item Name</th>
                 <th scope="col" style="width:20%">Picture</th>
-                <th scope="col" style="width:12%">Your Bid Price(&pound;)</th>
+                <th scope="col" style="width:10%">Your Bid Price(&pound;)</th>
+                <th scope="col" style="width:10%">Current Bid Price(&pound;)</th>
                 <th scope="col" style="width:10%">Time Left</th>
                 <th scope="col" style="width:10%">Bids</th>
                 <th scope="col" style="width:10%">Watchers</th>
@@ -44,39 +46,48 @@ include "utilities/timecalc.php";
               <?php if (mysqli_num_rows($bidding_list) > 0) {
                 $i = 1;
                 while ($bid_row = mysqli_fetch_assoc($bidding_list)) {
-                  $bid_end = new DateTime($bid_row['end_date'] . "T" . $bid_row['end_time']);
+                  $end_date = $bid_row['end_date'];
+                  $end_time = $bid_row['end_time'];
+                  $end_datetime = strtotime("$end_date" . " " . "$end_time");
+                  $current = strtotime(date("Y-m-d h:i:sa"));
+                  $bid_end = new DateTime($end_date  . "T" . $end_time);
                   $now =  new DateTime();
+                  // get DateTime object
                   $time_to_end = date_diff($now, $bid_end);
+                  $int_time_to_end = $end_datetime - $current;
+                  if ($int_time_to_end >= 0) {
               ?>
-                  <tr>
-                    <th scope="row"><?= $i ?></th>
-                    <td><?php echo $bid_row["item_name"] ?></td>
-                    <td><img src="pictures/<?php echo $bid_row['picture']; ?>" class="card-img-top" alt="product" style="width:190;height:140px;"></td>
-                    <td><?php echo $bid_row["bid_price"] ?></td>
-                    <td><?php echo display_time_remaining($time_to_end); ?></td>
-                    <td><?php
-                        $item_id = $bid_row["item_ID"];
-                        $bid_count_query = "SELECT item_ID,COUNT(item_ID) AS count_bid FROM bidding WHERE item_ID = '$item_id' GROUP BY item_ID";
-                        $bid_count = mysqli_query($db_conn, $bid_count_query);
-                        $bid = mysqli_fetch_assoc($bid_count);
-                        echo $bid['count_bid']; ?></td>
-                    <td><?php
-                        $watch_query = "SELECT item_ID,COUNT(item_ID) AS count_watch FROM watchlist WHERE item_ID = '$item_id' GROUP BY item_ID";
-                        $watch_count = mysqli_query($db_conn, $watch_query);
-                        if (mysqli_num_rows($watch_count) > 0) {
-                          $watch = mysqli_fetch_assoc($watch_count);
-                          echo $watch['count_watch'];
-                        } else {
-                          echo "0";
-                        }
-                        ?></td>
-                    <td>
-                      <form action="product_details.php?id=<?php echo $item_id; ?>" method="POST"><button type="submit" class="btn btn-primary" name="edit-bid" id=<?php echo $bid_row['item_ID']; ?>>Edit</button></form>
-                    </td>
-                    <td><?php cancelBid($item_id) ?></td>
-                  </tr>
-                <?php $i = $i + 1;
-                } ?> <?php } else { ?>
+                    <tr>
+                      <th scope="row"><?= $i ?></th>
+                      <td><?php echo $bid_row["item_name"] ?></td>
+                      <td><img src="pictures/<?php echo $bid_row['picture']; ?>" class="card-img-top" alt="product" style="width:190;height:140px;"></td>
+                      <td><?php echo $bid_row["bid_price"] ?></td>
+                      <td><?php echo maxBidQuery($bid_row["item_ID"],$bid_row["bid_price"]) ?></td>
+                      <td><?php echo display_time_remaining($time_to_end); ?></td>
+                      <td><?php
+                          $item_id = $bid_row["item_ID"];
+                          $bid_count_query = "SELECT item_ID,COUNT(item_ID) AS count_bid FROM bidding WHERE item_ID = '$item_id' GROUP BY item_ID";
+                          $bid_count = mysqli_query($db_conn, $bid_count_query);
+                          $bid = mysqli_fetch_assoc($bid_count);
+                          echo $bid['count_bid']; ?></td>
+                      <td><?php
+                          $watch_query = "SELECT item_ID,COUNT(item_ID) AS count_watch FROM watchlist WHERE item_ID = '$item_id' GROUP BY item_ID";
+                          $watch_count = mysqli_query($db_conn, $watch_query);
+                          if (mysqli_num_rows($watch_count) > 0) {
+                            $watch = mysqli_fetch_assoc($watch_count);
+                            echo $watch['count_watch'];
+                          } else {
+                            echo "0";
+                          }
+                          ?></td>
+                      <td>
+                        <form action="product_details.php?id=<?php echo $item_id; ?>" method="POST"><button type="submit" class="btn btn-primary" name="edit-bid" id=<?php echo $bid_row['item_ID']; ?>>Edit</button></form>
+                      </td>
+                      <td><?php cancelBid($item_id) ?></td>
+                    </tr>
+                  <?php $i = $i + 1;
+                  } ?> <?php }
+                  } else { ?>
                 <tr>
                   <td colspan="8">No bid found</td>
                 </tr>
