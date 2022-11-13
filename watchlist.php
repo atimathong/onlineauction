@@ -32,7 +32,7 @@ $user_id = mysqli_real_escape_string($db_conn, $_SESSION['userid']);
 
 
 
-$query = "SELECT item_ID FROM watchlist WHERE item_ID = '$item_id' AND user_ID = '$user_id'";
+$query = "SELECT item_ID FROM watchlist WHERE item_ID = '$item_id' AND buyer_ID = '$user_id'";
 
 $result = mysqli_query($db_conn, $query);
 
@@ -43,7 +43,7 @@ if(mysqli_fetch_assoc($result)){
     $message = "Already Exists";
 }
 else {
-    $query = "INSERT INTO watchlist (user_ID, item_ID) VALUES ('$user_id', '$item_id')";
+    $query = "INSERT INTO watchlist (buyer_ID, item_ID) VALUES ('$user_id', '$item_id')";
     mysqli_query($db_conn,$query);
 }
 
@@ -57,8 +57,8 @@ $fname =  $_SESSION['fname'];
 <?php
 $query1 = "SELECT u.firstname, u.lastname, i.item_ID, 
 i.item_name, i.pro_desc, picture FROM item i 
-INNER JOIN users u ON i.user_ID = u.user_ID 
-WHERE i.item_ID IN (SELECT item_ID FROM watchlist WHERE user_ID = '$user_id') ORDER
+INNER JOIN users u ON i.seller_ID = u.user_ID 
+WHERE i.item_ID IN (SELECT item_ID FROM watchlist WHERE buyer_ID = '$user_id') ORDER
 BY i.item_name";
 $result1= mysqli_query($db_conn, $query1);
 

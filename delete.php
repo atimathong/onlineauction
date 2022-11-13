@@ -14,12 +14,12 @@ if(isset($_POST['delete'])){
     $item_id = mysqli_real_escape_string($db_conn, $_POST['item_ID']);
 }
 
-$query = "SELECT item_ID FROM watchlist WHERE item_ID = '$item_id' AND user_ID = '$user_id'";
+$query = "SELECT item_ID FROM watchlist WHERE item_ID = '$item_id' AND buyer_ID = '$user_id'";
 
 $result = mysqli_query($db_conn, $query);
 
 
-$query = "SELECT item_ID FROM watchlist_delete WHERE item_ID = '$item_id' AND user_ID = '$user_id'";
+$query = "SELECT item_ID FROM watchlist_delete WHERE item_ID = '$item_id' AND buyer_ID = '$user_id'";
 
 $result = mysqli_query($db_conn, $query);
 
@@ -27,7 +27,7 @@ if(mysqli_fetch_assoc($result)){
     $message = "Already Deleted.";
 }
 else {
-    $query = "INSERT INTO watchlist_delete (user_ID, item_ID) VALUES ('$user_id', '$item_id')";
+    $query = "INSERT INTO watchlist_delete (buyer_ID, item_ID) VALUES ('$user_id', '$item_id')";
     mysqli_query($db_conn,$query);
 }
 
@@ -45,7 +45,7 @@ while($row = mysqli_fetch_assoc($result_item)){
 }
 
 
-mysqli_query($db_conn,"DELETE FROM watchlist WHERE item_ID ='$item_id' AND user_ID = '$user_id'");
+mysqli_query($db_conn,"DELETE FROM watchlist WHERE item_ID ='$item_id' AND buyer_ID = '$user_id'");
 echo "$item_name has been deleted successfully from your watchlist."
 ?>
 <html>
