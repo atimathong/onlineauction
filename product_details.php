@@ -1,6 +1,8 @@
 <?php
 include_once 'top_header.php';
-require 'countdown.php';
+require 'utilities/timecalc.php';
+require 'max_bid_price.php';
+require 'bid_status.php';
 ?>
 
 <?php
@@ -15,13 +17,11 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($detail_result) === 0) {
         // Simple error to display if the id for the product doesn't exists (array is empty)
         echo 'Product does not exist!';
+    } else {
+        $item_row = mysqli_fetch_assoc($detail_result);
+        $_SESSION["item_detail"] = $item_row;
     }
 }
-?>
-
-<?php
-$item_row = mysqli_fetch_assoc($detail_result);
-$_SESSION["item_detail"] = $item_row;
 ?>
 
 <!-- product detail page -->
@@ -33,17 +33,23 @@ $_SESSION["item_detail"] = $item_row;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    </link>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </link>
     <script src="https://kit.fontawesome.com/6cc5131127.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
 </head>
 
 <body>
-    <form action="create_bid.php" method="POST">
+    <form action=<?php if (isset($_POST['edit-bid'])) {
+                        echo "edit_bid.php";
+                    } else {
+                        echo "create_bid.php";
+                    } ?> method="POST">
         <div class="container mt-5 mb-5">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10">
@@ -67,17 +73,20 @@ $_SESSION["item_detail"] = $item_row;
                                     </div>
                                     <hr>
                                     <p><b>Condition:</b> <?= $item_row['cond'] ?></p>
-                                    <p><b>Bid status:</b> <?= $item_row['bidding_status'] ?></p>
-                                    <?php if ($item_row['bidding_status'] === "on-going") { ?>
+                                    <?php $bid_status = bidStatus($item_row); ?>
+                                    <p><b>Bid status:</b> <?= $bid_status ?></p>
+                             
+                                    <?php if ($bid_status === "Ongoing") {
+                                     ?>
                                         <!-- add timer display -->
-                                    <div class="row">
-                                        <div class="col-md-auto">
-                                            <b>Time left:</b>
+                                        <div class="row">
+                                            <div class="col-md-auto">
+                                                <b>Time left:</b>
+                                            </div>
+                                            <div class="col-md-auto">
+                                                <?= timeleft($item_row) ?>
+                                            </div>
                                         </div>
-                                        <div class="col-md-auto">
-                                            <?= timeleft() ?>
-                                        </div>
-                                    </div>
                                     <?php }; ?>
                                     <hr>
                                     <p class="about"><?= $item_row['pro_desc'] ?></p>
@@ -85,17 +94,38 @@ $_SESSION["item_detail"] = $item_row;
 
                                     <div class="sizes mt-4">
                                         <h6 class="text-uppercase">Start bidding</h6>
+                                        <?php if ($bid_status === "Ongoing") { ?>
+                                            <div class="row">
+                                                <div class="col-md-auto">
+                                                    Current Bid(&pound;):
+                                                </div>
+                                                <div class="col-md-auto">
+                                                    <?php echo maxBidQuery($item_row['item_ID'], $item_row['starting_price']); ?>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                         <div class="row">
                                             <div class="col-5">
-                                                <input class="pricebox" type="number" name="bid_price" value="bid_price" min="<?= (int)$item_row['starting_price'] ?>" placeholder="&pound; Bid price" required>
-                                                <input type="hidden" name="product_id" value="<?= $item_row['item_ID'] ?>">
+                                                <input class="pricebox" type="number" name=<?php if (isset($_POST['edit-bid'])) {
+                                                                                                echo "new_bid_price";
+                                                                                            } else {
+                                                                                                echo "bid_price";
+                                                                                            } ?> value="bid_price" min="<?= (int)$item_row['starting_price'] ?>" placeholder="&pound; Bid price" required>
                                             </div>
-                                            <div class="col-4 bid-sub">
-                                                <button class="btn btn-outline-success search-but mr-2 px-4" type="submit" name="submit-bid">Submit Bid</button>
-                                            </div>
+                                            <?php if ($bid_status === "Ongoing") { ?>
+                                                <div class="col-4 bid-sub">
+                                                    <?php if (isset($_POST['edit-bid'])) { ?>
+                                                        <button class="btn btn-outline-success search-but mr-2 px-4" type="submit" name="update-bid">Update Bid</button>
+                                                    <?php } else { ?>
+                                                        <button class="btn btn-outline-success search-but mr-2 px-4" type="submit" name="submit-bid">Submit Bid</button>
+                                                    <?php } ?>
+                                                </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
-                                    <div class="cart mt-4 align-items-center watchlist">
+                                    <div class="cart mt-4 align-items-center  <?php if ($bid_status !== "Finished") {
+                                                                                    echo "watchlist";
+                                                                                } ?>">
                                         <button class="btn btn-outline-dark mr-2 px-4" type="submit" name="watchllist"><i class="fa fa-heart text-muted"></i> Watch this item</button>
                                     </div>
 

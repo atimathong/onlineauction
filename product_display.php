@@ -1,5 +1,6 @@
 <?php
 require 'database_connect/connect_db.php';
+include 'utilities/timecalc.php';
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +28,7 @@ require 'database_connect/connect_db.php';
     mysqli_select_db($db_conn, 'pagination');
     $results_per_page = 10;
     $is_search = false;
-    $_SESSION['keyword'] = "";
+    // $_SESSION['keyword'] = "";
     if (isset($_POST['submit-search'])) {
         $search = mysqli_real_escape_string($db_conn, $_POST['search']);
         $is_search = true;
@@ -35,7 +36,7 @@ require 'database_connect/connect_db.php';
         if ($search == "") {
             $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
         } else {
-            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$search%'";
+            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$search%' OR category.category LIKE '%$search%'";
             //check if search word is contained in the title
         }
     } else {
@@ -45,15 +46,22 @@ require 'database_connect/connect_db.php';
         if (isset($_POST['clear-search'])) {
             $_SESSION['keyword'] = "";
             $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
-        } else if (isset($_SESSION['keyword']) && isset($_SESSION['keyword']) !== "") {
+        }
+        if (isset($_SESSION['keyword']) && isset($_SESSION['keyword']) !== "") {
             // keyword is pre-set by search button used keyword in conjunction with filter
             $kw = $_SESSION['keyword'];
-            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$kw%'";
+            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$kw%' OR category.category LIKE '%$kw%'";
+
+            if(str_contains(get_filter(),'category')){
+                // ignore search term if user category filter
+                $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
+            }
         }
     }
     // connect general product query with filter query
     $product_query .=  get_filter();
     // echo $product_query;
+
     // MySQL query from database connection
     $total_result  = mysqli_query($db_conn, $product_query);
     $number_of_results = mysqli_num_rows($total_result);
@@ -90,12 +98,12 @@ require 'database_connect/connect_db.php';
                             <hr>
                             <p class="card-text"><b>Price Start From</b> &pound;<?php echo $row['starting_price']; ?></p>
                             <p class="card-text desc"><?php echo $row['pro_desc']; ?></p>
-                           <div class="row" style="position:absolute;bottom:5px;right:5px;left:420px">
-                                    <div class="sts col-sm-4"><b>Bid Status: </b><?php echo $row['bidding_status']; ?></div>
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm-5" style="display:flex;justify-content: flex-end;">
-                                        <button class="btn btn-outline-primary" type="submit" name="watchllist"><i class="fa fa-heart text-muted"></i> Add to watchlist</button>
-                                    </div>
+                            <div class="row" style="position:absolute;bottom:5px;right:5px;left:420px">
+                                <div class="sts col-sm-4"></div>
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-5" style="display:flex;justify-content: flex-end;">
+                                    <button class="btn btn-outline-primary" type="submit" name="watchllist"><i class="fa fa-heart text-muted"></i> Add to watchlist</button>
+                                </div>
                             </div>
                         </div>
                     </div>

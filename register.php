@@ -31,7 +31,7 @@ include 'server.php' ?>
     <!-- Create auction form -->
     <form method="POST" action="register.php">
 
-      <?php include 'error_me.php' ?>
+      <?php include 'error_msg.php' ?>
       <div class="form-group row">
         <label for="accountType" class="col-sm-2 col-form-label text-right">Registering as a:</label>
 

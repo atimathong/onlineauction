@@ -10,8 +10,14 @@ function get_filter()
             $filter_query .= " AND category IN ($opt)";
         }
         if (isset($_GET['status'])) {
-            $opt = "'" . implode("','", $_GET['status']) . "'";
-            $filter_query .= " AND bidding_status IN ($opt)";
+            if(in_array("Ongoing", $_GET['status'])){
+                $filter_query .= " AND CONCAT(sta_date,start_time) <= CONCAT(CURDATE(), CURTIME()) AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
+            }else if(in_array("Upcoming", $_GET['status'])){
+                $filter_query .= " AND sta_date > CURDATE()";
+            }else if(in_array("Finished", $_GET['status'])){
+                $filter_query .= " AND end_date < CURDATE()";
+            }
+          
         }
         if (isset($_GET['price-range'])) {
             $opt = "'" . implode("','", $_GET['price-range']) . "'";
