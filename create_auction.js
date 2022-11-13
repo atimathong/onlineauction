@@ -134,7 +134,7 @@ function checkAll() {
 		auctionStartPriceValue=== '' ||
 		auctionReservePriceValue=== '' 
 		) {
-			alert('Please input required fields.');
+			alert('Please input all required fields.');
 			return false;
 			
 		} else {

@@ -34,6 +34,7 @@ function checkAll() {
         emailValue ===''||
         passwordValue ===''
     ) {
+		alert('Please input required fields.');
         return false;
     } else {
         return true;

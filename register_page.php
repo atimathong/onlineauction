@@ -1,6 +1,8 @@
 <?php
 session_start();
-include 'server.php' ?>
+include_once("top_header.php");
+
+include 'server.php'; ?>
 
 <!-- HTML CSS not done -->
 <!doctype html>
@@ -20,10 +22,10 @@ include 'server.php' ?>
   
   <link rel="stylesheet" href="style.css" />
   <title>Register</title>
-  <script defer src="./login.js"></script>
+  <script defer src="./register.js"></script>
 </head>
 
-<section class="vh-100 gradient-custom">
+<section class="gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10">
@@ -36,7 +38,7 @@ include 'server.php' ?>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
 
-                <form method="POST" action="registraion_page.php" id="form" onsubmit="return checkAll()">
+                <form method="POST" action="server.php" id="form" onsubmit="return checkAll()">
                   
                   <?php include 'error_me.php' ?>
                   <div class="d-flex align-items-center mb-3 pb-1">
@@ -58,26 +60,26 @@ include 'server.php' ?>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="" type="text" id="firstname" class="form-control form-control-lg border border-light" />
+                    <input name="firstname" type="text" id="firstname" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="firstname">First Name</label>
                     <small>Error message</small>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="" type="text" id="lastname" class="form-control form-control-lg border border-light" />
+                    <input name="lastname" type="text" id="lastname" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="lastname">Last Name</label>
                     <small>Error message</small>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="" type="email" id="email" class="form-control form-control-lg border border-light" />
+                    <input name="email" type="email" id="email" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="email">Email</label>
                     <small>Error message</small>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="" type="password" id="password" class="form-control form-control-lg border border-light" />
-                    <label class="form-label" for="password">Password</label>
+                    <input name="password_1" type="password" id="password" class="form-control form-control-lg border border-light" />
+                    <label class="form-label" for="password_1">Password</label>
                     <small>Error message</small>
                   </div>
 
@@ -106,14 +108,14 @@ include 'server.php' ?>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="phone_number" type="text" class="form-control form-control-lg border border-light" name="phone_number">
-                    <label for="phonenumber" class="form-label">Phone Number</label>
+                    <input name="phone_number" id="phone_number" type="text" class="form-control form-control-lg border border-light" name="phone_number">
+                    <label for="phone_number" class="form-label">Phone Number</label>
                     <small>Error message</small>
                   </div>
 
 
                   <div class="pt-1 mb-4">
-                    <button type="submit" class="btn btn-dark btn-lg btn-block" name="login_user" type="button">Register</button>
+                    <button type="submit" class="btn btn-dark btn-lg btn-block" name="reg_user" type="button">Register</button>
                   </div>
 
                   <a class="small text-muted" href="#!">Forgot password?</a>
