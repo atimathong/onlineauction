@@ -36,7 +36,7 @@ include 'server.php' ?>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
 
-                <form method="POST" action="server.php" id="form" onsubmit="return checkAll()">
+                <form method="POST" action="registraion_page.php" id="form" onsubmit="return checkAll()">
                   
                   <?php include 'error_me.php' ?>
                   <div class="d-flex align-items-center mb-3 pb-1">
@@ -46,9 +46,9 @@ include 'server.php' ?>
 
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create your account</h5>
 
-                  <div class="form-con form-outline mb-4">
-                    <label class="form-label" for="accountType">User Type</label>
-                        <select class="form-control" id="accountType" name="accountType">
+                  <div class="form-con form-outline mb-1">
+                    <label class="form-label" for="user_type">User Type</label>
+                        <select class="form-control" id="user_type" name="user_type">
                         <option value="none" selected>Choose the condition...</option> 
                         <option value="buyer">Buyer</option>
                         <option value="seller">Seller</option>
@@ -57,55 +57,55 @@ include 'server.php' ?>
                         <small>Error message</small>
                   </div>
 
-                  <div class="form-con form-outline mb-4">
+                  <div class="form-con form-outline mb-1">
                     <input name="" type="text" id="firstname" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="firstname">First Name</label>
                     <small>Error message</small>
                   </div>
 
-                  <div class="form-con form-outline mb-4">
+                  <div class="form-con form-outline mb-1">
                     <input name="" type="text" id="lastname" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="lastname">Last Name</label>
                     <small>Error message</small>
                   </div>
 
-                  <div class="form-con form-outline mb-4">
+                  <div class="form-con form-outline mb-1">
                     <input name="" type="email" id="email" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="email">Email</label>
                     <small>Error message</small>
                   </div>
 
-                  <div class="form-con form-outline mb-4">
+                  <div class="form-con form-outline mb-1">
                     <input name="" type="password" id="password" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="password">Password</label>
                     <small>Error message</small>
                   </div>
 
-                  <div class="form-con form-outline mb-4">
+                  <div class="form-con form-outline mb-1">
                     <input type="password" id="password_2" name="password_2" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="password_2">Password Check</label>
                     <small>Error message</small>
                   </div>
 
-                  <div class="form-con form-outline mb-4">
+                  <div class="form-con form-outline mb-1">
                     <input name="addressline_1" type="text" id="addressline_1" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="addressline_1">Address Line 1</label>
                     <small>Error message</small>
                   </div>
 
-                  <div class="form-con form-outline mb-4">
+                  <div class="form-con form-outline mb-1">
                     <input name="addressline_2" type="text" id="addressline_2" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="addressline_2">Address Line 2</label>
                     <small>Error message</small>
                   </div>
                   
-                  <div class="form-con form-outline mb-4">
+                  <div class="form-con form-outline mb-1">
                     <input name="postal_code" type="text" id="postal_code" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="postal_code">Postal Code</label>
                     <small>Error message</small>
                   </div>
 
-                  <div class="form-con form-outline mb-4">
+                  <div class="form-con form-outline mb-1">
                     <input name="phone_number" type="text" class="form-control form-control-lg border border-light" name="phone_number">
                     <label for="phonenumber" class="form-label">Phone Number</label>
                     <small>Error message</small>
