@@ -31,7 +31,7 @@
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
 
-                <form id="form" onsubmit="return checkAll()">
+                <form method="POST" action="login_result.php" id="form" onsubmit="return checkAll()">
 
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <!--icon <i class="fa fa-bold fa-2x me-3" style="color: #ff6219;"></i> -->
