@@ -1,5 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    <!-- Font Logo : Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
 <?php
-    include_once 'database_connect/connect_db.php'; //connect to db
+include_once 'database_connect/connect_db.php'; //connect to db
 
 //session_start();
 //Initialising variable
@@ -29,7 +56,7 @@ if (isset($_POST['reg_user'])) {
     if (empty($lastname)) {
         array_push($errors, "Last name is required");
     };
-    if(empty($email)){
+    if (empty($email)) {
         array_push($errors, "Email is required");
     };
     // if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -76,20 +103,27 @@ if (isset($_POST['reg_user'])) {
         session_start();
         $_SESSION['email'] = $email;
         $curEmail = $_SESSION['email'];
-  
-            $sql = "SELECT * FROM users WHERE email = '$curEmail';";
-            $result = mysqli_query($db_conn, $sql);
-            $resultCheck = mysqli_num_rows($result);
 
-            if ($resultCheck > 0) {
+        $sql = "SELECT * FROM users WHERE email = '$curEmail';";
+        $result = mysqli_query($db_conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+
+        if ($resultCheck > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $_SESSION['fname'] = $row['firstname'];
                 $_SESSION['userid'] = $row['user_ID'];
                 $_SESSION['account_type'] = $row['user_type'];
             }
-            }
+        }
 
-        header('location: index.php');
+
+        echo '<div class="text-center">
+            <div class="spinner-border m-5" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h4 class="log-text">You are now registered! You will be redirected shortly.</h4>
+        </div>';
+        header('refresh:2;url=index.php');
         exit();
     }
 }

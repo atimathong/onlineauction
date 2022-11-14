@@ -1,6 +1,5 @@
 <?php
 session_start();
-include_once("top_header.php");
 
 include 'server.php'; ?>
 
@@ -40,7 +39,7 @@ include 'server.php'; ?>
 
                 <form method="POST" action="server.php" id="form" onsubmit="return checkAll()">
                   
-                  <?php include 'error_me.php' ?>
+                  <?php include 'error_msg.php' ?>
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <!--icon <i class="fa fa-bold fa-2x me-3" style="color: #ff6219;"></i> -->
                     <h1 class="h1 fw-bold mb-0">  .eBid Register</h1>
