@@ -21,6 +21,21 @@ if (isset($_GET['id'])) {
         $item_row = mysqli_fetch_assoc($detail_result);
         $_SESSION["item_detail"] = $item_row;
     }
+    // Keep track of how many times the particular user views the particular product page
+    $user_id = mysqli_real_escape_string($db_conn, $_SESSION['userid']);
+    $recommendation_exist_query = "SELECT COUNT(*) as count FROM view_history WHERE item_ID = '$item_id' 
+    AND buyer_ID = '$user_id'";
+    $recommendation_exist_result = mysqli_query($db_conn, $recommendation_exist_query);
+    $row = mysqli_fetch_assoc($recommendation_exist_result);
+    if ($row['count'] == 0) {
+        $add_query = "INSERT INTO view_history (buyer_ID, item_ID, view_times)
+        VALUES ('$user_id', '$item_id', 1)";
+        mysqli_query($db_conn, $add_query);
+    } else {
+        $update_query = "UPDATE view_history SET view_times = view_times + 1 WHERE
+        buyer_ID = '$user_id' AND item_ID = '$item_id'";
+        mysqli_query($db_conn, $update_query);
+    }
 }
 ?>
 
@@ -45,65 +60,65 @@ if (isset($_GET['id'])) {
 </head>
 
 <body>
-    <form action=<?php if (isset($_POST['edit-bid'])) {
-                        echo "edit_bid.php";
-                    } else {
-                        echo "create_bid.php";
-                    } ?> method="POST">
-        <div class="container mt-5 mb-5">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-10">
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="images p-3">
-                                    <div class="text-center p-4"> <img id="main-image" src="pictures/<?= $item_row['picture'] ?>" width="350" /></div>
-                                </div>
+    <div class="container mt-5 mb-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="images p-3">
+                                <div class="text-center p-4"> <img id="main-image" src="pictures/<?= $item_row['picture'] ?>" width="350" /></div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="product p-4">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i> <span class="ml-1"><a href="index.php"> Back</a></span> </div> <i class="fa fa-shopping-cart text-muted"></i>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="product p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i> <span class="ml-1"><a href="index.php"> Back</a></span> </div> <i class="fa fa-shopping-cart text-muted"></i>
+                                </div>
+                                <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"><?= $item_row['category'] ?></span>
+                                    <h5 class="text-uppercase"><?= $item_row['item_name'] ?></h5>
+                                    <div class="price d-flex flex-row align-items-center">
+                                        <span class="act-price">Start from &pound;<?= $item_row['starting_price'] ?></span>
                                     </div>
-                                    <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"><?= $item_row['category'] ?></span>
-                                        <h5 class="text-uppercase"><?= $item_row['item_name'] ?></h5>
-                                        <div class="price d-flex flex-row align-items-center">
-                                            <span class="act-price">Start from &pound;<?= $item_row['starting_price'] ?></span>
+                                </div>
+                                <hr>
+                                <p><b>Condition:</b> <?= $item_row['cond'] ?></p>
+                                <?php $bid_status = bidStatus($item_row); ?>
+                                <p><b>Bid status:</b> <?= $bid_status ?></p>
+
+                                <?php if ($bid_status === "Ongoing") {
+                                ?>
+                                    <!-- add timer display -->
+                                    <div class="row">
+                                        <div class="col-md-auto">
+                                            <b>Time left:</b>
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <?= timeleft($item_row) ?>
                                         </div>
                                     </div>
-                                    <hr>
-                                    <p><b>Condition:</b> <?= $item_row['cond'] ?></p>
-                                    <?php $bid_status = bidStatus($item_row); ?>
-                                    <p><b>Bid status:</b> <?= $bid_status ?></p>
-                             
-                                    <?php if ($bid_status === "Ongoing") {
-                                     ?>
-                                        <!-- add timer display -->
+                                <?php }; ?>
+                                <hr>
+                                <p class="about"><?= $item_row['pro_desc'] ?></p>
+                                <hr>
+
+                                <div class="sizes mt-4">
+                                    <h6 class="text-uppercase">Start bidding</h6>
+                                    <?php if ($bid_status === "Ongoing") { ?>
                                         <div class="row">
                                             <div class="col-md-auto">
-                                                <b>Time left:</b>
+                                                Current Bid(&pound;):
                                             </div>
                                             <div class="col-md-auto">
-                                                <?= timeleft($item_row) ?>
+                                                <?php echo maxBidQuery($item_row['item_ID'], $item_row['starting_price']); ?>
                                             </div>
                                         </div>
-                                    <?php }; ?>
-                                    <hr>
-                                    <p class="about"><?= $item_row['pro_desc'] ?></p>
-                                    <hr>
-
-                                    <div class="sizes mt-4">
-                                        <h6 class="text-uppercase">Start bidding</h6>
-                                        <?php if ($bid_status === "Ongoing") { ?>
-                                            <div class="row">
-                                                <div class="col-md-auto">
-                                                    Current Bid(&pound;):
-                                                </div>
-                                                <div class="col-md-auto">
-                                                    <?php echo maxBidQuery($item_row['item_ID'], $item_row['starting_price']); ?>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
+                                    <?php } ?>
+                                    <form action=<?php if (isset($_POST['edit-bid'])) {
+                                                        echo "edit_bid.php";
+                                                    } else {
+                                                        echo "create_bid.php";
+                                                    } ?> method="POST">
                                         <div class="row">
                                             <div class="col-5">
                                                 <input class="pricebox" type="number" name=<?php if (isset($_POST['edit-bid'])) {
@@ -122,24 +137,28 @@ if (isset($_GET['id'])) {
                                                 </div>
                                             <?php } ?>
                                         </div>
-                                    </div>
+                                    </form>
+                                </div>
+                                <form action="watchlist.php" method='post'>
                                     <div class="cart mt-4 align-items-center  <?php if ($bid_status !== "Finished") {
                                                                                     echo "watchlist";
                                                                                 } ?>">
-                                        <button class="btn btn-outline-dark mr-2 px-4" type="submit" name="watchllist"><i class="fa fa-heart text-muted"></i> Watch this item</button>
+                                        <input type="hidden" name="item_ID" value="<?= $item_row['item_ID'] ?>">
+                                        <button class="btn btn-outline-dark mr-2 px-4" type="submit" name="watchlist"><i class="fa fa-heart text-muted"></i> Watch this item</button>
                                     </div>
-
-                                    <hr>
-                                    <p><b>Return: </b>No returns accepted</p>
-                                    <p><b>Delivery: </b> Royal Mail Service / DHL</p>
-                                </div>
+                                </form>
+                                <hr>
+                                <p><b>Return: </b>No returns accepted</p>
+                                <p><b>Delivery: </b> Royal Mail Service / DHL</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
+
+
 </body>
 
 </html>

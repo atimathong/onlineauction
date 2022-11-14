@@ -1,5 +1,7 @@
  <?php
 
+ // function name is watchlist 
+
 if (!isset($_POST['functionname']) || !isset($_POST['arguments'])) {
   return;
 }
@@ -23,5 +25,6 @@ else if ($_POST['functionname'] == "remove_from_watchlist") {
 // so be careful. You can also return JSON objects (in string form) using
 // echo json_encode($res).
 echo $res;
+
 
 ?>

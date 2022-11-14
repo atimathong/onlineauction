@@ -32,73 +32,70 @@ if (!isset($_SESSION)) {
 
   <?php if (isset($_SESSION['email']) && $_SESSION['email'] == true) { ?>
     <!-- nav bar -->
-    <nav class="row">
-      <div class="col">
-        <a class="nav-link active" aria-current="page" href="index.php"><span class="material-symbols-outlined" style="margin-left:25px;margin-top:15px">
-            house
-          </span></a>
-      </div>
-      <div class="col">
-      <ul class="nav nav-tabs justify-content-end but" style="color:blue;">
-        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'buyer') { ?>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Become a Seller?</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello, <?php echo $_SESSION['fname']; ?>!</a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">My Watchlist</a></li>
-              <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
-              <li><a class="dropdown-item" href="#">My Bidding History</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-            </ul>
-          </li>
-        <?php } else if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'seller') { ?>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Become a Buyer?</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
-              <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-            </ul>
-          </li>
-        <?php } else { ?>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">My Watchlist</a></li>
-              <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
-              <li><a class="dropdown-item" href="#">My Bidding History</a></li>
-              <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
-              <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-            </ul>
-          </li>
-        <?php } ?>
+    <ul class="nav nav-tabs justify-content-end but" style="color:blue;">
+      <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'buyer') { ?>
         <li class="nav-item">
-          <a class="btn btn-dark" href="logout.php" role="button">Logout</a>
+          <a class="nav-link active" aria-current="page" href="index.php"><span class="material-symbols-outlined">
+              house
+            </span></a>
+          <!-- <a class="nav-link active" aria-current="page" href="#">Become a Seller?</a> -->
         </li>
-      </ul>
-      </div>
-    <?php } else { ?>
-      <ul class="nav justify-content-end but">
-        <li class="nav-item mx-1">
-          <a class="btn btn-dark" href="login.php" role="button">Login</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello, <?php echo $_SESSION['fname']; ?>!</a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="watchlist.php">My Watchlist</a></li>
+            <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
+            <li><a class="dropdown-item" href="#">My Bidding History</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+          </ul>
         </li>
-      </ul>
-    </nav>
+      <?php } else if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'seller') { ?>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.php"><span class="material-symbols-outlined">
+              house
+            </span></a>
+          <!-- <a class="nav-link active" aria-current="page" href="#">Become a Buyer?</a> -->
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
+            <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+          </ul>
+        </li>
+      <?php } else { ?>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="watchlist.php">My Watchlist</a></li>
+            <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
+            <li><a class="dropdown-item" href="#">My Bidding History</a></li>
+            <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
+            <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+          </ul>
+        </li>
+      <?php } ?>
+      <li class="nav-item">
+        <a class="btn btn-dark" href="logout.php" role="button">Logout</a>
+      </li>
+    </ul>
+  <?php } else { ?>
+    <ul class="nav justify-content-end but">
+      <li class="nav-item mx-1">
+        <a class="btn btn-dark" href="login.php" role="button">Login</a>
+      </li>
+    </ul>
   <?php } ?>
   <!-- Logo and Search Bar -->
   <nav class="navbar bg-light logoband">

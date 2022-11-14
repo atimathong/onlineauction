@@ -135,15 +135,27 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="price-range[]" value="med" id="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="price-range[]" value="med1" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
-                        500 £ to 2000 £
+                        500 £ to 1500 £
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="price-range[]" value="high" id="flexRadioDefault3">
+                    <input class="form-check-input" type="radio" name="price-range[]" value="med2" id="flexRadioDefault3">
                     <label class="form-check-label" for="flexRadioDefault3">
-                        Over 2000 £
+                        1500 £ to 4500 £
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="price-range[]" value="high1" id="flexRadioDefault3">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                        4500 £ to 10000 £
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="price-range[]" value="high2" id="flexRadioDefault3">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                        Over 10000 £
                     </label>
                 </div>
                 <!-- Sort -->
