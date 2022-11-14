@@ -22,13 +22,19 @@ function get_filter()
         if (isset($_GET['price-range'])) {
             $opt = "'" . implode("','", $_GET['price-range']) . "'";
             if (in_array("low", $_GET['price-range'])) {
-                $filter_query .= " AND starting_price<100";
+                $filter_query .= " AND starting_price<500";
             }
-            if (in_array("med", $_GET['price-range'])) {
-                $filter_query .= " AND starting_price BETWEEN 100 AND 500";
+            if (in_array("med1", $_GET['price-range'])) {
+                $filter_query .= " AND starting_price BETWEEN 500 AND 1500";
             }
-            if (in_array("high", $_GET['price-range'])) {
-                $filter_query .= " AND starting_price>=500";
+            if (in_array("med2", $_GET['price-range'])) {
+                $filter_query .= " AND starting_price BETWEEN 1500 AND 4500";
+            }
+            if (in_array("high1", $_GET['price-range'])) {
+                $filter_query .= " AND starting_price BETWEEN 4500 AND 10000";
+            }
+            if (in_array("high2", $_GET['price-range'])) {
+                $filter_query .= " AND starting_price>=10000";
             }
         }
         if (isset($_GET['sort-price'])) {

@@ -1,6 +1,7 @@
 <?php
 require 'database_connect/connect_db.php';
 include 'utilities/timecalc.php';
+include 'bid_status.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +19,7 @@ include 'utilities/timecalc.php';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://kit.fontawesome.com/6cc5131127.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -28,7 +30,7 @@ include 'utilities/timecalc.php';
     mysqli_select_db($db_conn, 'pagination');
     $results_per_page = 10;
     $is_search = false;
-    // $_SESSION['keyword'] = "";
+    // echo $_SESSION['keyword'];
     if (isset($_POST['submit-search'])) {
         $search = mysqli_real_escape_string($db_conn, $_POST['search']);
         $is_search = true;
@@ -36,7 +38,7 @@ include 'utilities/timecalc.php';
         if ($search == "") {
             $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
         } else {
-            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$search%' OR category.category LIKE '%$search%'";
+            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE (item_name LIKE '%$search%' OR category.category LIKE '%$search%')";
             //check if search word is contained in the title
         }
     } else {
@@ -47,12 +49,12 @@ include 'utilities/timecalc.php';
             $_SESSION['keyword'] = "";
             $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
         }
-        if (isset($_SESSION['keyword']) && isset($_SESSION['keyword']) !== "") {
+        if (isset($_SESSION['keyword']) && $_SESSION['keyword'] !== "") {
             // keyword is pre-set by search button used keyword in conjunction with filter
             $kw = $_SESSION['keyword'];
-            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE item_name LIKE '%$kw%' OR category.category LIKE '%$kw%'";
+            $product_query = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID WHERE (item_name LIKE '%$kw%' OR category.category LIKE '%$kw%')";
 
-            if(str_contains(get_filter(),'category')){
+            if (str_contains(get_filter(), 'category')) {
                 // ignore search term if user category filter
                 $product_query = "SELECT * FROM item, category WHERE item.category_ID = category.category_ID";
             }
@@ -85,7 +87,7 @@ include 'utilities/timecalc.php';
     <div class="display-prod">
         <?php
         // if ($queryResults > 0)
-        while ($row = mysqli_fetch_assoc($result)) {?>
+        while ($row = mysqli_fetch_assoc($result)) { ?>
             <div class="card mb-3" style="max-width: 1000px;height: 280px;">
                 <div class="row g-0">
                     <div class="col-md-5">
@@ -98,15 +100,18 @@ include 'utilities/timecalc.php';
                             <hr>
                             <p class="card-text"><b>Price Start From</b> &pound;<?php echo $row['starting_price']; ?></p>
                             <p class="card-text desc"><?php echo $row['pro_desc']; ?></p>
-                           <div class="row" style="position:absolute;bottom:5px;right:5px;left:420px">
-                                    <div class="sts col-sm-4"></div>
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm-5" style="display:flex;justify-content: flex-end;">
-                                    <form action = "watchlist.php" method = 'post'> 
-                                        <input type = "hidden" name = "item_ID" value = "<?=$row['item_ID']?>">
+                            <div class="row" style="position:absolute;bottom:5px;right:5px;left:420px">
+                                <div class="sts col-sm-5"><?php if (bidStatus($row) === "Ongoing") { ?><span class="material-symbols-outlined">
+                                            stream
+                                        </span><b>Bid Status- </b> <?php echo bidStatus($row);
+                                                                } ?></div>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-5" style="display:flex;justify-content: flex-end;">
+                                    <form action="watchlist.php" method='post'>
+                                        <input type="hidden" name="item_ID" value="<?= $row['item_ID'] ?>">
                                         <button class="btn btn-outline-primary" type="submit" name="watchlist"><i class="fa fa-heart text-muted"></i> Add to watchlist </button>
                                     </form>
-                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -71,7 +71,7 @@ BY i.item_name";
                                 <th scope="col" style="width:25%">Item Description</th>
                                 <th scope="col" style="width:18%">Seller Name</th>
                                 <th scope="col" style="width:23%">Picture </th>
-                                <th scope="col" style="width:12%">Delete Item</th>
+                                <th scope="col" style="width:12%">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
