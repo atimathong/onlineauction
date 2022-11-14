@@ -59,7 +59,7 @@ include "max_bid_price.php";
               ?>
                     <tr>
                       <th scope="row"><?= $i ?></th>
-                      <td><?php echo $bid_row["item_name"] ?></td>
+                      <td><a href="product_details.php?id=<?php echo $bid_row['item_ID']; ?>"><?php echo $bid_row["item_name"] ?></a></td>
                       <td><img src="pictures/<?php echo $bid_row['picture']; ?>" class="card-img-top" alt="product" style="width:190;height:140px;"></td>
                       <td><?php echo $bid_row["bid_price"] ?></td>
                       <td><?php echo maxBidQuery($bid_row["item_ID"],$bid_row["bid_price"]) ?></td>
