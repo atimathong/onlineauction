@@ -5,7 +5,7 @@ if(!isset($_SESSION))
 } 
 
 $id = $_SESSION['userid'];
-$_SESSION['img'] = "";
+
 include_once 'database_connect/connect_db.php';
 include_once("top_header.php");
 
@@ -35,7 +35,8 @@ include_once("top_header.php");
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
     <script defer src="./create_auction.js"></script>
-    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+    </script>
 </head>
 
 <div class="container">
@@ -47,35 +48,30 @@ include_once("top_header.php");
   <div class="card">
     <div class="card-body">
     <small id="formHelp" class="form-text text-muted"><span class="text-danger">* Fields are Required.</span>
-      <!-- Note: This form does not do any dynamic / client-side / 
-      JavaScript-based validation of data. It only performs checking after 
-      the form has been submitted, and only allows users to try once. You 
-      can make this fancier using JavaScript to alert users of invalid data
-      before they try to send it, but that kind of functionality should be
-      extremely low-priority / only done after all database functions are
-      complete. -->
-      
+          
       <br>
-      <div class="form-group form-con row">
-      <label for="picture" class="col-sm-2 col-form-label text-right">Add Picture<span class="text-danger">  *</span></label>
-      <div class="col-sm-10">
+      
         
-        <form action="img_upload.php" method="POST" enctype="multipart/form-data">
+      <form action="img_upload.php" method="POST" id= "img-upload" enctype="multipart/form-data">
+        <div class="form-group form-con row">
+        <label for="picture" class="col-sm-2 col-form-label text-right">Add Picture<span class="text-danger">  *</span></label>
+        <div class="col-sm-10 form-con-btn">
             Select image to upload:<br>
-          <input type="file" name="file" id="file"><br>
-          <small>Error message</small><br>
-          <button type="submit" name="img_submit">UPLOAD</button>
-          <p id="pictureHelp" class="form-text text-muted"> Upload only .jpg or .jpeg files.</p>
+          <input type="file" name="file" id="file" onchange="return fileValidation()"><br>
+          <div id="imagePreview"></div><br>
+          <button type="submit" name="img_submit" >UPLOAD</button>
+          <p id="pictureHelp" class="form-text text-muted"> Upload only .jpg/.jpeg/.png files.</p>
+          
           <?php
-          if (isset($_SESSION['img'])) {
+          if (isset($_FILES['file'])) {
+            echo '<script type=text/javascript>alert("success");</script>';
             echo '<a target="_blank"><img src="pictures/'.$_SESSION['img'].'" height = 80 width = 80 class="img-fluid img-thumbnail " alt="product"></a>';
           }
-
           ?>
-        </form>
-      </div>
-      </div>
-      
+          <small>Upload Success!</small>
+        </div>
+        </div>
+      </form>
       <br>
 
       <form method="POST" action="create_auction_result.php" id="auction-form">
@@ -100,7 +96,7 @@ include_once("top_header.php");
           <label for="condition" class="col-sm-2 col-form-label text-right">Condition<span class="text-danger">  *</span></label>
           <div class="col-sm-10">
             <select class="form-control" id="auctionCondition" name="condition">
-              <option selected>Choose the condition...</option> 
+              <option value="none" selected>Choose the condition...</option> 
               <option value="brandnew">Brand New</option>
               <option value="likenew">Like New</option>
               <option value="lightused">Lightly Used</option>
@@ -114,7 +110,7 @@ include_once("top_header.php");
           <label for="category_ID" class="col-sm-2 col-form-label text-right">Category<span class="text-danger">  *</span></label>
           <div class="col-sm-10">
             <select class="form-control" id="auctionCategory" name="category_ID">
-              <option selected>Select a category...</option>
+              <option value="none" selected>Select a category...</option>
               <option value="1">Body and Hair</option>
               <option value="2">Sports</option>
               <option value="3">Phones</option>
@@ -178,7 +174,19 @@ include_once("top_header.php");
             <small>Error message</small>
           </div>
         </div> 
-      
+        <div class="form-group row">
+          <label for="picture" class="col-sm-2 col-form-label text-right">Add Picture</label>
+          <div class="col-sm-10">
+            
+            <!-- <form action="upload.php" method="post" enctype="multipart/form-data">
+                Select image to upload:
+              <input type="file"  id="fileToUpload">
+              <input type="submit" name="photosubmit" value="Upload Image" >
+              <small id="pictureHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Upload only .jpg or .jpeg files.</small>
+            </form> -->
+            
+          </div>
+        </div>
         <button type="submit" name="new_auction" class="btn btn-primary form-control">Create Auction</button>
       </form>
     </div>

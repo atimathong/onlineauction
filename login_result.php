@@ -35,7 +35,7 @@ if (isset($_POST['login_user'])) {
     $password = mysqli_real_escape_string($db_conn, $_POST['password']);
 
     if (empty($email)) {
-        array_push($errors, "Email is required");
+        array_push($errors, "Email is requirconn");
     }
     if (empty($password)) {
         array_push($errors, "Password is required");
@@ -53,7 +53,6 @@ if (isset($_POST['login_user'])) {
             session_start();
             $_SESSION['email'] = $email;
             $curEmail = $_SESSION['email'];
-
             $sql = "SELECT * FROM users WHERE email = '$curEmail';";
             $result = mysqli_query($db_conn, $sql);
             $resultCheck = mysqli_num_rows($result);
@@ -61,7 +60,7 @@ if (isset($_POST['login_user'])) {
             if ($resultCheck > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $_SESSION['fname'] = $row['firstname'];
-                    $_SESSION['userid'] = $row['user_id'];
+                    $_SESSION['userid'] = $row['user_ID'];
                     $_SESSION['account_type'] = $row['user_type'];
                 }
             }
@@ -79,12 +78,12 @@ if (isset($_POST['login_user'])) {
             // This part should be in the same page as register or login
             echo '<h3>Error</h3>';
             array_push($errors, "Your username or password is invalid. Please try again!");
-            include 'error_me.php';
+            include 'error_msg.php';
             // header('location: index.php');
             exit();
         }
     } else {
-        include 'error_me.php';
+        include 'error_msg.php';
     }
 }
 ?>

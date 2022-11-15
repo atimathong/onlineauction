@@ -1,38 +1,50 @@
+
 <?php
-require 'database_connect/connect_db.php';
+// check if there is any filter condition and output extra query to connect with main query
+function get_filter()
+{
+    $filter_query = "";
+    // if (isset($_GET['filter-apply'])) {
+        if (isset($_GET['category'])) {
+            $opt = "'" . implode("','", $_GET['category']) . "'";
+            $filter_query .= " AND category IN ($opt)";
+        }
+        if (isset($_GET['status'])) {
+            if(in_array("Ongoing", $_GET['status'])){
+                $filter_query .= " AND CONCAT(sta_date,start_time) <= CONCAT(CURDATE(), CURTIME()) AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
+            }else if(in_array("Upcoming", $_GET['status'])){
+                $filter_query .= " AND sta_date > CURDATE()";
+            }else if(in_array("Finished", $_GET['status'])){
+                $filter_query .= " AND end_date < CURDATE()";
+            }
+          
+        }
+        if (isset($_GET['price-range'])) {
+            $opt = "'" . implode("','", $_GET['price-range']) . "'";
+            if (in_array("low", $_GET['price-range'])) {
+                $filter_query .= " AND starting_price<500";
+            }
+            if (in_array("med1", $_GET['price-range'])) {
+                $filter_query .= " AND starting_price BETWEEN 500 AND 1500";
+            }
+            if (in_array("med2", $_GET['price-range'])) {
+                $filter_query .= " AND starting_price BETWEEN 1500 AND 4500";
+            }
+            if (in_array("high1", $_GET['price-range'])) {
+                $filter_query .= " AND starting_price BETWEEN 4500 AND 10000";
+            }
+            if (in_array("high2", $_GET['price-range'])) {
+                $filter_query .= " AND starting_price>=10000";
+            }
+        }
+        if (isset($_GET['sort-price'])) {
+            if ($_GET['sort-price'] == "highestprice") {
+                $filter_query .= " ORDER BY starting_price DESC";
+            } elseif ($_GET['sort-price'] == "lowestprice") {
+                $filter_query .= " ORDER BY starting_price ASC";
+            }
+        }
+    // }
+    return $filter_query;
+}
 ?>
-
-    <?php
-    $search = mysqli_real_escape_string($db_conn, $_POST['search']);
-    $search_query = "SELECT * FROM item WHERE itemName LIKE '%$search%' OR description LIKE '%$search%'";
-    ?>
-    <?php if (isset($_POST['category'])) {
-        $opt = "'" . implode("','", $_POST['category']) . "'";
-        $search_query .= " AND category IN ($opt)";
-    }
-    if (isset($_POST['sort-price'])) {
-        if ($_POST['sort-price'] == "highestprice") {
-            $search_query .= " ORDER BY startingPrice DESC";
-        } elseif ($_POST['sort-price'] == "lowestprice") {
-            $search_query .= " ORDER BY startingPrice ASC";
-        }
-    }
-    ?>    
-    <?php if (isset($_POST['status'])) {
-        $opt = "'" . implode("','", $_POST['status']) . "'";
-        $search_query .= " AND biddingStatus IN ($opt)";
-    }
-    if (isset($_POST['price-range'])) {
-        $opt = "'" . implode("','", $_POST['price-range']) . "'";
-        if (in_array("low", $_POST['price-range'])) {
-            $search_query .= " AND startingPrice<100";
-        }
-        if (in_array("med", $_POST['price-range'])) {
-            $search_query .= " AND startingPrice BETWEEN 100 AND 500";
-        }
-        if (in_array("high", $_POST['price-range'])) {
-            $search_query .= " AND startingPrice>=500";
-        }
-    }
-    ?>
-
