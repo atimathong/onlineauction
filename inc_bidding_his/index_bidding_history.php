@@ -1,6 +1,7 @@
 <?php
 session_start();
-include_once './inc_bidding_history.php';
+include_once '../top_header.php';
+include_once 'inc_bidding_history.php';
 ?>
 
 
@@ -20,7 +21,9 @@ include_once './inc_bidding_history.php';
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#" style="color:red;">Hello!  
-	<?php $userNameSQL = "SELECT firstname, lastname from users where email=" . "'" . $_SESSION['email'] . "'"; 
+    <?php $user_mail = $_SESSION['email'];
+     echo $user_mail; ?>
+	<?php $userNameSQL = "SELECT firstname, lastname from users where email='$user_mail'"; 
 	      $result = mysqli_query($conn, $userNameSQL);
 	      $row = mysqli_fetch_assoc($result);
 	      echo $row["firstname"] . " " . $row["lastname"]; ?></a>
