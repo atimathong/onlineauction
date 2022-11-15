@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once './inc_seller_view.php';
+include '../bid_status.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,16 +63,24 @@ include_once './inc_seller_view.php';
             <tbody>
                 <?php
                 $email = $_SESSION['email'];
-                $sql = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID JOIN users ON item.user_ID = users.user_id WHERE users.user_type IN ('seller' , 'both') AND users.email = '$email'";  # select data from sql table
-                $result = mysqli_query($conn, $sql); # send a query to the database
+                $sql = "SELECT * FROM item JOIN category ON item.category_ID = category.category_ID JOIN users ON item.seller_ID = users.user_ID WHERE users.user_type IN ('seller' , 'both') AND users.email = '$email'";  # select data from sql table
+                
+                $result = mysqli_query($conn, $sql);
+                
                 $resultCheck = mysqli_num_rows($result); # check if you can get the data from the database
-                // echo $resultCheck;
+                // echo $resultCheck . 'items';
                 #fetch the data into an array
                 if ($resultCheck > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr> <td>" . $row["item_name"] . "</td><td>" . $row["category"] . "</td><td>" . $row["item_ID"] . "</td><td>" . "<img src='../pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . $row["starting_price"] . "</td><td>" . $row["sta_date"] . "</td><td>" . $row["end_date"] . "</td><td>" . $row["bidding_status"] . " <td></tr>";
+                  while ($row = mysqli_fetch_assoc($result))
+                  //   $id = $row['item_ID'];
+
+                  // $sql2 = "SELECT SUM(view_times) AS view_rate FROM view_history where view_history.item_ID = '$id'";
+                  // while ($sql2 != NUll){
+                  //   $result2 = mysqli_query($conn, $sql2);
+
+                  echo "<tr> <td>" . $row["item_name"] . "</td><td>" . $row["category"] . "</td><td>" . $row["item_ID"] . "</td><td>" . "<img src='../pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . $row["starting_price"] . "</td><td>" . $row["sta_date"] . "</td><td>" . $row["end_date"] . "</td><td>" .bidStatus($row)  . " <td></tr>" ;
                     }
-                } else {
+                 else {
                     echo "No result";
                 }
                 $conn->close()
