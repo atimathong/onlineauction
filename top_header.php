@@ -49,7 +49,7 @@ if (!isset($_SESSION)) {
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="profile.php">Profile</a></li>
           </ul>
         </li>
       <?php } else if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'seller') { ?>
@@ -67,7 +67,7 @@ if (!isset($_SESSION)) {
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="profile.php">Profile</a></li>
           </ul>
         </li>
       <?php } else { ?>
@@ -82,7 +82,7 @@ if (!isset($_SESSION)) {
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="profile.php">Profile</a></li>
           </ul>
         </li>
       <?php } ?>
