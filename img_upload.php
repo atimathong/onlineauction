@@ -44,6 +44,8 @@ if(isset($_POST["img_submit"])) {
 
     echo "<script>if(!alert('Successfully Uploaded!')){window.location.href='create_auction_2.php';}</script>";
     
+    
+    
     //header("Location: create_auction.php");
 }
 ?>

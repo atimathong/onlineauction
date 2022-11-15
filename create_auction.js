@@ -37,7 +37,7 @@ function checkInputs() {
 	
 	if(auctionDetailsValue === '') {
 		setErrorFor(auctionDetails, 'Details cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionDetails);
 		isValid=True;
@@ -45,6 +45,7 @@ function checkInputs() {
 	
 	if(auctionCategoryValue === 'none') {
 		setErrorFor(auctionCategory, 'Field cannot be blank');
+
 	} else {
 		setSuccessFor(auctionCategory);
 		isValid=True;
@@ -52,6 +53,7 @@ function checkInputs() {
 
 	if(auctionConditionValue ==="none") {
 		setErrorFor(auctionCondition, 'Field cannot be blank');
+
 	} else {
 		setSuccessFor(auctionCondition);
 		isValid=True;
@@ -59,7 +61,7 @@ function checkInputs() {
 
 	if(auctionStartDateValue === '') {
 		setErrorFor(auctionStartDate, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionStartDate);
 		isValid=True;
@@ -75,7 +77,7 @@ function checkInputs() {
 
 	if(auctionEndDateValue === '') {
 		setErrorFor(auctionEndDate, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionEndDate);
 		isValid=True;
@@ -83,7 +85,7 @@ function checkInputs() {
 
 	if(auctionEndTimeValue === '') {
 		setErrorFor(auctionEndTime, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionEndTime);
 		isValid=True;
@@ -91,7 +93,7 @@ function checkInputs() {
 
 	if(auctionStartPriceValue === '') {
 		setErrorFor(auctionStartPrice, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionStartPrice);
 		isValid=True;
@@ -99,7 +101,7 @@ function checkInputs() {
 
 	if(auctionReservePriceValue === '') {
 		setErrorFor(auctionReservePrice, 'Field cannot be blank');
-		isValid=False;
+
 	} else {
 		setSuccessFor(auctionReservePrice);
 		isValid=True;
