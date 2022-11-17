@@ -26,13 +26,12 @@
           <p>(+44)7340655246</p>customer_support@ebid.com
         </h5>
       </div>
-      <div class="align-text-top row">
+      <div class="align-text-top row" style="display: flex;flex-wrap: wrap;flex-direction: column;align-content: center;">
         <h1 class="logo-foot row">
-          .eBid 
+          ABidMore
         </h1>
-        <h6 class="cp row">Copyright © 2021 .eBid <br>All Rights Reserved</h6>
+        <h6 class="cp row" style="margin-left:70px;">Copyright © 2021 ABidMore <br>All Rights Reserved</h6>
       </div>
-
       <div>
         <h5 class="support">24 Hours Live Support</h5>
       </div>

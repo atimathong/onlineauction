@@ -28,7 +28,7 @@ include 'bid_status.php';
     <!-- Brand Items - Products -->
     <?php
     mysqli_select_db($db_conn, 'pagination');
-    $results_per_page = 10;
+    $results_per_page = 8;
     $is_search = false;
     // echo $_SESSION['keyword'];
     if (isset($_POST['submit-search'])) {

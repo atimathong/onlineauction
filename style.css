@@ -50,11 +50,12 @@ body{
 } */
 
 .sb {
-    position: relative;
+    position: absolute;
     align-items: center;
-    right: 650px;
-    width : 2000px;
-    top:5px;
+    left: 550px;
+    margin-right: 100px;
+    width: 950px;
+    bottom:37px;
 }
 
 /* .search-but{
