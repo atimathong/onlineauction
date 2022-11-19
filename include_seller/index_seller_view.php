@@ -90,9 +90,6 @@ include '../bid_status.php';
               }
             }
 
-            // while ($sql2 != NUll){
-            //   $result2 = mysqli_query($conn, $sql2);
-
             echo "<tr> <td>" . $row["item_name"] . "</td><td>" . $row["category"] . "</td><td>" . $row["item_ID"] . "</td><td>" . "<img src='../pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . $row["starting_price"] . "</td><td>" . $row["sta_date"] . "</td><td>" . $row["end_date"] . "</td><td>" . bidStatus($row)  .  "</td><td>" . $view_rate . " <td></tr>";
           }
         } else {

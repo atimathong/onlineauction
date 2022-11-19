@@ -2,6 +2,9 @@
 session_start();?>
 <?php include "./connect_db.php";?>
 <?php include_once './top_header.php';?>
+<?php include './bid_status.php' ?>
+<?php include 'max_bid_price.php'?>
+<?php include 'determine_result.php'?>
 
 
 <!DOCTYPE html>
@@ -19,11 +22,8 @@ session_start();?>
 <body>
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" style="color:red;">Hello!  
+    <a class="navbar-brand" href="#" style="color:blue;">Hello!  
 <?php $login_email = $_SESSION['email'] ;
-
-  // $userNameSQL = "SELECT firstname, lastname from users where email= $email"; 
-  // echo $userNameSQL;
   $userNameSQL = "SELECT * from users where users.email= '$login_email' "; 
 	      $result = mysqli_query($db_conn, $userNameSQL);
 	      $row = mysqli_fetch_assoc($result);
@@ -62,37 +62,63 @@ session_start();?>
             <thead class="table-dark">
               <tr><h1 style="text-align:center">Bidding history lists</h1></tr>
                 <tr>
-                    <th style="width:15%"> Product Name</th>
-                    <th> Bid ID</th>
-                    <th> Product Name</th>
+                    <th style="width:5%"> Bid ID</th>
+                    <th style="width:10%"> Product Name</th>
                     <th> Product ID</th>
-                    <th> Picture</th>
+                    <th style="width:15%"> Picture</th>
                     <th> Status</th>
                     <th> Your price</th>
                     <th> Highst price</th>
-                    <th> result</th>
-                    <th> Price</th>
+                    <th> result(Win/Lose)</th>
+                    <th> End Date</th>
                 </tr>
             </thead>
             <tbody>
               <?php
                  $mail = $_SESSION['email'] ;
-                 echo $mail . 'ed';
-                //  $sql = "SELECT * FROM bidding JOIN item ON bidding.item_ID = item.item_ID JOIN users ON users.user_ID = bidding.buyer_ID WHERE users.user_type IN ('buyer', 'both') AND users.email = '$email'";  # select data from sql table
-                // //  echo $sql;
-                //  $result = mysqli_query($db_conn, $sql); # send a query to the database
-                // //  echo $result["user_ID"];
-                //  $resultCheck = mysqli_num_rows($result); # check if you can get the data from the database
-                // //  echo $resultCheck;
-                // // #fetch the data into an array
-                // if ($resultCheck > 0) {
-                //     while ($row = mysqli_fetch_assoc($result)) {
-                //         echo "<tr> <td>" . $row["bid_ID"] . "</td><td>" . $row["item_name"] . "</td><td>" . $row["item_ID"] . "</td><td>" . "<img src='../pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . $row["starting_price"] . "</td><td>" . $row["sta_date"] . "</td><td>" . $row["end_date"] . "</td><td>" . $row["bidding_status"] . " <td></tr>";
-                //     }
-                // } else {
-                //     echo "No result";
-                // }
-                // $conn->close()
+                 $sql = "SELECT * FROM bidding JOIN item ON bidding.item_ID = item.item_ID JOIN users ON users.user_ID = bidding.buyer_ID WHERE users.user_type IN ('buyer', 'both') AND users.email = '$mail' order by item.item_id, bidding.bid_id";  # select data from sql table
+                 
+                 //$sql_maxPrice = "SELECT Max(bid_price) AS max_price, item_ID FROM bidding GROUP BY item_ID";
+
+
+                 // echo $sql;
+                 $result = mysqli_query($db_conn, $sql); # send a query to the database
+                 //$result_maxPrice = mysqli_query($db_conn, $sql_maxPrice);
+                 
+
+                 $resultCheck = mysqli_num_rows($result); # check if you can get the data from the databas
+                 //$resultCheck_maxPrice = mysqli_num_rows($result_maxPrice); 
+                 
+                // #fetch the data into an array
+                if ($resultCheck > 0) 
+                {
+                    while ($row = mysqli_fetch_assoc($result)) {
+
+                     $max_price = 0;
+                     $sql_maxPrice = "SELECT item.item_ID, max(bidding.bid_price) AS max_price FROM bidding JOIN item ON bidding.item_ID = item.item_ID JOIN users ON users.user_ID = bidding.buyer_ID WHERE users.user_type IN ('buyer', 'both') AND users.email != '$mail' group by item.item_ID order by item.item_id";  # select data from sql table 
+                     //"SELECT Max(bid_price) AS max_price, item_ID FROM bidding GROUP BY item_ID";
+                    //  AND users.email = '$mail'
+                     $result_maxPrice = mysqli_query($db_conn, $sql_maxPrice);
+                     $resultCheck_maxPrice = mysqli_num_rows($result_maxPrice); 
+                      if($resultCheck_maxPrice > 0) {
+                        while ($row2 = mysqli_fetch_assoc($result_maxPrice))
+                        { 
+                          if ($row['item_ID'] === $row2['item_ID']) {
+                            $max_price = $row2['max_price'];
+                            // echo $max_price;
+                            echo "<tr> <td>" . $row["bid_ID"] . "</td><td>" . $row["item_name"] . "</td><td>" . $row["item_ID"] . "</td><td>" . "<img src='./pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . bidStatus($row) . "</td><td>" .  $row["bid_price"] . "</td><td>" . $max_price . "</td><td>" . determineResult($row["bid_price"], $max_price, bidStatus($row)) . " </td><td>" .  $row["end_date"] . "</td></tr>" ;
+                          }
+                        }
+
+
+                      }
+                      //  echo "<tr> <td>" . $row["bid_ID"] . "</td><td>" . $row["item_name"] . "</td><td>" . $row["item_ID"] . "</td><td>" . "<img src='./pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . bidStatus($row) . "</td><td>" .  $row["bid_price"] . "</td><td>" . $max_price . "</td><td>" . $row["bidding_status"] . " <td></tr>";
+                    }
+                } 
+                else {
+                    echo "No result";
+                }
+                $conn->close()
                 ?>
 
         
