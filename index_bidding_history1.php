@@ -66,11 +66,11 @@ session_start();?>
                     <th style="width:10%"> Product Name</th>
                     <th> Product ID</th>
                     <th style="width:15%"> Picture</th>
-                    <th> Status</th>
+                    <th> Bidding Status</th>
                     <th> Your price</th>
-                    <th> Highst price</th>
-                    <th> result(Win/Lose)</th>
-                    <th> End Date</th>
+                    <th> Current Highest price</th>
+                    <th> Bidding Result</th>
+                    <th> Bidding End Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,7 +103,7 @@ session_start();?>
                       if($resultCheck_maxPrice > 0) {
                         while ($row2 = mysqli_fetch_assoc($result_maxPrice))
                         { 
-                          if ($row['item_ID'] === $row2['item_ID']) {
+                          if ($row['item_ID'] === $row2['item_ID'] AND  bidStatus($row) === "Finished") {
                             $max_price = $row2['max_price'];
                             // echo $max_price;
                             echo "<tr> <td>" . $row["bid_ID"] . "</td><td>" . $row["item_name"] . "</td><td>" . $row["item_ID"] . "</td><td>" . "<img src='./pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . bidStatus($row) . "</td><td>" .  $row["bid_price"] . "</td><td>" . $max_price . "</td><td>" . determineResult($row["bid_price"], $max_price, bidStatus($row)) . " </td><td>" .  $row["end_date"] . "</td></tr>" ;
