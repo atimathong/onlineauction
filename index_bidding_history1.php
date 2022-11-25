@@ -77,15 +77,9 @@ session_start();?>
               <?php
                  $mail = $_SESSION['email'] ;
                  $sql = "SELECT * FROM bidding JOIN item ON bidding.item_ID = item.item_ID JOIN users ON users.user_ID = bidding.buyer_ID WHERE users.user_type IN ('buyer', 'both') AND users.email = '$mail' order by item.item_id, bidding.bid_id";  # select data from sql table
-                 
-                 //$sql_maxPrice = "SELECT Max(bid_price) AS max_price, item_ID FROM bidding GROUP BY item_ID";
-
-
-                 // echo $sql;
                  $result = mysqli_query($db_conn, $sql); # send a query to the database
                  //$result_maxPrice = mysqli_query($db_conn, $sql_maxPrice);
-                 
-
+                
                  $resultCheck = mysqli_num_rows($result); # check if you can get the data from the databas
                  //$resultCheck_maxPrice = mysqli_num_rows($result_maxPrice); 
                  
@@ -93,28 +87,16 @@ session_start();?>
                 if ($resultCheck > 0) 
                 {
                     while ($row = mysqli_fetch_assoc($result)) {
+  
+                      if (bidStatus($row) === "Finished"){
 
-                     $max_price = 0;
-                     $sql_maxPrice = "SELECT item.item_ID, max(bidding.bid_price) AS max_price FROM bidding JOIN item ON bidding.item_ID = item.item_ID JOIN users ON users.user_ID = bidding.buyer_ID WHERE users.user_type IN ('buyer', 'both') AND users.email != '$mail' group by item.item_ID order by item.item_id";  # select data from sql table 
-                     //"SELECT Max(bid_price) AS max_price, item_ID FROM bidding GROUP BY item_ID";
-                    //  AND users.email = '$mail'
-                     $result_maxPrice = mysqli_query($db_conn, $sql_maxPrice);
-                     $resultCheck_maxPrice = mysqli_num_rows($result_maxPrice); 
-                      if($resultCheck_maxPrice > 0) {
-                        while ($row2 = mysqli_fetch_assoc($result_maxPrice))
-                        { 
-                          if ($row['item_ID'] === $row2['item_ID'] AND  bidStatus($row) === "Finished") {
-                            $max_price = $row2['max_price'];
-                            // echo $max_price;
-                            echo "<tr> <td>" . $row["bid_ID"] . "</td><td>" . $row["item_name"] . "</td><td>" . $row["item_ID"] . "</td><td>" . "<img src='./pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . bidStatus($row) . "</td><td>" .  $row["bid_price"] . "</td><td>" . $max_price . "</td><td>" . determineResult($row["bid_price"], $max_price, bidStatus($row)) . " </td><td>" .  $row["end_date"] . "</td></tr>" ;
+
+                            echo "<tr> <td>" . $row["bid_ID"] . "</td><td>" . $row["item_name"] . "</td><td>" . $row["item_ID"] . "</td><td>" . "<img src='./pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . bidStatus($row) . "</td><td>" .  $row["bid_price"] . "</td><td>" . maxBidQuery($row["item_ID"], $row["starting_price"]) . "</td><td>" . determineResult($row["bid_price"], maxBidQuery($row["item_ID"], $row["starting_price"]), bidStatus($row)) . " </td><td>" .  $row["end_date"] . "</td></tr>" ;
                           }
                         }
-
-
-                      }
-                      //  echo "<tr> <td>" . $row["bid_ID"] . "</td><td>" . $row["item_name"] . "</td><td>" . $row["item_ID"] . "</td><td>" . "<img src='./pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . bidStatus($row) . "</td><td>" .  $row["bid_price"] . "</td><td>" . $max_price . "</td><td>" . $row["bidding_status"] . " <td></tr>";
-                    }
-                } 
+                        }
+                  
+                
                 else {
                     echo "No result";
                 }

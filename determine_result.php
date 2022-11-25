@@ -1,13 +1,13 @@
 <?php
     
-    function determineResult($bidPrice, $highestPrice, $bid_status)
+    function determineResult($bidPrice, $highestPrice)
     // can only be shown on 1 page at a time
     {
-        if ($bidPrice > $highestPrice AND $bid_status == 'Finished')
+        if ($bidPrice >= $highestPrice)
         {
             return 'You Won the bidding';
         }
-        elseif ($bidPrice <= $highestPrice AND $bid_status == 'Finished')
+        elseif ($bidPrice < $highestPrice)
         {
             return 'You lost the bidding';
 
