@@ -1,5 +1,6 @@
 <?php
 session_start();
+// include_once("top_header.php");
 
 include 'server.php'; ?>
 
