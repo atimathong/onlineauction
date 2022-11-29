@@ -42,7 +42,7 @@ include 'server.php'; ?>
                   <?php include 'error_msg.php' ?>
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <!--icon <i class="fa fa-bold fa-2x me-3" style="color: #ff6219;"></i> -->
-                    <h1 class="h1 fw-bold mb-0">  .eBid Register</h1>
+                    <h1 class="h1 fw-bold mb-0"> ABidMore Register</h1>
                   </div>
 
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create your account</h5>

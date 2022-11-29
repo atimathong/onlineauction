@@ -31,12 +31,14 @@ if ($result_count > 0) {
 
             $item_nm = $row['item_name'];
             $item_sta_price = $row['starting_price'];
-    
+            // use for telling who is the winner
             $winning_price = maxBidQuery($item_id, $item_sta_price);
-    
+            // get all the user who bidded on ending items
             $item_user_query = "SELECT item_ID, buyer_ID, firstname, lastname, email, bid_price FROM bidding JOIN users ON bidding.buyer_ID = users.user_ID WHERE item_ID = '$item_id'";
-
             $user_result = mysqli_query($db_conn, $item_user_query);
+            // get seller name and email
+            $seller_query = "SELECT seller_ID, firstname, lastname, email FROM item JOIN users ON item.seller_ID = users.user_ID WHERE item_ID = '$item_id'";
+            $seller_result = mysqli_query($db_conn, $seller_query);
             $count_usr = mysqli_num_rows($user_result);
             if ($count_usr > 0) {
                 if ($winning_price < $row['reserve_price']) {
@@ -46,6 +48,10 @@ if ($result_count > 0) {
                         // echo "failed  email";
                         sendEmail($users['email'], $users['firstname'] . " " . $users['lastname'], $item_nm, "end_bid", $users['bid_price'], "main_user", true);
                     }
+                    while ($seller = mysqli_fetch_assoc($seller_result)) {
+                        // seller receive 1 email that the bid is unsuccessful
+                        sendEmail($seller['email'], $seller['firstname'] . " " . $seller['lastname'], $item_nm, "end_bid", 0, "seller", true);
+                    }
                 } else {
                     // bidding result obtained
                     while ($users = mysqli_fetch_assoc($user_result)) {
@@ -53,6 +59,10 @@ if ($result_count > 0) {
                             //winner
                             // echo "winner email";
                             sendEmail($users['email'], $users['firstname'] . " " . $users['lastname'], $item_nm, "end_bid", $users['bid_price'], "main_user", false);
+                            while ($seller = mysqli_fetch_assoc($seller_result)) {
+                                // seller receive 1 email that the bid is successful
+                                sendEmail($seller['email'], $seller['firstname'] . " " . $seller['lastname'], $item_nm, "end_bid", $users['bid_price'], "seller", false, $users['firstname'] . " " . $users['lastname']);
+                            }
                         } else {
                             //losers
                             // echo "loser email";

@@ -101,9 +101,9 @@ if (!isset($_SESSION)) {
   <nav class="navbar bg-light logoband">
     <div class="container-fluid">
       <div class="navbar-brand">
-        <div class="row">
+        <div class="row" style="display:flex">
           <div class="col">
-            <h1 class="logo">.eBid</h1>
+            <h1 class="logo">ABidMore</h1>
           </div>
           <form action="index.php" method="POST" class="input-group mb-3 sb col">
             <input type="text" class="form-control" id="keyword" type="text" name="search" placeholder="Search" aria-describedby="basic-addon2">

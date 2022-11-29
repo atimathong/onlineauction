@@ -25,7 +25,7 @@ if (isset($_POST['submit-bid'])) {
             // email to users
             $users_query = "SELECT * FROM bidding JOIN users AS u ON bidding.buyer_ID = u.user_ID JOIN (SELECT item_ID, item_name FROM item) as i ON bidding.item_ID = i.item_ID WHERE i.item_ID = '$item_id'";
             $user_item_res = mysqli_query($db_conn, $users_query);
-            print_r(mysqli_num_rows($user_item_res));
+            // print_r(mysqli_num_rows($user_item_res));
             if (mysqli_num_rows($user_item_res) > 0) {
                 while ($bid_row = mysqli_fetch_assoc($user_item_res)) {
                     sendEmail($bid_row['email'], $bid_row['firstname'] . " " . $bid_row['lastname'], $bid_row["item_name"], "start_bid", $bid_row["bid_price"], $bid_row['buyer_ID'] === $user_id ? "main_user" : "others", false);

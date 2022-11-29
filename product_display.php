@@ -20,6 +20,8 @@ include 'bid_status.php';
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script defer src="./watchlist_button.js"></script>
     <script src="https://kit.fontawesome.com/6cc5131127.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -28,7 +30,7 @@ include 'bid_status.php';
     <!-- Brand Items - Products -->
     <?php
     mysqli_select_db($db_conn, 'pagination');
-    $results_per_page = 10;
+    $results_per_page = 8;
     $is_search = false;
     // echo $_SESSION['keyword'];
     if (isset($_POST['submit-search'])) {
@@ -107,10 +109,7 @@ include 'bid_status.php';
                                                                 } ?></div>
                                 <div class="col-sm-2"></div>
                                 <div class="col-sm-5" style="display:flex;justify-content: flex-end;">
-                                    <form action="watchlist.php" method='post'>
-                                        <input type="hidden" name="item_ID" value="<?= $row['item_ID'] ?>">
-                                        <button class="btn btn-outline-primary" type="submit" name="watchlist"><i class="fa fa-heart text-muted"></i> Add to watchlist </button>
-                                    </form>
+                                    <a href="product_details.php?id=<?php echo $row['item_ID']; ?>"><button class="btn btn-dark" type="submit" name="detail">See details</button></a>
                                 </div>
                             </div>
                         </div>
