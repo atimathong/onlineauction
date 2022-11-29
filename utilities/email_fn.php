@@ -37,7 +37,7 @@ use PHPMailer\PHPMailer\Exception;
         //set port to connect smtp
         $mail->Port = "587";
         //set gmail username
-        $mail->Username = "atima.thong@gmail.com";
+        // $mail->Username = "atima.thong@gmail.com";
         //set gmail password
         $mail->Password = "adhurpuultfghfsd";
         //set gmail subject
@@ -50,7 +50,7 @@ use PHPMailer\PHPMailer\Exception;
         }
         $mail->Subject = $subject;
         //set sender email
-        $mail->setFrom("atima.thong@gmail.com");
+        // $mail->setFrom("atima.thong@gmail.com");
 
         //email body
         $message = '<html><body>';

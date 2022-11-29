@@ -1,7 +1,7 @@
 <?php
 include 'database_connect/connect_db.php';
 // keep the result check function running
-include 'system_run.php';
+// include 'system_run.php';
 if (!isset($_SESSION)) {
   session_start();
 }
