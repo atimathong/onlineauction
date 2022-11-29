@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once "top_header.php";
 include "max_bid_price.php";
 include_once 'database_connect/connect_db.php'; //connect to db

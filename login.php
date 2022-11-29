@@ -10,6 +10,7 @@ include_once("top_header.php");
 <!-- HTML CSS not done -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,16 +32,12 @@ include_once("top_header.php");
     <script defer src="./login.js"></script>
 
 </head>
-<body>
-    <!-- Login modal -->
-<div class="modal fade" id="loginModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Login</h4>
-      </div>
+<body>
+  <!-- Login modal -->
+  <div class="modal fade" id="loginModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
       <!-- Modal body -->
       <div class="modal-body">
@@ -60,8 +57,32 @@ include_once("top_header.php");
         <div class="text-center">or <a href="register.php">Create an account</a></div>
       </div>
 
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form method="POST" action="login_result.php">
+            <div class="container ">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
+              </div> 
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+              </div>
+
+            </div>
+            <div>
+              <button type="submit" name="login_user" class="btn btn-primary form-control">Sign in</button>
+              </div>
+
+          </form>
+
+          <div class="text-center">or <a href="register.php">Create an account</a></div>
+        </div>
+
+      </div>
     </div>
-  </div>
-</div> <!-- End modal -->
+  </div> <!-- End modal -->
 </body>
+
 </html>

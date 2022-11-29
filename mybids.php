@@ -6,9 +6,8 @@ include "utilities/timecalc.php";
 include "max_bid_price.php";
 // require("timecalc.php");
 ?>
-
-<div class="container">
-
+<!-- 
+<div class="container"> -->
 
   <?php
   // This page is for showing a user the auctions they've bid on.
@@ -98,6 +97,6 @@ include "max_bid_price.php";
       </div>
     </div>
   </div>
-</div>
+<!-- </div> -->
 
 <?php include_once("bottom_footer.php") ?>

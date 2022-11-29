@@ -45,7 +45,7 @@ if (!isset($_SESSION)) {
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="watchlist.php">My Watchlist</a></li>
             <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
-            <li><a class="dropdown-item" href="#">My Bidding History</a></li>
+            <li><a class="dropdown-item" href="bid_history.php">My Bidding History</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -62,7 +62,7 @@ if (!isset($_SESSION)) {
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
+            <li><a class="dropdown-item" href="seller_listing.php">My Selling Lists</a></li>
             <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
             <li>
               <hr class="dropdown-divider">
@@ -76,8 +76,8 @@ if (!isset($_SESSION)) {
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="watchlist.php">My Watchlist</a></li>
             <li><a class="dropdown-item" href="mybids.php">My Bidding List</a></li>
-            <li><a class="dropdown-item" href="#">My Bidding History</a></li>
-            <li><a class="dropdown-item" href="mylistings.php">My Listing</a></li>
+            <li><a class="dropdown-item" href="bid_history.php">My Bidding History</a></li>
+            <li><a class="dropdown-item" href="seller_listing.php">My Selling Lists</a></li>
             <li><a class="dropdown-item" href="create_auction_1.php">+ Add Product</a></li>
             <li>
               <hr class="dropdown-divider">
