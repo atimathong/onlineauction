@@ -1,7 +1,6 @@
 <?php
 include 'database_connect/connect_db.php';
 // keep the result check function running
-include 'system_run.php';
 include_once 'top_header.php';
 if (!isset($_SESSION)) {
   session_start();
