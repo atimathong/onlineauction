@@ -1,9 +1,8 @@
 <?php
 session_start();
 include_once "top_header.php";
+include "max_bid_price.php";
 include_once 'database_connect/connect_db.php'; //connect to db
-$user_id = '';
-$item_id = '';
 ?>
 
 <!DOCTYPE html>
@@ -17,41 +16,37 @@ $item_id = '';
 
 <body>
 
-
-
-
     <?php
-    if (isset($_POST['watchlist'])) {
-        $item_id = mysqli_real_escape_string($db_conn, $_POST['item_ID']);
-    }
-
+    $item_id = mysqli_real_escape_string($db_conn, $_SESSION['itemid']);
     $user_id = mysqli_real_escape_string($db_conn, $_SESSION['userid']);
+    if (isset($_POST['functionname']) && $_POST['functionname'] == "add_to_watchlist") {
 
+        $query = "SELECT item_ID FROM watchlist WHERE item_ID = '$item_id' AND buyer_ID = '$user_id'";
 
+        $result = mysqli_query($db_conn, $query);
 
+        if (mysqli_num_rows($result) > 0) {
+            $message = "Already Exists";
+        } else {
+            $query = "INSERT INTO watchlist (buyer_ID, item_ID) VALUES ('$user_id', '$item_id')";
+            mysqli_query($db_conn, $query);
+        }
 
-    $query = "SELECT item_ID FROM watchlist WHERE item_ID = '$item_id' AND buyer_ID = '$user_id'";
-
-    $result = mysqli_query($db_conn, $query);
-
-
-
-
-    if (mysqli_fetch_assoc($result)) {
-        $message = "Already Exists";
-    } else {
-        $query = "INSERT INTO watchlist (buyer_ID, item_ID) VALUES ('$user_id', '$item_id')";
-        mysqli_query($db_conn, $query);
+        $fname =  $_SESSION['fname'];
     }
-
-    $fname =  $_SESSION['fname'];
-
-
+    if (isset($_POST['functionname']) && $_POST['functionname'] == "remove_from_watchlist") {
+        $remove_wl = "DELETE FROM watchlist WHERE buyer_ID='$user_id' AND item_ID='$item_id'";
+        if (mysqli_query($db_conn, $remove_wl)) {
+            echo "<script type='text/javascript'>window.onload = function () { alert('Item is removed from watchlist successfully');}</script>";
+        } else {
+            echo "Error: " . $remove_wl . "<br>" . mysqli_error($db_conn);
+        }
+    }
     ?>
 
     <?php
     $query1 = "SELECT u.firstname, u.lastname, i.item_ID, 
-i.item_name, i.pro_desc, picture FROM item i 
+i.item_name, i.pro_desc, i.starting_price, picture FROM item i 
 INNER JOIN users u ON i.seller_ID = u.user_ID 
 WHERE i.item_ID IN (SELECT item_ID FROM watchlist WHERE buyer_ID = '$user_id') ORDER
 BY i.item_name";
@@ -70,7 +65,8 @@ BY i.item_name";
                                 <th scope="col" style="width:25%">Item Name</th>
                                 <th scope="col" style="width:25%">Item Description</th>
                                 <th scope="col" style="width:18%">Seller Name</th>
-                                <th scope="col" style="width:23%">Picture </th>
+                                <th scope="col" style="width:23%">Picture</th>
+                                <th scope="col" style="width:28%">Current Bid Price(&pound;)</th>
                                 <th scope="col" style="width:12%">Delete</th>
                             </tr>
                         </thead>
@@ -85,6 +81,7 @@ BY i.item_name";
                                         <td><?php echo $row['pro_desc'] ?></td>
                                         <td><?php echo $row['firstname'] . ' ' . $row['lastname'] ?></td>
                                         <td><img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product" style="width:190;height:140px;"></td>
+                                        <td><?php echo maxBidQuery($row["item_ID"],$row["starting_price"]) ?></td>
                                         <td>
                                             <form action='delete.php' method='post' target="_self">
                                                 <button style="font-size:24px" type="submit" name="delete"> <i style="font-size:24px" class="fa">&#xf014;</i>
@@ -96,7 +93,7 @@ BY i.item_name";
                                     </tr>
                                     <?php $i = $i + 1;
                                     ?> <?php }
-                                        } else { ?>
+                                } else { ?>
                                 <tr>
                                     <td colspan="8">No bid found</td>
                                 </tr>

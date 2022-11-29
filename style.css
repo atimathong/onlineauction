@@ -1,6 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 body{
     background-color: #E9E9E7;
@@ -35,19 +36,6 @@ body{
     margin-top: 5px;
     margin-right: 10px;
 }
-
-/* .search-bar{
-    margin-top: 30px;
-    margin-left: 10px;
-}
-
-.me-2{
-  border: 2px solid #0c141c;
-  border-radius: 0px;
-  width: 900px;
-  outline: none;
-  color: #9DBFAF;
-} */
 
 .sb {
     position: absolute;
@@ -270,7 +258,6 @@ tr,th,td {
     'opsz' 100;
 }
 
-
 .gradient-custom {
     /* fallback for old browsers */
     background: #82c3f5;
@@ -292,3 +279,63 @@ tr,th,td {
 .card-registration .select-arrow {
 top: 13px;
 }
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+    background-color:#C3D3E5;
+    color: rgb(54, 50, 50);
+    font-family: 'Varela Round', sans-serif;
+    cursor: pointer;
+    padding: 18px;
+    width: 83%;
+    margin-left: 110px;
+    border: none;
+    border-radius: 5px;
+    text-align: left;
+    outline: none;
+    font-size: 20px;
+  }
+  
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active, .collapsible:hover {
+    background-color: rgb(110, 165, 216);
+    color: whitesmoke;
+  }
+  
+  /* Style the collapsible content. Note: hidden by default */
+  .content {
+    padding: 0 18px;
+    padding-bottom: 30px;
+    width: 83%;
+    margin-left: 110px;
+    display: none;
+    overflow: hidden;
+    background-color: whitesmoke;
+    align-items: center;
+    align-content: center;
+  }
+  .grp{
+   padding-bottom: 90px;
+   align-items: center;
+   align-content: center;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .like{
+    transition: all ease 0.4s;
+
+  }
+
+  .ic,.w{
+    transition: all ease 0.4s;
+  }
+
+  .liked {
+    background-color: #03152f;
+    border-color: #7c7c87;
+  }
+  
+  .liked .ic,
+  .liked .w {
+    color: #fefefe;
+  }
