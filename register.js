@@ -5,6 +5,7 @@ const password2 = document.getElementById('password_2');
 const firstname = document.getElementById('firstname');
 const lastname = document.getElementById('lastname');
 const addressline1 = document.getElementById('addressline_1');
+const addressline2 = document.getElementById('addressline_2');
 const postalcode = document.getElementById('postal_code');
 const userType = document.getElementById('user_type');
 const phonenumber= document.getElementById('phone_number');
@@ -19,6 +20,7 @@ function checkInputs() {
     const firstnameValue = firstname.value.trim();
     const lastnameValue = lastname.value.trim();
     const addressline1Value = addressline1.value.trim();
+    const addressline2Value = addressline2.value.trim();
     const postalcodeValue = postalcode.value.trim();
     const userTypeValue = userType.value.trim();
     const phonenumberValue = phonenumber.value.trim();
@@ -65,6 +67,12 @@ function checkInputs() {
         setSuccessFor(addressline1);
     }
 
+    if(addressline2Value === '') {
+        setErrorFor(addressline2,'Address line 2 cannot be blank.');
+    } else {
+        setSuccessFor(addressline2);
+    }
+
     if(postalcodeValue === '') {
         setErrorFor(postalcode,'Postal code cannot be blank.');
     } else {
@@ -94,6 +102,7 @@ function checkAll() {
     const firstnameValue = firstname.value.trim();
     const lastnameValue = lastname.value.trim();
     const addressline1Value = addressline1.value.trim();
+    const addressline2Value = addressline2.value.trim();
     const postalcodeValue = postalcode.value.trim();
     const userTypeValue = userType.value.trim();
     const phonenumberValue = phonenumber.value.trim();
@@ -108,6 +117,7 @@ function checkAll() {
         firstnameValue ===''||
         lastnameValue ===''||
         addressline1Value ===''||
+        addressline2Value ===''||  
         postalcodeValue ===''||
         userTypeValue ==='none'||
         phonenumberValue ===''
