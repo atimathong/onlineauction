@@ -1,7 +1,11 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+  session_start();
+}
 
-include 'server.php'; ?>
+include 'server.php';
+
+?>
 
 <!-- HTML CSS not done -->
 <!doctype html>
@@ -59,7 +63,7 @@ include 'server.php'; ?>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="firstname" type="text" id="firstname" class="form-control form-control-lg border-bottom border-secondary" />
+                    <input name="firstname" type="text" id="firstname" class="form-control form-control-lg border border-light" />
                     <label class="form-label" for="firstname">First Name</label>
                     <small>Error message</small>
                   </div>
@@ -67,12 +71,6 @@ include 'server.php'; ?>
                   <div class="form-con form-outline mb-1">
                     <input name="lastname" type="text" id="lastname" class="form-control form-control-lg border-bottom border-secondary" />
                     <label class="form-label" for="lastname">Last Name</label>
-                    <small>Error message</small>
-                  </div>
-
-                  <div class="form-con form-outline mb-1">
-                    <input name="email" type="email" id="email" class="form-control form-control-lg border-bottom border-secondary" />
-                    <label class="form-label" for="email">Email</label>
                     <small>Error message</small>
                   </div>
 
