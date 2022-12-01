@@ -63,7 +63,7 @@ include 'server.php';
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="firstname" type="text" id="firstname" class="form-control form-control-lg border border-light" />
+                    <input name="firstname" type="text" id="firstname" class="form-control form-control-lg border-bottom border-secondary" />
                     <label class="form-label" for="firstname">First Name</label>
                     <small>Error message</small>
                   </div>
