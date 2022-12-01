@@ -75,10 +75,11 @@ if (isset($_POST['login_user'])) {
 
             exit();
         } else {
+            echo "<script>if(!alert('Your username or password is invalid. Please try again!😉')){window.location.href='login_page.php';}</script>";
             // This part should be in the same page as register or login
-            echo '<h3>Error</h3>';
-            array_push($errors, "Your username or password is invalid. Please try again!");
-            include 'error_msg.php';
+            //echo '<h3>Error</h3>';
+            //array_push($errors, "Your username or password is invalid. Please try again!");
+            //include 'error_msg.php';
             // header('location: index.php');
             exit();
         }

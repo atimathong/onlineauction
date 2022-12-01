@@ -39,13 +39,13 @@
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
                   <div class="form-con form-outline mb-4">
-                    <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                    <input type="email" id="email" name="email" class="form-control form-control-lg border-bottom border-secondary" />
                     <label class="form-label" for="email">Email address</label>
                     <small>Error message</small>
                   </div>
 
                   <div class="form-con form-outline mb-4">
-                    <input type="password" id="password" name="password" class="form-control form-control-lg border border-light" />
+                    <input type="password" id="password" name="password" class="form-control form-control-lg border-bottom border-secondary" />
                     <label class="form-label" for="password">Password</label>
                     <small>Error message</small>
                   </div>
