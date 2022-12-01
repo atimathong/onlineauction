@@ -7,7 +7,13 @@ if (!isset($_SESSION)) {
 }
 $email = $_SESSION['email'];
 ?>
-
+<?php
+$sql = "SELECT * FROM users where email = '$email'";
+$result = mysqli_query($db_conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+$row = mysqli_fetch_assoc($result);
+$usertype = $row['user_type'];
+?>
 
 <!-- HTML CSS not done -->
 <!doctype html>
@@ -16,17 +22,17 @@ $email = $_SESSION['email'];
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
+
   <!-- Bootstrap and FontAwesome CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- Custom CSS file -->
- <!--  <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
+  <!--  <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
     <link rel="stylesheet" id="roboto-subset.css-css" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5" type="text/css" media="all">
    -->
   <link rel="stylesheet" href="style.css" />
-  
+
   <script defer src="./change.js"></script>
 
   <title>Change User Type</title>
@@ -42,7 +48,7 @@ $email = $_SESSION['email'];
       <div class="col col-xl-10">
         <div class="card" style="border-radius: 1rem;">
           <div class="row g-0">
-        
+
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
 
@@ -53,12 +59,15 @@ $email = $_SESSION['email'];
 
                   <div class="form-con form-outline mb-1">
                     <label class="form-label" for="user_type">User Type</label>
-                        <select class="form-control border-dark" id="user_type" name="user_type">
-                        <option value="none" selected>Choose the condition...</option> 
-                        <option value="buyer">Buyer</option>
-                        <option value="seller">Seller</option>
+                    <select class="form-control border-dark" id="user_type" name="user_type">
+                      <option value="none" selected>Choose the condition...</option>
+                      <?php if ($usertype == 'buyer' or $usertype == 'seller') { ?>
                         <option value="both">Both</option>
-                        </select>
+                      <?php } ?>
+                      <?php if ($usertype == 'both') { ?>
+                        <option value="None" disabled>None</option>
+                      <?php } ?>
+                    </select>
                   </div>
 
                   <div class="pt-1 mb-4">
@@ -69,7 +78,7 @@ $email = $_SESSION['email'];
                     <a class="btn btn-dark btn-lg btn-block" href="profile.php">Cancel</a>
                   </div>
 
-                  
+
                 </form>
 
               </div>
@@ -80,4 +89,3 @@ $email = $_SESSION['email'];
     </div>
   </div>
 </section>
-

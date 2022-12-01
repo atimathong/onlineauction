@@ -3,7 +3,7 @@ include 'database_connect/connect_db.php';
 // keep the result check function running
 include_once 'seller_header.php';
 if (!isset($_SESSION)) {
-  session_start();
+    session_start();
 }
 $email = $_SESSION['email'];
 ?>
@@ -29,79 +29,118 @@ $email = $_SESSION['email'];
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="style.css" />
 </head>
-
-<?php 
-    $sql = "SELECT * FROM users WHERE email = '$email';";
-    $result = mysqli_query($db_conn, $sql);
-    $resultCheck = mysqli_num_rows($result);
-
-    if ($resultCheck > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $_SESSION['fname'] = $row['firstname'];
-            $_SESSION['lname'] = $row['lastname'];
-            $_SESSION['account_type'] = $row['user_type'];
-            $_SESSION['addressline1']=$row['addressline_1'];
-            $_SESSION['addressline2']=$row['addressline_2'];
-            $_SESSION['postalcode']=$row['postal_code'];
-            $_SESSION['phonenumber']=$row['phone_number'];
-
-        }
+<style>
+    table,
+    td {
+        border: 2px solid white;
+        border-collapse: collapse;
     }
-    if ($_SESSION['account_type'] == 'both') {
-        $type = "You're currently both a seller and a buyer.";
-    } else if ($_SESSION['account_type'] == 'seller') {
-        $type = "You're currently a seller.";
-    } else {
-        $type = "You're currently a buyer.";
+
+    tr:nth-child(even) {
+        background-color: #9BB7D4;
     }
+</style>
+
+<?php
+$sql = "SELECT * FROM users WHERE email = '$email';";
+$result = mysqli_query($db_conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+
+if ($resultCheck > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $_SESSION['fname'] = $row['firstname'];
+        $_SESSION['lname'] = $row['lastname'];
+        $_SESSION['account_type'] = $row['user_type'];
+        $_SESSION['addressline1'] = $row['addressline_1'];
+        $_SESSION['addressline2'] = $row['addressline_2'];
+        $_SESSION['postalcode'] = $row['postal_code'];
+        $_SESSION['phonenumber'] = $row['phone_number'];
+    }
+}
+if ($_SESSION['account_type'] == 'both') {
+    $type = "You're currently both a seller and a buyer.";
+} else if ($_SESSION['account_type'] == 'seller') {
+    $type = "You're currently a seller.";
+} else {
+    $type = "You're currently a buyer.";
+}
 ?>
 
 <div class="page-content page-container" id="page-content">
     <div class="">
         <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-            
+
             <div class="card p-4">
                 <h2 style="font-family: 'Varela Round', sans-serif;">My Profile</h2>
                 <div class="mt-3 card justify-content-center">
-                <img src="https://thypix.com/wp-content/uploads/2021/11/sponge-bob-profile-picture-thypix-m.jpg" class="card-img-top" alt="...">
+                    <img src="https://thypix.com/wp-content/uploads/2021/11/sponge-bob-profile-picture-thypix-m.jpg" class="card-img-top" alt="...">
                     <div class="card-body text-center">
-                    
-                    <div>
-                    <h4><?php echo $_SESSION['fname'] .'  '. $_SESSION['lname'];?>
-                    </h4>
-                    <p class="text-muted mb-0"><?php  echo $_SESSION['email'];?>
-                    </p>
-                </div>
-                <p class="mt-2 card-text">
-                <?php echo $_SESSION['addressline1'];?>
-                </p>
-                <p class="card-text">
-                <?php echo $_SESSION['addressline2'];?>
-                </p>
-                <p class="mt-1 card-text">
-                <?php echo $_SESSION['postalcode']."\r\n";?>
-                </p>
-                <p class="mt-1 card-text">
-                <?php echo $_SESSION['phonenumber']."\r\n";?>
-                </p>
-                <p><?php echo $type; ?> </p>
-                <a class="btn btn-info btn-sm mt-3 mb-4" href="change_type.php">Change User Type</a>
+                        <table style="width:100%">
 
-                <div class="border-top pt-3">
-                    <div class="row">
-                        <div class="col">
-                            <h6>45</h6>
-                            <p>Bids</p>
-                        </div>
-                        <div class="col">
-                            <h6>34</h6>
-                            <p>Watching Items</p>
-                        </div>
+                            <div>
+                                <p>
+                                    <tr>
+                                        <td>NAME</td>
+                                        <td><?php echo $_SESSION['fname'] . '  ' . $_SESSION['lname']; ?></td>
+                                </p>
+                                </tr>
+                                <tr>
+                                    <td>EMAIL</td>
+                                    <td>
+                                        <p class="text-muted mb-0"><?php echo $_SESSION['email']; ?></p>
+                                    </td>
+                                </tr>
+                            </div>
+                            <p class="mt-2 card-text">
+                                <tr>
+                                    <td>ADDRESS LINE1</td>
+                                    <td><?php echo $_SESSION['addressline1']; ?></td>
+                                </tr>
+                            </p>
+                            <p class="card-text">
+                                <tr>
+                                    <td>ADDRESS LINE2</td>
+                                    <td><?php echo $_SESSION['addressline2']; ?></td>
+                                </tr>
+                            </p>
+                            <p class="mt-1 card-text">
+                                <tr>
+                                    <td>POSTAL CODE</td>
+                                    <td><?php echo $_SESSION['postalcode'] . "\r\n"; ?></td>
+                                </tr>
+                            </p>
+                            <p class="mt-1 card-text">
+                                <tr>
+                                    <td>PHONE NUMBER</td>
+                                    <td><?php echo $_SESSION['phonenumber'] . "\r\n"; ?></td>
+                                </tr>
+                            </p>
+                            <p class="mt-1 card-text">
+                                <tr>
+                                    <td>USER TYPE</td>
+                                    <td>
+                                        <p><?php echo $type; ?> </p>
+                                    </td>
+                                </tr>
+                            </p>
+                            <table>
+                                <a class="btn btn-info btn-sm mt-3 mb-4" href="change_type.php">Change User Type</a>
+
+                                <div class="border-top pt-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>45</h6>
+                                            <p>Bids</p>
+                                        </div>
+                                        <div class="col">
+                                            <h6>34</h6>
+                                            <p>Watching Items</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                     </div>
                 </div>
-            
-            </div>
-            </div>
             </div>
         </div>
     </div>
