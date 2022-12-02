@@ -28,9 +28,9 @@
       </div>
       <div class="align-text-top row" style="display: flex;flex-wrap: wrap;flex-direction: column;align-content: center;">
         <h1 class="logo-foot row">
-          ABidMore
+          aBidMore
         </h1>
-        <h6 class="cp row" style="margin-left:70px;">Copyright © 2021 ABidMore <br>All Rights Reserved</h6>
+        <h6 class="cp row" style="margin-left:70px;">Copyright © 2021 aBidMore <br>All Rights Reserved</h6>
       </div>
       <div>
         <h5 class="support">24 Hours Live Support</h5>

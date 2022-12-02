@@ -264,7 +264,8 @@ tr,th,td {
     background: -webkit-linear-gradient(to bottom right, #8bcdff, rgb(153, 87, 245));
     
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to bottom right, #8bd7ff, rgb(153, 87, 245))
+    background: linear-gradient(to bottom right, #8bd7ff, rgb(153, 87, 245));
+
 }
     
 .card-registration .select-input.form-control[readonly]:not([disabled]) {

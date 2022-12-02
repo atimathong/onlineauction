@@ -1,7 +1,5 @@
 <?php
 include 'database_connect/connect_db.php';
-// keep the result check function running
-include_once 'top_header.php';
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -26,11 +24,9 @@ if (!isset($_SESSION)) {
   <title>Create Account</title>
 </head>
 
+<body>
 
-
-
-
-<section class="gradient-custom">
+<div style="height: 100%;background-size: cover;" class="gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10">
@@ -72,5 +68,5 @@ if (!isset($_SESSION)) {
       </div>
     </div>
   </div>
-</section>
-
+</div>
+</body>
