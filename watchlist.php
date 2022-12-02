@@ -106,7 +106,7 @@ BY i.item_name";
 
     <?php
     if (!isset($_SESSION['userid'])) {
-        header("Location: login.php");
+        header("Location: login_page.php");
     }
 
     include_once "bottom_footer.php";

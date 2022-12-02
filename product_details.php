@@ -9,8 +9,10 @@ require 'bid_status.php';
 // Check to make sure the id parameter is specified in the URL
 $item_id = "";
 $has_session = "";
+$user_id = "";
 if (isset($_SESSION['userid'])) {
     $has_session = true;
+    $user_id = mysqli_real_escape_string($db_conn, $_SESSION['userid']);
 }
 $watching = false;
 if (isset($_GET['id'])) {
@@ -29,7 +31,6 @@ if (isset($_GET['id'])) {
         $_SESSION["item_detail"] = $item_row;
     }
     // Keep track of how many times the particular user views the particular product page
-    $user_id = mysqli_real_escape_string($db_conn, $_SESSION['userid']);
     $recommendation_exist_query = "SELECT COUNT(*) as count FROM view_history WHERE item_ID = '$item_id' 
     AND buyer_ID = '$user_id'";
     $recommendation_exist_result = mysqli_query($db_conn, $recommendation_exist_query);
