@@ -66,6 +66,34 @@ if ($_SESSION['account_type'] == 'both') {
 }
 ?>
 
+<?php
+$sql2 = "SELECT COUNT(buyer_ID) AS amount_of_watching_items FROM users JOIN watchlist ON watchlist.buyer_ID = users.user_ID where email = '$email'";
+$result2 = mysqli_query($db_conn, $sql2);
+$resultCheck2 = mysqli_num_rows($result2);
+$row2 = mysqli_fetch_assoc($result2);
+$watching_items = $row2['amount_of_watching_items']
+?>
+
+<?php
+
+// A buyer has many bids which is ongong? how to set the condition for the onging bids?
+$sql3 = "SELECT count(DISTINCT bidding.item_ID) as amount_of_bids FROM `bidding` join users on bidding.buyer_ID = users.user_ID join item on item.item_ID = bidding.item_ID where email = 'leeyu0828@gmail.com' AND CONCAT(sta_date,start_time) <= CONCAT(CURDATE(), CURTIME()) AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
+$result3 = mysqli_query($db_conn, $sql3);
+$resultCheck3 = mysqli_num_rows($result3);
+$row3 = mysqli_fetch_assoc($result3);
+$bids = $row3['amount_of_bids']
+?>
+
+<?php
+$seller_id = $_SESSION['userid'];
+$sql4 = "SELECT count(item_ID ) AS selling_items FROM `item` WHERE seller_ID = $seller_id";
+$result4 = mysqli_query($db_conn, $sql4);
+$resultCheck4 = mysqli_num_rows($result4);
+$row4 = mysqli_fetch_assoc($result4);
+$selling_items = $row4['selling_items']
+?>
+
+
 <div class="page-content page-container" id="page-content">
     <div class="">
         <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
@@ -128,14 +156,32 @@ if ($_SESSION['account_type'] == 'both') {
 
                                 <div class="border-top pt-3">
                                     <div class="row">
-                                        <div class="col">
-                                            <h6>45</h6>
-                                            <p>Bids</p>
-                                        </div>
-                                        <div class="col">
-                                            <h6>34</h6>
-                                            <p>Watching Items</p>
-                                        </div>
+                                        <?php if ($_SESSION['account_type'] != 'seller') {
+
+                                        ?>
+                                            <div class="col">
+
+                                                <h6>
+                                                    <?php echo $bids ?></h6>
+                                                <p>Bids</p>
+
+                                            </div>
+                                            <div class="col">
+                                                <h6><?php echo $watching_items ?></h6>
+                                                <p>Watching Items</p>
+
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="col">
+
+                                                <h6>
+                                                    <?php echo $selling_items ?></h6>
+                                                <p>Selling Items</p>
+
+                                            </div>
+
+
+                                        <?php } ?>
                                     </div>
                                 </div>
 
