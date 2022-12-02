@@ -1,6 +1,6 @@
 <?php include 'seller_header.php'; ?>
 <?php include 'bid_status.php'; ?>
-<?php include 'delete_item.php'; ?>
+<?php include 'utilities/delete_item.php'; ?>
 <?php include 'utilities.php'; ?>
 <?php  include "max_bid_price.php";?>
 
@@ -67,7 +67,7 @@
                     <td><?php echo count_bids($db_conn,$id) ?></td>
                     <td><?php echo maxBidQuery($row["item_ID"],$row["starting_price"] ) ?></td>
                     <td><?php echo count_views($db_conn,$id) ?></td>
-                    <td><?php deleteItem($row["item_ID"]) ?></td>
+                    <td><?php deleteItem("Delete","del-bid","item",$row["item_ID"],"seller_listing.php",$db_conn) ?></td>
                   </tr>
               <?php }
               } else {

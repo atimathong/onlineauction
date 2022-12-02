@@ -1,7 +1,7 @@
 <?php
 include_once("top_header.php");
 require("utilities.php");
-include 'cancel_bid.php';
+include 'utilities/delete_item.php'; 
 include "utilities/timecalc.php";
 include "max_bid_price.php";
 // require("timecalc.php");
@@ -65,15 +65,15 @@ $bidding_list = mysqli_query($db_conn, $bid_query);
                     <td><?php echo maxBidQuery($bid_row["item_ID"], $bid_row["bid_price"]) ?></td>
                     <td><?php echo display_time_remaining($time_to_end); ?></td>
                     <td><?php echo count_bids($db_conn, $item_id); ?></td>
-                    <td><?php echo count_views($db_conn, $item_id)?></td>
+                    <td><?php echo count_views($db_conn, $item_id) ?></td>
                     <td>
                       <form action="product_details.php?id=<?php echo $item_id; ?>" method="POST"><button type="submit" class="btn btn-primary" name="edit-bid" id=<?php echo $bid_row['item_ID']; ?>>Edit</button></form>
                     </td>
-                    <td><?php cancelBid($item_id) ?></td>
+                    <td><?php deleteItem("Cancel", "cancel-bid", "bidding", $item_id, "mybids.php",$db_conn) ?></td>
                   </tr>
                 <?php $i = $i + 1;
                 } ?> <?php }
-                    } else { ?>
+                  } else { ?>
               <tr>
                 <td colspan="8">No bid found</td>
               </tr>
