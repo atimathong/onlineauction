@@ -27,7 +27,10 @@
 // search bar. This can be started after browse.php is working with a database.
 
 // TODO: Check user's credentials (cookie/session).
-$user_id = mysqli_real_escape_string($db_conn, $_SESSION['userid']);
+$user_id= "";
+if (isset($_SESSION['userid'])) {
+  $user_id = mysqli_real_escape_string($db_conn, $_SESSION['userid']);
+}
 
 // TODO: Perform a query to pull up auctions they might be interested in.
 // array collect entire result from each case
@@ -72,7 +75,7 @@ if (mysqli_num_rows($query_res_collab_bid) > 0) {
 // delete duplicated items
 $rec_arr_unique = array();
 foreach ($rec_arr as $key => $value) {
-  if (!in_array($value, $rec_arr_unique)){
+  if (!in_array($value, $rec_arr_unique)) {
     $rec_arr_unique[$key] = $value;
   }
 }
@@ -98,6 +101,7 @@ if (count($rec_arr_unique) < 4) {
 ?>
 
 <!-- display result -->
+
 <body class="slider">
   <!-- <div class="container"> -->
   <!-- TODO: Loop through results and print them out as list items. -->

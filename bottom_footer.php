@@ -18,11 +18,11 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar sticky-bottom bg-light" style="width:100%;position:relative;bottom:0px;">
     <div class="container-fluid foot">
       <div>
         <h5 class="contact">
-          <p>Contact us:</p>
+          <b>Contact us:</b>
           <p>(+44)7340655246</p>customer_support@ebid.com
         </h5>
       </div>

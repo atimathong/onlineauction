@@ -5,8 +5,7 @@ if (!isset($_SESSION)) {
 
 $id = $_SESSION['userid'];
 
-include_once 'database_connect/connect_db.php';
-include_once("top_header.php");
+include_once("seller_header.php");
 
 ?>
 
@@ -29,6 +28,7 @@ include_once("top_header.php");
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <!-- This is Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -44,11 +44,11 @@ include_once("top_header.php");
     <!-- Create auction form -->
     <div style="max-width: 800px; margin: 10px auto">
 
-        <h2 class="my-3">Create new auction</h2>
+        <h2 class="my-3" style="font-family: 'Varela Round', sans-serif;color:darkblue;">Create new auction</h2>
         <div>
-            <p class="text-danger">Photo uploaded successfully.</p>
+            <p class="text-danger" style="font-family: 'Varela Round', sans-serif;">Photo uploaded successfully.</p>
         </div>
-        <h3 class="my-2">Step 2: Submit Product Details</h3>
+        <h4 class="my-2" style="font-family: 'Varela Round', sans-serif;">Step 2: Submit Product Details</h4>
         <div class="card">
             <div class="card-body">
                 <small id="formHelp" class="form-text text-muted"><span class="text-danger">* Fields are Required.</span></small>

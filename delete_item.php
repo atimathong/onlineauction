@@ -58,7 +58,7 @@ if(isset($_POST['del-item'])){
     $del_query = "DELETE FROM item WHERE seller_ID='$user_id' AND item_ID='$id'";
     if (mysqli_query($db_conn, $del_query)) {
         // redirect user to mybids page
-        echo "<script type='text/javascript'>window.onload = function () { alert('Bid cancelled successfully'); window.location.href='seller_listing.php';}</script>";
+        echo "<script type='text/javascript'>window.onload = function () { alert('Product deleted successfully'); window.location.href='seller_listing.php';}</script>";
         // echo "Bid created successfully";
     } else {
         echo "Error: " . $del_query . "<br>" . mysqli_error($db_conn);

@@ -166,7 +166,7 @@ if (isset($_GET['id'])) {
                                     </div>
                                     <!-- case 2 -->
                                     <div id="watch_watching" <?php if (!$has_session || !$watching) echo ('style="display: none"'); ?>>
-                                        <button type="button" class="btn btn-outline-primary mr-2 px-4" onclick="removeFromWatchlist()">Unwatch this item</button>
+                                        <button type="button" class="btn btn-primary mr-2 px-4" onclick="removeFromWatchlist()">Unwatch this item</button>
                                         <p style="color:red;">Watching...</p>                                   
                                     </div>
                                 </div>

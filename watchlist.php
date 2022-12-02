@@ -94,7 +94,7 @@ BY i.item_name";
                                     ?> <?php }
                                 } else { ?>
                                 <tr>
-                                    <td colspan="8">No bid found</td>
+                                    <td colspan="8">No watched item found</td>
                                 </tr>
                             <?php } ?>
                         </tbody>
