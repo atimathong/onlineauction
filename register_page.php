@@ -1,7 +1,11 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+  session_start();
+}
 
-include 'server.php'; ?>
+include 'server.php';
+
+?>
 
 <!-- HTML CSS not done -->
 <!doctype html>
@@ -42,14 +46,14 @@ include 'server.php'; ?>
                   <?php include 'error_msg.php' ?>
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <!--icon <i class="fa fa-bold fa-2x me-3" style="color: #ff6219;"></i> -->
-                    <h1 class="h1 fw-bold mb-0"> ABidMore Register</h1>
+                    <h1 class="h1 fw-bold mb-0"> aBidMore Register</h1>
                   </div>
 
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create your account</h5>
 
                   <div class="form-con form-outline mb-1">
                     <label class="form-label" for="user_type">User Type</label>
-                        <select class="form-control" id="user_type" name="user_type">
+                        <select class="form-control border border-secondary" id="user_type" name="user_type">
                         <option value="none" selected>Choose the condition...</option> 
                         <option value="buyer">Buyer</option>
                         <option value="seller">Seller</option>
@@ -59,55 +63,49 @@ include 'server.php'; ?>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="firstname" type="text" id="firstname" class="form-control form-control-lg border border-light" />
+                    <input name="firstname" type="text" id="firstname" class="form-control form-control-lg border-bottom border-secondary" />
                     <label class="form-label" for="firstname">First Name</label>
                     <small>Error message</small>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="lastname" type="text" id="lastname" class="form-control form-control-lg border border-light" />
+                    <input name="lastname" type="text" id="lastname" class="form-control form-control-lg border-bottom border-secondary" />
                     <label class="form-label" for="lastname">Last Name</label>
                     <small>Error message</small>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="email" type="email" id="email" class="form-control form-control-lg border border-light" />
-                    <label class="form-label" for="email">Email</label>
-                    <small>Error message</small>
-                  </div>
-
-                  <div class="form-con form-outline mb-1">
-                    <input name="password_1" type="password" id="password" class="form-control form-control-lg border border-light" />
+                    <input name="password_1" type="password" id="password" class="form-control form-control-lg border-bottom border-secondary" />
                     <label class="form-label" for="password_1">Password</label>
                     <small>Error message</small>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input type="password" id="password_2" name="password_2" class="form-control form-control-lg border border-light" />
+                    <input type="password" id="password_2" name="password_2" class="form-control form-control-lg border-bottom border-secondary" />
                     <label class="form-label" for="password_2">Password Check</label>
                     <small>Error message</small>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="addressline_1" type="text" id="addressline_1" class="form-control form-control-lg border border-light" />
+                    <input name="addressline_1" type="text" id="addressline_1" class="form-control form-control-lg border-bottom border-secondary" />
                     <label class="form-label" for="addressline_1">Address Line 1</label>
                     <small>Error message</small>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="addressline_2" type="text" id="addressline_2" class="form-control form-control-lg border border-light" />
+                    <input name="addressline_2" type="text" id="addressline_2" class="form-control form-control-lg border-bottom border-secondary" />
                     <label class="form-label" for="addressline_2">Address Line 2</label>
                     <small>Error message</small>
                   </div>
                   
                   <div class="form-con form-outline mb-1">
-                    <input name="postal_code" type="text" id="postal_code" class="form-control form-control-lg border border-light" />
+                    <input name="postal_code" type="text" id="postal_code" class="form-control form-control-lg border-bottom border-secondary" />
                     <label class="form-label" for="postal_code">Postal Code</label>
                     <small>Error message</small>
                   </div>
 
                   <div class="form-con form-outline mb-1">
-                    <input name="phone_number" id="phone_number" type="text" class="form-control form-control-lg border border-light" name="phone_number">
+                    <input name="phone_number" id="phone_number" type="text" class="form-control form-control-lg border-bottom border-secondary" name="phone_number">
                     <label for="phone_number" class="form-label">Phone Number</label>
                     <small>Error message</small>
                   </div>

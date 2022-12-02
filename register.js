@@ -1,10 +1,11 @@
 const form = document.getElementById('form');
-const email = document.getElementById('email');
+
 const password = document.getElementById('password');
 const password2 = document.getElementById('password_2');
 const firstname = document.getElementById('firstname');
 const lastname = document.getElementById('lastname');
 const addressline1 = document.getElementById('addressline_1');
+const addressline2 = document.getElementById('addressline_2');
 const postalcode = document.getElementById('postal_code');
 const userType = document.getElementById('user_type');
 const phonenumber= document.getElementById('phone_number');
@@ -13,23 +14,23 @@ form.addEventListener('input', checkInputs);
 
 function checkInputs() {
 	// trim to remove the whitespaces
-	const emailValue = email.value.trim();
 	const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
     const firstnameValue = firstname.value.trim();
     const lastnameValue = lastname.value.trim();
     const addressline1Value = addressline1.value.trim();
+    const addressline2Value = addressline2.value.trim();
     const postalcodeValue = postalcode.value.trim();
     const userTypeValue = userType.value.trim();
     const phonenumberValue = phonenumber.value.trim();
 	
-	if(emailValue === '') {
+/* 	if(emailValue === '') {
 		setErrorFor(email, 'Email cannot be blank');
 	} else if (!isEmail(emailValue)) {
 		setErrorFor(email, 'Not a valid email');
 	} else {
 		setSuccessFor(email);
-	}
+	} */
 	
 	if(passwordValue === '') {
 		setErrorFor(password, 'Password cannot be blank');
@@ -65,6 +66,12 @@ function checkInputs() {
         setSuccessFor(addressline1);
     }
 
+    if(addressline2Value === '') {
+        setErrorFor(addressline2,'Address line 2 cannot be blank.');
+    } else {
+        setSuccessFor(addressline2);
+    }
+
     if(postalcodeValue === '') {
         setErrorFor(postalcode,'Postal code cannot be blank.');
     } else {
@@ -88,26 +95,26 @@ function checkInputs() {
 }
 
 function checkAll() {
-	const emailValue = email.value.trim();
+	
 	const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
     const firstnameValue = firstname.value.trim();
     const lastnameValue = lastname.value.trim();
     const addressline1Value = addressline1.value.trim();
+    const addressline2Value = addressline2.value.trim();
     const postalcodeValue = postalcode.value.trim();
     const userTypeValue = userType.value.trim();
     const phonenumberValue = phonenumber.value.trim();
 
 
     if (
-        emailValue ===''||
-        !isEmail(emailValue) ||
         !isPhoneNum(phonenumberValue) ||
         passwordValue ===''||
         password2Value ===''||
         firstnameValue ===''||
         lastnameValue ===''||
         addressline1Value ===''||
+        addressline2Value ===''||  
         postalcodeValue ===''||
         userTypeValue ==='none'||
         phonenumberValue ===''
@@ -131,9 +138,9 @@ function setSuccessFor(input) {
 	formControl.className = 'form-con success';
 }
 	
-function isEmail(email) {
+/* function isEmail(email) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-}
+} */
 
 
 function isPhoneNum(phonenumber) {
