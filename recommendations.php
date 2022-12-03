@@ -35,26 +35,30 @@ if (isset($_SESSION['userid'])) {
 // TODO: Perform a query to pull up auctions they might be interested in.
 // array collect entire result from each case
 $rec_arr = array();
+// set ongoing bid status
+$ongoing = " AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
 // 0.Popular product in general
-$query_pop = "SELECT buyer_ID,view_history.item_ID,item_name,pro_desc,starting_price,picture FROM view_history JOIN item ON view_history.item_ID = item.item_ID ORDER BY view_history.view_times DESC LIMIT 0,5";
+$query_pop = "SELECT view_history.item_ID,item_name,pro_desc,starting_price,picture, SUM(view_times) as total_view FROM view_history, item WHERE view_history.item_ID = item.item_ID" . $ongoing . "GROUP BY view_history.item_ID ORDER BY total_view DESC LIMIT 0,5";
 $query_result_pop = mysqli_query($db_conn, $query_pop);
 if (mysqli_num_rows($query_result_pop) > 0) {
   while ($pop =  mysqli_fetch_assoc($query_result_pop)) {
-    unset($pop["buyer_ID"]);
+    unset($pop["total_view"]);
     array_push($rec_arr, $pop);
   }
 }
+
 // 1.based on view_history
-$query = "SELECT buyer_ID,item.item_ID,item_name,pro_desc,starting_price,picture FROM item JOIN view_history ON view_history.item_ID = item.item_ID WHERE category_ID IN (SELECT category_ID FROM item WHERE item_ID IN (SELECT item_ID FROM view_history WHERE (item_ID IN (SELECT item_ID FROM view_history WHERE view_times = (SELECT MAX(view_times) FROM view_history WHERE buyer_ID = '$user_id')))))";
+$query = "SELECT item.item_ID,item_name,pro_desc,starting_price,picture FROM item JOIN view_history ON view_history.item_ID = item.item_ID WHERE category_ID IN (SELECT category_ID FROM item WHERE item_ID IN (SELECT item_ID FROM view_history WHERE (item_ID IN (SELECT item_ID FROM view_history WHERE view_times = (SELECT MAX(view_times) FROM view_history WHERE buyer_ID = '$user_id')))))";
+$query .= $ongoing;
 $query_result = mysqli_query($db_conn, $query);
 if (mysqli_num_rows($query_result) > 0) {
   while ($user_view =  mysqli_fetch_assoc($query_result)) {
-    unset($user_view["buyer_ID"]);
     array_push($rec_arr, $user_view);
   }
 }
 // 2.based on collaborative filtering: what other people bid on
 $query_collab_bid = "SELECT buyer_ID,bidding.item_ID,item_name,pro_desc,starting_price,picture FROM bidding JOIN item ON bidding.item_ID = item.item_ID WHERE buyer_ID IN (SELECT buyer_ID FROM bidding WHERE item_ID IN (SELECT item_ID FROM bidding WHERE buyer_ID = '$user_id') AND buyer_ID != '$user_id') AND bidding.item_ID NOT IN (SELECT item_ID FROM bidding WHERE item_ID IN (SELECT item_ID FROM bidding WHERE buyer_ID = '$user_id') AND buyer_ID != '$user_id')";
+$query_collab_bid .= $ongoing;
 $query_res_collab_bid = mysqli_query($db_conn, $query_collab_bid);
 if (mysqli_num_rows($query_res_collab_bid) > 0) {
   while ($peer_bid =  mysqli_fetch_assoc($query_res_collab_bid)) {
@@ -62,11 +66,11 @@ if (mysqli_num_rows($query_res_collab_bid) > 0) {
     $buyer_id = $peer_bid['buyer_ID'];
     unset($peer_bid["buyer_ID"]);
     array_push($rec_arr, $peer_bid);
-    $query_collab_view = "SELECT buyer_ID,view_history.item_ID,item_name,pro_desc,starting_price,picture FROM view_history JOIN item ON view_history.item_ID = item.item_ID WHERE buyer_ID = '$buyer_id'";
+    $query_collab_view = "SELECT view_history.item_ID,item_name,pro_desc,starting_price,picture FROM view_history JOIN item ON view_history.item_ID = item.item_ID WHERE buyer_ID = '$buyer_id'";
+    $query_collab_view .= $ongoing;
     $query_res_collab_view = mysqli_query($db_conn, $query_collab_view);
     if (mysqli_num_rows($query_res_collab_view) > 0) {
       while ($peer_view =  mysqli_fetch_assoc($query_res_collab_view)) {
-        unset($peer_view["buyer_ID"]);
         array_push($rec_arr, $peer_view);
       }
     }
