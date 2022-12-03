@@ -17,7 +17,7 @@ include "max_bid_price.php";
 // TODO: Check user's credentials (cookie/session).
 $user_id = $_SESSION['userid'];
 // TODO: Perform a query to pull up the auctions they've bidded on.
-$bid_query = "SELECT * FROM bidding JOIN item ON bidding.item_ID = item.item_ID WHERE bidding.buyer_ID = '$user_id'";
+$bid_query = "SELECT * FROM bidding JOIN item ON bidding.item_ID = item.item_ID WHERE bidding.buyer_ID = '$user_id' AND CONCAT(sta_date,start_time) <= CONCAT(CURDATE(), CURTIME()) AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
 $bidding_list = mysqli_query($db_conn, $bid_query);
 // TODO: Loop through results and print them out as list items.
 ?>
