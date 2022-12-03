@@ -37,7 +37,7 @@
             <tbody>
               <?php
               $mail = $_SESSION['email'];
-              $sql = "SELECT * FROM bidding JOIN item ON bidding.item_ID = item.item_ID JOIN users ON users.user_ID = bidding.buyer_ID WHERE users.user_type IN ('buyer', 'both') AND users.email = '$mail' order by item.item_id, bidding.bid_id";  # select data from sql table
+              $sql = "SELECT * FROM bidding JOIN item ON bidding.item_ID = item.item_ID JOIN users ON users.user_ID = bidding.buyer_ID WHERE users.email = '$mail' AND end_date < CURDATE() order by item.item_id, bidding.bid_id";  # select data from sql table
               $result = mysqli_query($db_conn, $sql); # send a query to the database
               //$result_maxPrice = mysqli_query($db_conn, $sql_maxPrice);
 

@@ -61,4 +61,25 @@ function print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time)
   );
 }
 
-?>
+// count bids
+function count_bids($db_conn,$item_id){
+  $bid_count_query = "SELECT item_ID,COUNT(item_ID) AS count_bid FROM bidding WHERE item_ID = '$item_id' GROUP BY item_ID";
+  $bid_count = mysqli_query($db_conn, $bid_count_query);
+  if(mysqli_num_rows($bid_count)>0){
+    $bid = mysqli_fetch_assoc($bid_count);
+    return $bid["count_bid"];
+  }else{
+    return 0;
+  }
+}
+//count views
+function count_views($db_conn,$item_id){
+  $view_query = "SELECT item_ID, SUM(view_times) AS view_rate FROM view_history WHERE item_ID = '$item_id' GROUP BY item_ID";
+  $view_count = mysqli_query($db_conn, $view_query);
+  if(mysqli_num_rows($view_count)>0){
+    $view = mysqli_fetch_assoc($view_count);
+    return $view["view_rate"];
+  }else{
+    return 0;
+  } 
+}

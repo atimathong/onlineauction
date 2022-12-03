@@ -9,7 +9,7 @@ include "utilities/timecalc.php";
 
 if (isset($_POST['submit-bid'])) {
     if (!isset($_SESSION['userid'])) {
-        header("location: login.php");
+        header("location: login_page.php");
     } else {
         $bid_item = $_SESSION["item_detail"];
         $item_id = $bid_item['item_ID'];

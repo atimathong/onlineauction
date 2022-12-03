@@ -127,7 +127,12 @@ if (isset($_POST['reg_user'])) {
             </div>
             <h4 class="log-text">You are now registered! You will be redirected shortly.</h4>
         </div>';
-        header('refresh:2;url=index.php');
+        if($_SESSION['account_type']=="both"||$_SESSION['account_type']=="buyer"){
+            header('refresh:2;url=index.php');
+        }else{
+            // seller
+            header('refresh:2;url=seller_listing.php');
+        }
         exit();
     }
 }

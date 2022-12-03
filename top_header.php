@@ -54,7 +54,7 @@ if (!isset($_SESSION)) {
         </li>
       <?php } else if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == 'seller') { ?>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php"><span class="material-symbols-outlined">
+          <a class="nav-link active" aria-current="page" href="seller_listing.php"><span class="material-symbols-outlined">
               house
             </span></a>
           <!-- <a class="nav-link active" aria-current="page" href="#">Become a Buyer?</a> -->
@@ -71,6 +71,12 @@ if (!isset($_SESSION)) {
           </ul>
         </li>
       <?php } else { ?>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.php"><span class="material-symbols-outlined">
+              house
+            </span></a>
+          <!-- <a class="nav-link active" aria-current="page" href="#">Become a Buyer?</a> -->
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" aria-haspopup="true">Hello,<?php echo $_SESSION['fname']; ?>!</a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -108,7 +114,7 @@ if (!isset($_SESSION)) {
           <form action="index.php" method="POST" class="input-group mb-3 sb col">
             <input type="text" class="form-control" id="keyword" type="text" name="search" placeholder="Search" aria-describedby="basic-addon2">
             <button formmethod="POST" formaction="index.php" class="btn btn-dark" type="submit" name="submit-search">Search</button>
-            <button formmethod="POST" formaction="index.php" class="btn btn-outline-dark" type="submit" name="clear-search">Reset</button>
+            <button formmethod="POST" formaction="index.php" class="btn btn-outline-dark" type="submit" name="clear-search">Clear</button>
           </form>
         </div>
       </div>

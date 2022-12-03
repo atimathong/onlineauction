@@ -25,8 +25,6 @@ if(isset($_POST["img_submit"])) {
     $result = mysqli_query($db_conn, $query);
     
     
-    
-    
     // CONNECT TO CURRECT ROW
     $sql = "SELECT * FROM item WHERE seller_ID = '$id' and picture = '$fileName';";
     $sqlResult = mysqli_query($db_conn, $sql);

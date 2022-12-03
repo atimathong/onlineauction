@@ -34,11 +34,9 @@ require 'product_filtered.php'
         <?php include 'product_display.php' ?>
       </div>
     </div>
-    <?php if (isset($_SESSION['userid'])) { ?>
-      <div class="recmd">
+    <div class="recmd">
         <?php include 'recommendations.php' ?>
-      </div>
-    <?php } ?>
+    </div>
   </div>
 
 
