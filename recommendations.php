@@ -120,7 +120,7 @@ if (count($rec_arr_unique) < 4) {
         ?>
           <div class="card swiper-slide">
             <div class="card" style="width: 20rem;">
-              <a href="product_details.php?id=<?php echo $row['item_ID']; ?>" target="_blank" class="main-link"><img class="card-img-top" style="height:280px;" src="pictures/<?php echo $row['picture']; ?>" alt=<?php echo $row['picture'] ?>></a>
+              <a href="product_details.php?id=<?php echo $row['item_ID']; ?>"><img class="card-img-top" style="height:280px;" src="pictures/<?php echo $row['picture']; ?>" alt=<?php echo $row['picture'] ?>></a>
               <div class="card-body" style="height:100px;">
                 <h5 class="card-title text-uppercase"><?php echo $row['item_name']; ?></h5>
                 <p class="card-text desc"><?php echo $row['pro_desc']; ?></p>
