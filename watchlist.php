@@ -10,6 +10,7 @@ include_once 'database_connect/connect_db.php'; //connect to db
 <head>
     <title>Font Awesome Icons</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -54,7 +55,7 @@ BY i.item_name";
     ?>
     <div class="container">
         <div class="row">
-            <h2 class="my-3 col">My Watch List</h2>
+            <h2 class="my-3 col" style="font-family: 'Varela Round', sans-serif;"><b>My Watch List</b></h2>
             <div class="col-md-12">
                 <div class="table-wrap">
                     <table class="table">

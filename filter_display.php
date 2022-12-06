@@ -119,8 +119,8 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status[]" value="Finished" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="status[]" value="Finished" id="flexRadioDefault3">
+                    <label class="form-check-label" for="flexRadioDefault3">
                         Finished
                     </label>
                 </div>
@@ -147,15 +147,49 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="price-range[]" value="high1" id="flexRadioDefault3">
-                    <label class="form-check-label" for="flexRadioDefault3">
+                    <input class="form-check-input" type="radio" name="price-range[]" value="high1" id="flexRadioDefault4">
+                    <label class="form-check-label" for="flexRadioDefault4">
                         4500 £ to 10000 £
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="price-range[]" value="high2" id="flexRadioDefault3">
-                    <label class="form-check-label" for="flexRadioDefault3">
+                    <input class="form-check-input" type="radio" name="price-range[]" value="high2" id="flexRadioDefault5">
+                    <label class="form-check-label" for="flexRadioDefault5">
                         Over 10000 £
+                    </label>
+                </div>
+                <!-- use condition -->
+                <hr>
+                <h6>Use Condition</h6>
+                <hr>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="use-cond[]" value="brand-new" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Brand New
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="use-cond[]" value="like-new" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Like New
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="use-cond[]" value="well-used" id="flexRadioDefault3">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                        Well-used
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="use-cond[]" value="lightly-used" id="flexRadioDefault4">
+                    <label class="form-check-label" for="flexRadioDefault4">
+                        Lightly-used
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="use-cond[]" value="heavily-used" id="flexRadioDefault5">
+                    <label class="form-check-label" for="flexRadioDefault5">
+                        Heavily-used
                     </label>
                 </div>
                 <!-- Sort -->

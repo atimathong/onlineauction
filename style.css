@@ -47,27 +47,6 @@ body{
     bottom:37px;
 }
 
-/* .search-but{
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: -20px;
-    padding-bottom: -20px;
-    background-color: #0c141c;
-    color: white;
-    border: 3px;
-}
-
-.clear-but{
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    background-color: #E9E9E7;
-    color: black;
-    border: 3px;
-    margin-left: -15px;
-} */
-
 .filter{
     font-family: 'Montserrat', sans-serif;
     text-align: center;
