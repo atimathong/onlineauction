@@ -21,7 +21,7 @@
 <body>
   <div class="container">
     <div class="row">
-      <h2 style="font-family: 'Varela Round', sans-serif;" class="my-3 col">My Selling Lists</h2>
+      <h2 style="font-family: 'Varela Round', sans-serif;" class="my-3 col"><b>My Selling Lists</b></h2>
       <div class="col-lg-12">
         <div class="table-wrap">
           <table class="table">
@@ -85,5 +85,6 @@
 </div>
 
 </html>
-
+<footer style="margin-top:200px;">
 <?php include_once("bottom_footer.php") ?>
+</footer>

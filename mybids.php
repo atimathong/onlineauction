@@ -21,9 +21,20 @@ $bid_query = "SELECT * FROM bidding JOIN item ON bidding.item_ID = item.item_ID 
 $bidding_list = mysqli_query($db_conn, $bid_query);
 // TODO: Loop through results and print them out as list items.
 ?>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  <title>Bidding List</title>
+</head>
+
 <div class="container">
   <div class="row">
-    <h2 class="my-3 col">My Bidding List</h2>
+    <h2 class="my-3 col" style="font-family: 'Varela Round', sans-serif;"><b>My Bidding List</b></h2>
     <div class="col-md-12">
       <div class="table-wrap">
         <table class="table">
@@ -85,5 +96,6 @@ $bidding_list = mysqli_query($db_conn, $bid_query);
   </div>
 </div>
 <!-- </div> -->
-
+<footer style="margin-top:200px;">
 <?php include_once("bottom_footer.php") ?>
+</footer>

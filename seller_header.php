@@ -30,16 +30,16 @@ if (!isset($_SESSION)) {
 </head>
 
 <body>
-    <div style="padding-top:4px;padding-bottom:1px;background-color:#0c141c;text-align: center;">
+    <div style="width:100%;position:relative;left:0%;padding-top:4px;padding-bottom:1px;background-color:#0c141c;text-align:center;">
         <p style="color:white;font-family: 'Varela Round', sans-serif;vertical-align: middle;">Let's get a bid more bidiculous!</p>
     </div>
     <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
+        <div class="container-fluid" style="width:100%;">
             <a style="background-color:#9BB7D4;color:black;" class="nav-link active" aria-current="page" href="index.php">
                     <span class="material-symbols-outlined">house</span>
             </a>
-            <a class="navbar-brand" href="#" style="width:75%;">
-                <h1 class="logo" style="font-size:35px;margin-left:50%">aBidMore</h1>
+            <a class="navbar-brand" href="#" style="width:50%;position:absolute;left:25%;align-items:center">
+                <h1 class="logo" style="font-size:35px;margin-left:40%">aBidMore</h1>
             </a>
             <div class="navbar-text" id="navbarNavDropdown">
                 <ul class="navbar-nav">

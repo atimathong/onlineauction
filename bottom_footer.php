@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  <nav class="navbar sticky-bottom bg-light" style="width:100%;position:relative;bottom:0px;">
+  <nav class="navbar sticky-bottom bg-light" style="width:100%;position:fixed;left:0%;bottom:0%;margin-top: 150px;">
     <div class="container-fluid foot">
       <div>
         <h5 class="contact">
@@ -26,11 +26,11 @@
           <p>(+44)7340655246</p>customer_support@ebid.com
         </h5>
       </div>
-      <div class="align-text-top row" style="display: flex;flex-wrap: wrap;flex-direction: column;align-content: center;">
-        <h1 class="logo-foot row">
+      <div class="align-text-top row" style="width:33.3%;position:absolute;left:33.3%;right:33.3%;text-align: center;">
+        <h1 class="logo-foot">
           aBidMore
         </h1>
-        <h6 class="cp row" style="margin-left:70px;">Copyright © 2021 aBidMore <br>All Rights Reserved</h6>
+        <h6 class="cp">Copyright © 2021 aBidMore <br>All Rights Reserved</h6>
       </div>
       <div>
         <h5 class="support">24 Hours Live Support</h5>

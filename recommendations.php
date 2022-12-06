@@ -14,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <script src="https://kit.fontawesome.com/6cc5131127.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css" />
@@ -111,7 +112,7 @@ if (count($rec_arr_unique) < 4) {
   <!-- TODO: Loop through results and print them out as list items. -->
   <div class="container-card swiper" style="max-width:1300px;">
     <div class="slide-container">
-      <h2>Recommendations for you</h2>
+      <h2 style="font-family: 'Varela Round', sans-serif;">Recommendations for you</h2>
       <hr>
       <div class="card-wrapper swiper-wrapper">
         <?php
