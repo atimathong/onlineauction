@@ -44,7 +44,7 @@ include_once("seller_header.php");
     <!-- Create auction form -->
     <div style="max-width: 800px; margin: 10px auto">
 
-        <h2 class="my-3" style="font-family: 'Varela Round', sans-serif;color:#1a2c3e;">Create new auction</h2>
+        <h2 class="my-3" style="font-family: 'Varela Round', sans-serif;color:#1a2c3e;"><b>Create new auction</b></h2>
         <div>
             <p class="text-danger" style="font-family: 'Varela Round', sans-serif;">Photo uploaded successfully.</p>
         </div>
