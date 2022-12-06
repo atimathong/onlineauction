@@ -67,7 +67,8 @@ if ($_SESSION['account_type'] == 'both') {
 ?>
 
 <?php
-$sql2 = "SELECT COUNT(buyer_ID) AS amount_of_watching_items FROM users JOIN watchlist ON watchlist.buyer_ID = users.user_ID where email = '$email'";
+$user_id = $_SESSION["userid"];
+$sql2 = "SELECT COUNT(buyer_ID) AS amount_of_watching_items FROM watchlist where buyer_ID = '$user_id'";
 $result2 = mysqli_query($db_conn, $sql2);
 $resultCheck2 = mysqli_num_rows($result2);
 $row2 = mysqli_fetch_assoc($result2);
@@ -77,7 +78,7 @@ $watching_items = $row2['amount_of_watching_items']
 <?php
 
 // A buyer has many bids which is ongong? how to set the condition for the onging bids?
-$sql3 = "SELECT count(DISTINCT bidding.item_ID) as amount_of_bids FROM `bidding` join users on bidding.buyer_ID = users.user_ID join item on item.item_ID = bidding.item_ID where email = 'leeyu0828@gmail.com' AND CONCAT(sta_date,start_time) <= CONCAT(CURDATE(), CURTIME()) AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
+$sql3 = "SELECT count(DISTINCT bidding.item_ID) as amount_of_bids FROM `bidding` join users on bidding.buyer_ID = users.user_ID join item on item.item_ID = bidding.item_ID where buyer_ID = $user_id AND CONCAT(sta_date,start_time) <= CONCAT(CURDATE(), CURTIME()) AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
 $result3 = mysqli_query($db_conn, $sql3);
 $resultCheck3 = mysqli_num_rows($result3);
 $row3 = mysqli_fetch_assoc($result3);
@@ -85,8 +86,7 @@ $bids = $row3['amount_of_bids']
 ?>
 
 <?php
-$seller_id = $_SESSION['userid'];
-$sql4 = "SELECT count(item_ID ) AS selling_items FROM `item` WHERE seller_ID = $seller_id";
+$sql4 = "SELECT count(item_ID ) AS selling_items FROM `item` WHERE seller_ID = $user_id";
 $result4 = mysqli_query($db_conn, $sql4);
 $resultCheck4 = mysqli_num_rows($result4);
 $row4 = mysqli_fetch_assoc($result4);
