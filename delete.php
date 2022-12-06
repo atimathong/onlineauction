@@ -14,9 +14,7 @@ if(isset($_POST['delete'])){
     $item_id = mysqli_real_escape_string($db_conn, $_POST['item_ID']);
 }
 
-$query = "SELECT item_ID FROM watchlist WHERE item_ID = '$item_id' AND buyer_ID = '$user_id'";
 
-$result = mysqli_query($db_conn, $query);
 
 
 $query = "SELECT item_ID FROM watchlist_delete WHERE item_ID = '$item_id' AND buyer_ID = '$user_id'";
