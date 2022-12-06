@@ -34,7 +34,7 @@ require 'product_filtered.php'
         <?php include 'product_display.php' ?>
       </div>
     </div>
-    <div class="recmd">
+    <div class="recmd" style="margin-top:50px;">
         <?php include 'recommendations.php' ?>
     </div>
   </div>
@@ -47,7 +47,8 @@ require 'product_filtered.php'
 </body>
 
 </html>
-
+<footer style="position:relative;bottom:0px;right:0px;margin-top:80px;">
 <?php
 include 'bottom_footer.php';
 ?>
+</footer>

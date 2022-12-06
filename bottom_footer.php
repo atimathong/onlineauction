@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  <nav class="navbar sticky-bottom bg-light" style="width:100%;position:fixed;left:0%;bottom:0%;margin-top: 150px;">
+  <nav class="navbar sticky-bottom bg-light" style="width:100%;position:relative;left:0%;bottom:0%;margin-top: 150px;">
     <div class="container-fluid foot">
       <div>
         <h5 class="contact">
