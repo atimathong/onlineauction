@@ -1,5 +1,6 @@
 <?php
 include 'database_connect/connect_db.php';
+include 'seller_header.php';
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -17,8 +18,6 @@ if (!isset($_SESSION)) {
   <!-- Bootstrap and FontAwesome CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
- 
   <link rel="stylesheet" href="style.css" />
 
   <title>Create Account</title>
@@ -70,3 +69,6 @@ if (!isset($_SESSION)) {
   </div>
 </div>
 </body>
+<?php 
+include 'bottom_footer.php'
+?>

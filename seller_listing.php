@@ -85,5 +85,6 @@
 </div>
 
 </html>
-
+<footer style="margin-top:200px;">
 <?php include_once("bottom_footer.php") ?>
+</footer>

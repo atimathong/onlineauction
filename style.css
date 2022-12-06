@@ -19,8 +19,6 @@ body{
     font-size: 75px;
     font-weight: bold;
     color:  #0c141c;
-    text-align: center;
-
 }
 
 .container-fluid{
@@ -86,7 +84,6 @@ body{
     font-family: 'Raleway', sans-serif;
 }
 .cp{
-    text-align: center;
     font-family: 'Raleway', sans-serif;
 }
 .pagination {

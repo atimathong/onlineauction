@@ -96,5 +96,6 @@ $bidding_list = mysqli_query($db_conn, $bid_query);
   </div>
 </div>
 <!-- </div> -->
-
+<footer style="margin-top:200px;">
 <?php include_once("bottom_footer.php") ?>
+</footer>

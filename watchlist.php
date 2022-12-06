@@ -104,8 +104,9 @@ BY i.item_name";
             </div>
         </div>
     </div>
-
-    <?php
+</body>
+<footer style="margin-top:200px;">
+<?php
     if (!isset($_SESSION['userid'])) {
         header("Location: login_page.php");
     }
@@ -113,9 +114,6 @@ BY i.item_name";
     include_once "bottom_footer.php";
 
     ?>
-
-</body>
-
-
+</footer>
 
 </html>
