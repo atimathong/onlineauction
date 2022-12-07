@@ -12,7 +12,7 @@
   <link rel="stylesheet" id="roboto-subset.css-css" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5" type="text/css" media="all">
   
   <link rel="stylesheet" href="style.css" />
-  <title>Register</title>
+  <title>Login</title>
   <script defer src="./login.js"></script>
 </head>
 

@@ -2,13 +2,15 @@
 include_once "top_header.php";
 include "max_bid_price.php";
 include_once 'database_connect/connect_db.php'; //connect to db
+require("utilities.php");
+include 'utilities/delete_item.php'; 
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Font Awesome Icons</title>
+    <title>My Watchlist</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -82,13 +84,14 @@ BY i.item_name";
                                         <td><?php echo $row['firstname'] . ' ' . $row['lastname'] ?></td>
                                         <td><img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product" style="width:190;height:140px;"></td>
                                         <td><?php echo maxBidQuery($row["item_ID"],$row["starting_price"]) ?></td>
-                                        <td>
+                                        <!-- <td>
                                             <form action='delete.php' method='post' target="_self">
                                                 <button style="font-size:24px" type="submit" name="delete"> <i style="font-size:24px" class="fa">&#xf014;</i>
-                                        </td>
+                                        </td> -->
                                         <input type="hidden" name="item_ID" value="<?= $row['item_ID'] ?>">
                                         </form>
                                         </td>
+                                        <td><?php deleteItem("Delete", "delete", "watchlist", $row['item_ID'], "watchlist.php",$db_conn) ?></td>
 
                                     </tr>
                                     <?php $i = $i + 1;

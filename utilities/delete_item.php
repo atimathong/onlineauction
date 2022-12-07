@@ -55,14 +55,18 @@
 if(isset($_POST[$button_name])){
     $user_id = $_SESSION['userid'];
     $id = mysqli_real_escape_string($db_conn, $_GET['id']);
+    $name_query= "";
     $del_query = "";
     $message = "";
     if($db_name == "item"){
         $del_query = "DELETE FROM item WHERE seller_ID='$user_id' AND item_ID='$id'";
         $message = "Product deleted successfully";
     }elseif($db_name == "watchlist" || $db_name == "bidding"){
-        $del_query .= "DELETE FROM $db_name WHERE buyer_ID='$user_id' AND item_ID='$id'";
-        $message = $db_name == "watchlist" ? "Item removed successfully" : "Bid cancelled successfully";
+        $del_query = "DELETE FROM $db_name WHERE buyer_ID='$user_id' AND item_ID='$id'";
+        $name_query = "SELECT * FROM item WHERE item_ID='$id'";
+        $result = mysqli_query($db_conn, $name_query);
+        $itemName = mysqli_fetch_assoc($result)['item_name'];
+        $message = $db_name == "watchlist" ? " removed successfully" : "Bid cancelled successfully";
     }
     if (mysqli_query($db_conn, $del_query)) {
         if($landing_page == "mybids.php"){
@@ -71,7 +75,7 @@ if(isset($_POST[$button_name])){
             echo "<script type='text/javascript'>window.onload = function () { alert('Bid cancelled successfully'); window.location.href='seller_listing.php';}</script>";
         }else{
             // watchlist.php
-            echo "<script type='text/javascript'>window.onload = function () { alert('Bid cancelled successfully'); window.location.href='watchlist.php';}</script>";
+            echo "<script type='text/javascript'>window.onload = function () { alert('$itemName removed successfully'); window.location.href='watchlist.php';}</script>";
         }
 
     } else {
