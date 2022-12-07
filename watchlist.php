@@ -19,7 +19,9 @@ include 'utilities/delete_item.php';
 <body>
 
     <?php
-    $item_id = mysqli_real_escape_string($db_conn, $_SESSION['itemid']);
+    if(isset($_SESSION['itemid'])){
+        $item_id = mysqli_real_escape_string($db_conn, $_SESSION['itemid']);
+    }
     $user_id = mysqli_real_escape_string($db_conn, $_SESSION['userid']);
     if (isset($_POST['functionname']) && $_POST['functionname'] == "add_to_watchlist") {
 
@@ -84,13 +86,6 @@ BY i.item_name";
                                         <td><?php echo $row['firstname'] . ' ' . $row['lastname'] ?></td>
                                         <td><img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product" style="width:190;height:140px;"></td>
                                         <td><?php echo maxBidQuery($row["item_ID"],$row["starting_price"]) ?></td>
-                                        <!-- <td>
-                                            <form action='delete.php' method='post' target="_self">
-                                                <button style="font-size:24px" type="submit" name="delete"> <i style="font-size:24px" class="fa">&#xf014;</i>
-                                        </td> -->
-                                        <input type="hidden" name="item_ID" value="<?= $row['item_ID'] ?>">
-                                        </form>
-                                        </td>
                                         <td><?php deleteItem("Delete", "delete", "watchlist", $row['item_ID'], "watchlist.php",$db_conn) ?></td>
 
                                     </tr>
