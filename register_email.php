@@ -25,7 +25,7 @@ if (!isset($_SESSION)) {
 
 <body>
 
-<div style="height: 100%;background-size: cover;" class="gradient-custom">
+<div style="height: 100%;background-size:cover;padding-bottom:100px;" class="gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10">
@@ -69,6 +69,3 @@ if (!isset($_SESSION)) {
   </div>
 </div>
 </body>
-<?php 
-include 'bottom_footer.php'
-?>
