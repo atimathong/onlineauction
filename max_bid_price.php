@@ -25,22 +25,6 @@
         }
         ?>
     <?php } ?>
-
-    <?php function getCurrentBidPrice($item_id, $start_price)
-    { ?>
-        <script type="text/javascript">
-            let result = setInterval(function() {
-                // query price every 2 mins
-                let maxPrice = <?php echo maxBidQuery($item_id, $start_price) ?>;
-                // print(maxPrice);
-                document.getElementById("price").innerHTML = maxPrice.toString();
-                
-            }, 2000)
-        </script>
-    <?php
-        return '<p id="price" style="font-size:16px;"></p>';
-    } ?>
-
 </body>
 
 </html>

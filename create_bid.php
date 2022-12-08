@@ -23,12 +23,15 @@ if (isset($_POST['submit-bid'])) {
         // add bidding to database
         if (mysqli_query($db_conn, $bid_insert)) {
             // email to users
-            $users_query = "SELECT * FROM bidding JOIN users AS u ON bidding.buyer_ID = u.user_ID JOIN (SELECT item_ID, item_name FROM item) as i ON bidding.item_ID = i.item_ID WHERE i.item_ID = '$item_id'";
+            $users_query = "SELECT * FROM bidding JOIN users AS u ON bidding.buyer_ID = u.user_ID JOIN (SELECT firstname as seller_fname, lastname as seller_lname, email as seller_email, item_ID, item_name FROM item JOIN users ON item.seller_ID = users.user_ID) as i ON bidding.item_ID = i.item_ID WHERE i.item_ID = '$item_id'";
             $user_item_res = mysqli_query($db_conn, $users_query);
             // print_r(mysqli_num_rows($user_item_res));
             if (mysqli_num_rows($user_item_res) > 0) {
                 while ($bid_row = mysqli_fetch_assoc($user_item_res)) {
+                    // email to buyers
                     sendEmail($bid_row['email'], $bid_row['firstname'] . " " . $bid_row['lastname'], $bid_row["item_name"], "start_bid", $bid_row["bid_price"], $bid_row['buyer_ID'] === $user_id ? "main_user" : "others", false);
+                    // email to seller
+                    sendEmail($bid_row['seller_email'], $bid_row['seller_fname'] . " " . $bid_row['seller_lname'], $bid_row["item_name"], "start_bid", $bid_row["bid_price"], "seller", false);
                 }
             }
             // redirect user to mybids page

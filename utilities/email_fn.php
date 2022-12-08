@@ -37,9 +37,9 @@ use PHPMailer\PHPMailer\Exception;
         //set port to connect smtp
         $mail->Port = "587";
         //set gmail username
-        $mail->Username = "atima.thong@gmail.com";
+        $mail->Username = "abidmore.auction@gmail.com";
         //set gmail password
-        $mail->Password = "adhurpuultfghfsd";
+        $mail->Password = "oteaflbmbansrmnl";
         //set gmail subject
         $subject = "";
         if ($purpose == "start_bid") {
@@ -50,40 +50,42 @@ use PHPMailer\PHPMailer\Exception;
         }
         $mail->Subject = $subject;
         //set sender email
-        $mail->setFrom("atima.thong@gmail.com");
+        $mail->setFrom("abidmore.auction@gmail.com");
 
         //email body
         $message = '<html><body>';
-        $message .= '<h3 style="color:blue;"><b>Dear</b> ' . $user_fname . ',</h3>';
+        $message .= '<h3 style="color:#294461;font-size:20px"><b>Dear</b> ' . $user_fname . ',</h3>';
         if ($purpose === "start_bid") {
             // main user will be the person who has just created the bid.
-            $message .= $receiver == "main_user" ? '<p style="color:black;font-size:18px;">You have successfully started your bid for ' . $item_name . ' at a price of &pound;' . $bid_price . '.</p>' :
-                '<p style="color:black;font-size:18px;">New bid has been created for ' . $item_name . ' by another auctioner. Please feel free to update your bid price to grab a change to become the winner!</p>';
             if($receiver == "seller"){
-                $message .= '<p style="color:black;font-size:18px;">One auctioner has just created a bid for your item, named '. $item_name . ', at a price of &pound;' . $bid_price .'.</p>';
+                $message .= '<p style="color:black;font-size:18px;">One auctioner has just created new a bid for your item, named '. $item_name . ', at a price of &pound;' . $bid_price .'.</p>';
+            }else{
+                $message .= $receiver == "main_user" ? '<p style="color:black;font-size:18px;">You have successfully started your bid for ' . $item_name . ' at a price of &pound;' . $bid_price . '.</p>' :
+                    '<p style="color:black;font-size:18px;">New bid has been created for ' . $item_name . ' by another auctioner. Please feel free to update your bid price to grab a change to become the winner!</p>';
             }
         } else {
             //end bid: main user is the winner.
             if ($bid_fail === false) {
                 // bid success
-                $message .= $receiver == "main_user" ? '<p style="color:black;font-size:18px;">Congratulations!, you are the winner of the auction for ' . $item_name . ' at a highest price of &pound;' . $bid_price . '. The seller will contact you shortly.</p>' :
-                    '<p style="color:black;font-size:18px;">We regret to inform you that your bid for ' . $item_name . ' at a price of &pound;' . $bid_price . ' is unsuccessful. 
-                However, we have many ongoing and upcoming bids which you can potentially become the winner. So stay tuned for your next auction!</p>';
-
                 if($receiver == "seller"){
                     $message .= '<p style="color:black;font-size:18px;">Congratulations!, your item, named '. $item_name . ', are successfully sold to ' . $winner . ' at a price of &pound;' . $bid_price .'. We recommend contacting your customer and delivering the bidded item to his/her as soon as possible to keep your customer happy.</p>';
+                }else{
+                    $message .= $receiver == "main_user" ? '<p style="color:black;font-size:18px;">Congratulations!, you are the winner of the auction for ' . $item_name . ' at a highest price of &pound;' . $bid_price . '. The seller will contact you shortly.</p>' :
+                        '<p style="color:black;font-size:18px;">We regret to inform you that your bid for ' . $item_name . ' at a price of &pound;' . $bid_price . ' is unsuccessful. 
+                    However, we have many ongoing and upcoming bids which you can potentially become the winner. So stay tuned for your next auction!</p>';
                 }
             } else {
                 // bid_fail due to the price < reserve price
-                $message .= '<p style="color:black;font-size:18px;">We regret to inform you that the auction for ' . $item_name . " has been declined by the seller because the highest bid price doesn't reach the seller's reserved price.</p>";
                 if($receiver == "seller"){
                     $message .= '<p style="color:black;font-size:18px;">We regret to inform you that you item, named ' . $item_name . ", is not successully sold to any auctioners because the highest bid price doesn't reach the your item's reserved price. We strongly recommend creating a new auction in the near future or reducing the reserved price.</p>";
+                }else{
+                    $message .= '<p style="color:black;font-size:18px;">We regret to inform you that the auction for ' . $item_name . " has been declined by the seller because the highest bid price doesn't reach the seller's reserved price.</p>";
                 }
             }
         }
         $message .= '<br>';
         $message .= '<p style="color:black;font-size:18px;"></b>Best Regards,</b></p>';
-        $message .= '<p style="color:black;font-size:18px;">Customer Support Team</p>';
+        $message .= '<p style="color:black;font-size:18px;">aBidMore Auction Team</p>';
         $message .= '</body></html>';
 
         $mail->isHTML(true);  
@@ -96,7 +98,7 @@ use PHPMailer\PHPMailer\Exception;
         if ($mail->send()) {
             echo "--Email Sent--";
         } else {
-            echo "Error..!";
+            echo "Error!!!";
         }
         //closing smtp connection
         $mail->smtpClose();
