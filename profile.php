@@ -154,7 +154,7 @@ $selling_items = $row4['selling_items']
 
                                 <div class="border-top pt-3">
                                     <div class="row">
-                                        <?php if ($_SESSION['account_type'] != 'seller') {
+                                        <?php if ($_SESSION['account_type'] === 'buyer') {
 
                                         ?>
                                             <div class="col">
@@ -169,12 +169,39 @@ $selling_items = $row4['selling_items']
                                                 <p>Watching Items</p>
 
                                             </div>
-                                        <?php } else { ?>
+                                        <?php } elseif ($_SESSION['account_type'] === 'seller') {
+                                        ?>
                                             <div class="col">
 
                                                 <h6>
                                                     <?php echo $selling_items ?></h6>
                                                 <p>Selling Items</p>
+
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="col" style="float:left; width:30%">
+
+
+                                                <div>
+                                                    <h6>
+                                                        <?php echo $selling_items ?>
+                                                    </h6>
+                                                    <p>Selling Items</p>
+                                                </div>
+
+
+                                                <div>
+                                                    <h6>
+                                                        <?php echo $bids ?></h6>
+
+                                                    <p>Bids</p>
+                                                </div>
+
+                                                <div>
+                                                    <h6><?php echo $watching_items ?></h6>
+                                                    <p>Watching Items</p>
+                                                </div>
+
 
                                             </div>
 
