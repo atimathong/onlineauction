@@ -24,9 +24,7 @@ if ($result_count > 0) {
         $end_time = $row['end_time'];
         $end_datetime = strtotime("$end_date" . " " . "$end_time");
 
-
-        if (-1 < $today_datetime  -  $end_datetime && $today_datetime  -  $end_datetime < 1) {
-
+        if (-1.5 < $today_datetime  -  $end_datetime && $today_datetime  -  $end_datetime < 1.5) {
             $item_id = $row['item_ID'];
 
             $item_nm = $row['item_name'];

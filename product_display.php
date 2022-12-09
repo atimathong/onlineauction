@@ -65,7 +65,7 @@ include 'bid_status.php';
     // connect general product query with filter query
     $product_query .=  get_filter();
     // echo $product_query;
-
+    $url = str_replace("/online-auction/", "", $_SERVER['REQUEST_URI']);
     // MySQL query from database connection
     $total_result  = mysqli_query($db_conn, $product_query);
     $number_of_results = mysqli_num_rows($total_result);
@@ -116,6 +116,7 @@ include 'bid_status.php';
                     </div>
                 </div>
             </div>
+
         <?php
         } ?>
     </div>
@@ -123,15 +124,24 @@ include 'bid_status.php';
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <?php
+                $suffix_pg = '';
+                if (str_contains($url, "filter-apply=")) {
+                    $suffix_pg = '&page=';
+                } else {
+                    $suffix_pg = '?page=';
+                }
+                if (str_contains($url, $suffix_pg)) {
+                    $url = strstr($url, $suffix_pg, true);
+                }
                 // display the links to the pages
                 if ($page > 1) {
-                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page - 1) . '">Previous</a></li>';
+                    echo '<li class="page-item"><a class="page-link" href="' . $url . $suffix_pg . ($page - 1) . '">Previous</a></li>';
                 }
                 for ($i = 1; $i <= $number_of_pages; $i++) {
-                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . $i . '">' . $i . '</a></li>';
+                    echo '<li class="page-item"><a class="page-link" href="' . $url . $suffix_pg . $i . '">' . $i . '</a></li>';
                 }
                 if ($i > $page + 1) {
-                    echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page + 1) . '">Next</a></li>';
+                    echo '<li class="page-item"><a class="page-link" href="' . $url . $suffix_pg . ($page + 1) . '">Next</a></li>';
                 }
                 ?>
             </ul>
