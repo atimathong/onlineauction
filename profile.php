@@ -77,7 +77,7 @@ $watching_items = $row2['amount_of_watching_items']
 
 <?php
 
-// A buyer has many bids which is ongong? how to set the condition for the onging bids?
+// A buyer has many bids which is ongoing? how to set the condition for the onging bids?
 $sql3 = "SELECT count(DISTINCT bidding.item_ID) as amount_of_bids FROM `bidding` join users on bidding.buyer_ID = users.user_ID join item on item.item_ID = bidding.item_ID where buyer_ID = $user_id AND CONCAT(sta_date,start_time) <= CONCAT(CURDATE(), CURTIME()) AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
 $result3 = mysqli_query($db_conn, $sql3);
 $resultCheck3 = mysqli_num_rows($result3);

@@ -13,9 +13,9 @@ function get_filter()
         if (in_array("Ongoing", $_GET['status'])) {
             $filter_query .= " AND CONCAT(sta_date,start_time) <= CONCAT(CURDATE(), CURTIME()) AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
         } else if (in_array("Upcoming", $_GET['status'])) {
-            $filter_query .= " AND sta_date > CURDATE()";
+            $filter_query .= " AND CONCAT(sta_date,start_time)>CONCAT(CURDATE(), CURTIME())";
         } else if (in_array("Finished", $_GET['status'])) {
-            $filter_query .= " AND end_date < CURDATE()";
+            $filter_query .= " AND CONCAT(end_date,end_time)<CONCAT(CURDATE(), CURTIME())";
         }
     }
     if (isset($_GET['price-range'])) {

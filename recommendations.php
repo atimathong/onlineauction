@@ -36,8 +36,8 @@ if (isset($_SESSION['userid'])) {
 // TODO: Perform a query to pull up auctions they might be interested in.
 // array collect entire result from each case
 $rec_arr = array();
-// set ongoing bid status
-$ongoing = " AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
+// set ongoing+upcoming bid status
+$ongoing = " AND CONCAT(end_date,end_time) > CONCAT(CURDATE(), CURTIME())";
 // 0.Popular product in general
 $query_pop = "SELECT view_history.item_ID,item_name,pro_desc,starting_price,picture, SUM(view_times) as total_view FROM view_history, item WHERE view_history.item_ID = item.item_ID" . $ongoing . "GROUP BY view_history.item_ID ORDER BY total_view DESC LIMIT 0,5";
 $query_result_pop = mysqli_query($db_conn, $query_pop);
