@@ -76,7 +76,7 @@ $watching_items = $row2['amount_of_watching_items']
 <?php
 
 // A buyer has many bids which is ongong? how to set the condition for the onging bids?
-$sql3 = "SELECT count(DISTINCT bidding.item_ID) as amount_of_bids FROM `bidding` join users on bidding.buyer_ID = users.user_ID join item on item.item_ID = bidding.item_ID where email = 'leeyu0828@gmail.com' AND CONCAT(sta_date,start_time) <= CONCAT(CURDATE(), CURTIME()) AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
+$sql3 = "SELECT count(DISTINCT bidding.item_ID) as amount_of_bids FROM `bidding` join users on bidding.buyer_ID = users.user_ID join item on item.item_ID = bidding.item_ID where email = '$email' AND CONCAT(sta_date,start_time) <= CONCAT(CURDATE(), CURTIME()) AND CONCAT(end_date,end_time) >= CONCAT(CURDATE(), CURTIME())";
 $result3 = mysqli_query($db_conn, $sql3);
 $resultCheck3 = mysqli_num_rows($result3);
 $row3 = mysqli_fetch_assoc($result3);
@@ -160,60 +160,67 @@ $selling_items = $row4['selling_items']
                                         ?>
                                             <div class="col">
 
+
                                                 <h6>
                                                     <?php echo $bids ?></h6>
                                                 <p>Bids</p>
-
                                             </div>
+
+
                                             <div class="col">
+
                                                 <h6><?php echo $watching_items ?></h6>
                                                 <p>Watching Items</p>
-
-                                            </div>
-                                        <?php } elseif ($_SESSION['account_type'] === 'seller') {
-                                        ?>
-                                            <div class="col">
-
-                                                <h6>
-                                                    <?php echo $selling_items ?></h6>
-                                                <p>Selling Items</p>
-
-                                            </div>
-                                        <?php } else { ?>
-                                            <div class="col" style="float:left; width:30%">
-
-
-                                                <div>
-                                                    <h6>
-                                                        <?php echo $selling_items ?>
-                                                    </h6>
-                                                    <p>Selling Items</p>
-                                                </div>
-
-
-                                                <div>
-                                                    <h6>
-                                                        <?php echo $bids ?></h6>
-
-                                                    <p>Bids</p>
-                                                </div>
-
-                                                <div>
-                                                    <h6><?php echo $watching_items ?></h6>
-                                                    <p>Watching Items</p>
-                                                </div>
-
-
                                             </div>
 
 
-                                        <?php } ?>
                                     </div>
-                                </div>
+                                <?php } elseif ($_SESSION['account_type'] === 'seller') {
+                                ?>
+                                    <div>
 
+                                        <div>
+                                            <h6>
+                                                <?php echo $selling_items ?></h6>
+                                            <p>Selling Items</p>
+                                        </div>
+
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="col">
+
+
+                                        <div style="float:left; width:30%">
+                                            <h6>
+                                                <?php echo $selling_items ?>
+                                            </h6>
+                                            <p>Selling Items</p>
+                                        </div>
+
+
+                                        <div style="float:left; width:30%">
+                                            <h6>
+                                                <?php echo $bids ?></h6>
+
+                                            <p>Bids</p>
+                                        </div>
+
+                                        <div style="float:left; width:30%">
+                                            <h6><?php echo $watching_items ?></h6>
+                                            <p>Watching Items</p>
+                                        </div>
+
+
+                                    </div>
+
+
+                                <?php } ?>
+                                </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
