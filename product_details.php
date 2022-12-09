@@ -156,7 +156,7 @@ if (isset($_GET['id'])) {
                                     </form>
                                 </div>
                                 <!-- <form id="wl" action="watchlist.php" method='post'> -->
-                                <div class="cart mt-4 align-items-center  <?php if ($bid_status !== "Finished") {
+                                <div class="cart mt-4 align-items-center  <?php if ($bid_status == "Ongoing") {
                                                                                 echo "watchlist";
                                                                             } ?>">
                                     <input type="hidden" name="item_ID" value="<?= $item_row['item_ID'] ?>">
