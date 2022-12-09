@@ -1,7 +1,7 @@
 <?php
 include 'database_connect/connect_db.php';
 // keep the result check function running
-include_once 'top_header.php';
+include_once 'seller_header.php';
 if (!isset($_SESSION)) {
   session_start();
 }

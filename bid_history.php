@@ -51,7 +51,7 @@
               if ($resultCheck > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                   if (bidStatus($row) === "Finished") {
-                    echo "<tr> <td>" . $row["bid_ID"] . "</td><td>" . $row["item_name"] . "</td><td>" . "<img src='./pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . bidStatus($row) . "</td><td>" .  $row["bid_price"] . "</td><td>" . maxBidQuery($row["item_ID"], $row["starting_price"]) . "</td><td>" . determineResult($row["bid_price"], maxBidQuery($row["item_ID"], $row["starting_price"]), bidStatus($row)) . " </td><td>" .  $row["end_date"] . "</td></tr>";
+                    echo "<tr> <td>" . $row["bid_ID"] . "</td><td>" . $row["item_name"] . "</td><td>" . "<img src='./pictures/" . $row["picture"] . "' width='200' height='200'>"  . "</td><td>" . bidStatus($row) . "</td><td>" .  $row["bid_price"] . "</td><td>" . maxBidQuery($row["item_ID"], $row["starting_price"]) . "</td><td>" . determineResult($row["bid_price"], maxBidQuery($row["item_ID"], $row["starting_price"]), $row["reserve_price"] ) . " </td><td>" .  $row["end_date"] . "</td></tr>";
                   }
                 }
               } else {
