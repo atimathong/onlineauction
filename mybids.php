@@ -40,7 +40,7 @@ $bidding_list = mysqli_query($db_conn, $bid_query);
         <table class="table">
           <thead class="table-dark">
             <tr>
-              <th scope="col">#</th>
+              <th scope="col" style="width:6%">Item ID</th>
               <th scope="col" style="width:25%">Item Name</th>
               <th scope="col" style="width:20%">Picture</th>
               <th scope="col" style="width:10%">Your Bid Price(&pound;)</th>
@@ -54,7 +54,6 @@ $bidding_list = mysqli_query($db_conn, $bid_query);
           </thead>
           <tbody>
             <?php if (mysqli_num_rows($bidding_list) > 0) {
-              $i = 1;
               while ($bid_row = mysqli_fetch_assoc($bidding_list)) {
                 $item_id = $bid_row["item_ID"];
                 $end_date = $bid_row['end_date'];
@@ -69,7 +68,7 @@ $bidding_list = mysqli_query($db_conn, $bid_query);
                 if ($int_time_to_end >= 0) {
             ?>
                   <tr>
-                    <th scope="row"><?= $i ?></th>
+                    <td scope="row"><?= $bid_row['item_ID']; ?></td>
                     <td><a href="product_details.php?id=<?php echo $bid_row['item_ID']; ?>"><?php echo $bid_row["item_name"] ?></a></td>
                     <td><img src="pictures/<?php echo $bid_row['picture']; ?>" class="card-img-top" alt="product" style="width:190;height:140px;"></td>
                     <td><?php echo $bid_row["bid_price"] ?></td>
@@ -80,9 +79,9 @@ $bidding_list = mysqli_query($db_conn, $bid_query);
                     <td>
                       <form action="product_details.php?id=<?php echo $item_id; ?>" method="POST"><button type="submit" class="btn btn-primary" name="edit-bid" id=<?php echo $bid_row['item_ID']; ?>>Edit</button></form>
                     </td>
-                    <td><?php deleteItem("Cancel", "cancel-bid", "bidding", $item_id, "mybids.php",$db_conn) ?></td>
+                    <td><?php deleteItem("Cancel", "bidding", $item_id, "mybids.php",$db_conn) ?></td>
                   </tr>
-                <?php $i = $i + 1;
+                <?php 
                 } ?> <?php }
                   } else { ?>
               <tr>

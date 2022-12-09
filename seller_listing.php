@@ -27,9 +27,9 @@
           <table class="table">
             <thead class="table-dark">
               <tr>
+                <th scope="col" style="width:5%"> Product ID</th>
                 <th scope="col" style="width:12%"> Product Name</th>
                 <th scope="col" style="width:6%"> Product Category</th>
-                <th scope="col" style="width:5%"> Product ID</th>
                 <th scope="col" style="width:20%"> Picture</th>
                 <th scope="col" style="width:7%"> Start Price(&pound;)</th>
                 <th scope="col" style="width:7%"> Reserved Price(&pound;)</th>
@@ -56,9 +56,9 @@
                   $id = $row['item_ID'];
                   $view_rate = count_views($db_conn, $id);?>
                   <tr>
+                    <td><?php echo $row["item_ID"] ?></td>
                     <td><?php echo $row["item_name"] ?></td>
                     <td> <?php echo $row["category"] ?></td>
-                    <td> <?php echo $row["item_ID"] ?></td>
                     <td><img src='./pictures/<?php echo $row["picture"]?>' width='200' height='200'></td>
                     <td><?php echo $row["starting_price"] ?></td>
                     <td><?php echo $row["reserve_price"] ?></td>
@@ -67,7 +67,7 @@
                     <td><?php echo count_bids($db_conn,$id) ?></td>
                     <td><?php echo maxBidQuery($row["item_ID"],$row["starting_price"] ) ?></td>
                     <td><?php echo count_views($db_conn,$id) ?></td>
-                    <td><?php deleteItem("Delete","del-bid","item",$row["item_ID"],"seller_listing.php",$db_conn) ?></td>
+                    <td><?php deleteItem("Delete","item",$row["item_ID"],"seller_listing.php",$db_conn) ?></td>
                   </tr>
               <?php }
               } else {

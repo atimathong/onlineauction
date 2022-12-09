@@ -65,7 +65,7 @@ BY i.item_name";
                     <table class="table">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">Item ID</th>
                                 <th scope="col" style="width:25%">Item Name</th>
                                 <th scope="col" style="width:25%">Item Description</th>
                                 <th scope="col" style="width:18%">Seller Name</th>
@@ -76,20 +76,21 @@ BY i.item_name";
                         </thead>
                         <tbody>
                             <?php if (mysqli_num_rows($result1) > 0) {
-                                $i = 1;
                                 while ($row = mysqli_fetch_assoc($result1)) {
                             ?>
                                     <tr>
-                                        <th scope="row"><?= $i ?></th>
+                                        <td scope="row"><?= $row['item_ID'] ?></td>
                                         <td><a href="product_details.php?id=<?php echo $row['item_ID']; ?>"><?php echo $row["item_name"] ?></a></td>
                                         <td><?php echo $row['pro_desc'] ?></td>
                                         <td><?php echo $row['firstname'] . ' ' . $row['lastname'] ?></td>
                                         <td><img src="pictures/<?php echo $row['picture']; ?>" class="card-img-top" alt="product" style="width:190;height:140px;"></td>
                                         <td><?php echo maxBidQuery($row["item_ID"],$row["starting_price"]) ?></td>
-                                        <td><?php deleteItem("Delete", "delete", "watchlist", $row['item_ID'], "watchlist.php",$db_conn) ?></td>
+                                        <td><?php 
+                                            deleteItem("Delete", "watchlist", $row['item_ID'], "watchlist.php",$db_conn) 
+                                        ?></td>
 
                                     </tr>
-                                    <?php $i = $i + 1;
+                                    <?php
                                     ?> <?php }
                                 } else { ?>
                                 <tr>
