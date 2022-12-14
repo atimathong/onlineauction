@@ -11,16 +11,6 @@ include_once("top_header.php");
 
 ?>
 
-
-<?php
-/* (Uncomment this block to redirect people without selling privileges away from this page)
-  // If user is not logged in or not a seller, they should not be able to
-  // use this page.
-  if (!isset($_SESSION['account_type']) || $_SESSION['account_type'] != 'seller') {
-    header('Location: browse.php');
-  }
-*/
-?>
 <head>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
