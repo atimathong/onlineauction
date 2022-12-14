@@ -7,7 +7,7 @@ $id = $_SESSION['userid'];
 $_SESSION['img'] = "";
 ?>
 
-<head><script defer src="./create_auction.js"></script></head>
+
 
 <?php
 
@@ -37,10 +37,11 @@ if(isset($_POST["img_submit"])) {
         $_SESSION['img']= $row['picture'];
         //echo $_SESSION['img'];
         //echo $_SESSION['itemid'];
+        echo "<script>if(!alert('Successfully Uploaded!')){window.location.href='create_auction_2.php';}</script>";
     }
     }
 
-    echo "<script>if(!alert('Successfully Uploaded!')){window.location.href='create_auction_2.php';}</script>";
+    
     
     //header("Location: create_auction.php");
 }
